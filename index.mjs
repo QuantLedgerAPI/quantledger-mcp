@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * QuantLedger Zero-IP Stdio-to-RapidAPI MCP Bridge (`npx -y quantledger-mcp`)
+ * Auto-generated from Supabase SSOT (73 engines, 292 laws, 10 suites, 57 jurisdictions).
  * - Serves `initialize`, `ping`, `tools/list`, `prompts/list`, and `resources/list`
  *   immediately so Glama, Official MCP Registry, Claude Desktop, VS Code, and Cursor
  *   index all 5 CPA/GAAP/IRC/SEC tools cleanly even before an API key is configured.
@@ -103,7 +104,7 @@ const STATIC_TOOLS = [
     name: 'get_live_us_statutory_rates_and_57_jurisdictions',
     title: 'Get Live Official US Statutory Rates & 57-Jurisdiction Tax Parameters',
     description:
-      'Returns live official .gov reference benchmarks (NY Fed SOFR & EFFR, FOMC Prime, US Treasury 2Y/5Y/10Y/30Y yield curve, IRC Sec 382 rate, BLS CPI-U, CMS MPFS, FAR 31.205-6p cap) and corporate tax / apportionment formulas across all 57 US jurisdictions.',
+      'Returns 24 live official .gov reference benchmarks (NY Fed SOFR & EFFR, FOMC Prime, US Treasury 2Y/5Y/10Y/30Y yield curve, IRC Sec 382 rate, BLS CPI-U, CMS MPFS, FAR 31.205-6p cap) and corporate tax / apportionment formulas across all 57 US jurisdictions.',
     annotations: READONLY_ANNOTATIONS,
     inputSchema: {
       type: 'object',
@@ -182,7 +183,7 @@ rl.on('line', async (rawLine) => {
         serverInfo: {
           name: 'quantledger-73-engine-mcp',
           title: 'QuantLedger 73-Engine CPA, GAAP, IRC Tax, Credit & SEC 10-K API',
-          version: '2.0.0',
+          version: '2.0.1',
         },
       },
     });

@@ -1,7 +1,7 @@
 {
   "name": "quantledger-mcp",
-  "version": "2.0.0",
-  "description": "MCP Server for CPA Firms, Tax Teams & Financial Institutions: 73 deterministic FASB GAAP, IRC Tax, 409A, DCAA, Credit & live SEC 10-K calculation engines across 57 US jurisdictions via RapidAPI.",
+  "version": "2.0.1",
+  "description": "MCP Server for CPA Firms, Tax Teams & Financial Institutions: 73 deterministic FASB GAAP, IRC Tax, 409A, DCAA, Credit & live SEC 10-K calculation engines (292 laws) across 57 US jurisdictions via RapidAPI.",
   "mcpName": "io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-tax-409a-dcaa-sec-10-k-credit-finance",
   "type": "module",
   "bin": {
@@ -12,7 +12,8 @@
     "server.json",
     "smithery.yaml",
     "glama.json",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "mcp",
