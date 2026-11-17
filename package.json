@@ -1,20 +1,29 @@
 {
   "name": "quantledger-mcp",
-  "version": "2.0.1",
-  "description": "MCP Server for CPA Firms, Tax Teams & Financial Institutions: 73 deterministic FASB GAAP, IRC Tax, 409A, DCAA, Credit & live SEC 10-K calculation engines (292 laws) across 57 US jurisdictions via RapidAPI.",
+  "version": "2.1.0",
+  "description": "Open-source Model Context Protocol (@modelcontextprotocol/sdk) server with keyless US 57-jurisdiction corporate tax/rate math & NAICS/SIC/GICS crosswalks plus REST execution for 73 CPA, FASB GAAP, IRC Tax, 409A, DCAA, Credit & SEC 10-K calculation engines (292 laws).",
   "mcpName": "io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-tax-409a-dcaa-sec-10-k-credit-finance",
   "type": "module",
+  "main": "./src/index.mjs",
   "bin": {
-    "quantledger-mcp": "./index.mjs"
+    "quantledger-mcp": "./src/index.mjs"
+  },
+  "scripts": {
+    "start": "node src/index.mjs"
   },
   "files": [
-    "index.mjs",
+    "src/",
+    "data/",
     "server.json",
     "smithery.yaml",
     "glama.json",
     "README.md",
     "LICENSE"
   ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.2"
+  },
   "keywords": [
     "mcp",
     "mcp-server",
@@ -33,10 +42,9 @@
     "10-k",
     "credit-risk",
     "financial-modeling",
-    "valuation",
-    "rapidapi"
+    "valuation"
   ],
-  "homepage": "https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api",
+  "homepage": "https://github.com/QuantLedgerAPI/quantledger-mcp",
   "repository": {
     "type": "git",
     "url": "https://github.com/QuantLedgerAPI/quantledger-mcp.git"
@@ -44,6 +52,6 @@
   "author": "QuantLedger Quantitative Infrastructure",
   "license": "MIT",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }

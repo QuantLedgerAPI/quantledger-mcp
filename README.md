@@ -1,74 +1,69 @@
-# QuantLedger 73-Engine CPA, FASB GAAP, IRC Tax, Valuation & SEC 10-K MCP Server
+# QuantLedger MCP Server (`@modelcontextprotocol/sdk`) — 73 CPA, FASB GAAP, IRC Tax, Valuation & SEC 10-K Engines
 
 mcp-name: io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-tax-409a-dcaa-sec-10-k-credit-finance
 
-**Zero LLM Math Drift. Sub-Millisecond Deterministic Python & NumPy Accounting, Tax, Credit & Valuation Solvers (73 Engines, 292 Laws) Across All 57 US Jurisdictions + Live Quote-Verified SEC Form 10-K Footnote Audits.**
+> Give compatible AI clients (`Claude Desktop`, `Cursor`, `VS Code Copilot`, `Windsurf`, `LangGraph`, `CrewAI`) keyless local **US 57-jurisdiction corporate tax & apportionment calculations**, **live NY Fed `.gov` SOFR/EFFR benchmarks**, **`1,012`-NAICS / `1,184`-SIC / `163`-GICS industry crosswalks**, **MCP Resources**, and **CPA/Audit Prompts** — plus authenticated REST execution across **73 deterministic CPU calculation engines (`BI-01`–`BI-73`, 292 mathematical & statutory laws)** and **live quote-verified SEC EDGAR Form 10-K covenant audits**.
 
-[![RapidAPI Hub](https://img.shields.io/badge/RapidAPI-Subscribe%20(5%20Free%2FMo)-0055FF?style=for-the-badge)](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)
-[![MCP Protocol](https://img.shields.io/badge/MCP-Streamable--HTTP%20%26%20Stdio-10A37F?style=for-the-badge)](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)
-
-Built specifically for **AI Agents (`Claude Desktop`, `Cursor`, `VS Code Copilot`, `Windsurf`, `ChatGPT Actions`, `LangGraph`, `CrewAI`)** operating inside **CPA firms, corporate tax departments, commercial banks, private credit funds, valuation practices, and government contractors**.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![QuantLedgerAPI/quantledger-mcp MCP server](https://glama.ai/mcp/servers/QuantLedgerAPI/quantledger-mcp/badges/score.svg)](https://glama.ai/mcp/servers/QuantLedgerAPI/quantledger-mcp)
+[![Get Free API Key](https://img.shields.io/badge/API%20Key-Free%20Tier%20(5%2FMo)-0055FF)](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)
 
 ---
 
-## 30-Second Setup for Any AI Agent
+## Architecture: What Runs Locally (No API Key Needed) vs. Cloud Compute REST API
 
-### Step 1: Get Your API Key (`$0/mo` BASIC Tier Includes 5 Calls/Month)
-Subscribe in 1 click on RapidAPI Hub:
-👉 **[https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)**
+| Capability | Execution Mode | API Key Required? | Implementation |
+| :--- | :--- | :--- | :--- |
+| **`get_live_us_statutory_rates_and_57_jurisdictions`** | **100% Local (`src/statutoryEngine.mjs`)** | **No (`Keyless`)** | Fetches live official NY Fed Markets `.gov` SOFR/EFFR feeds + computes apportioned state & federal IRC § 11 combined corporate tax rates across all 57 US jurisdictions. |
+| **`resolve_universal_industry_taxonomy`** | **100% Local (`src/taxonomyEngine.mjs`)** | **No (`Keyless`)** | Bidirectional resolver & keyword search across `1,012` 6-digit NAICS, `1,184` 4-digit SIC, and `163` 8-digit GICS codes with SEC Review Office mapping. |
+| **`list_institutional_math_suites_73`** | **100% Local (`src/catalogEngine.mjs`)** | **No (`Keyless`)** | Full-text statute, input-dataset, and workpaper schedule inspector across all 10 suites and 73 blueprints (`BI-01`–`BI-73`). |
+| **3 MCP Resources & 2 CPA/Tax Prompts** | **100% Local (`src/index.mjs`)** | **No (`Keyless`)** | Exposes `quantledger://catalog/suites`, `quantledger://statutory/us-57-jurisdictions`, `quantledger://taxonomy/summary`, plus ASC 842 & IRC § 382/409A workpaper prompts. |
+| **`execute_institutional_math_engine`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Executes any of the 73 deterministic pure-Python & NumPy statutory/econometric solvers (`/v1/suites/{engine_code}/compute`) in stateless zero-retention RAM. |
+| **`analyze_sec_credit_covenants_and_tariffs`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Parses live SEC EDGAR Form 10-K XBRL + footnotes (`/v1/company/credit-and-footnote-dossier`), tying out Adjusted EBITDA, Altman Z-Score, DSCR, and substring-verified debt covenants. |
 
-### Step 2A: Zero-Install Remote MCP (`Claude`, `Cursor`, `VS Code`, `Windsurf`)
-No Node.js or Python needed — point your MCP client directly to the live Streamable-HTTP gateway:
+---
 
-```json
-{
-  "mcpServers": {
-    "quantledger": {
-      "type": "streamable-http",
-      "url": "https://quantledger-73-engine-financial-and-statutory-api.p.rapidapi.com/mcp",
-      "headers": {
-        "X-RapidAPI-Key": "YOUR_RAPIDAPI_KEY",
-        "X-RapidAPI-Host": "quantledger-73-engine-financial-and-statutory-api.p.rapidapi.com"
-      }
-    }
-  }
-}
+## Quickstart — Install & Run From Source or Docker
+
+### Option 1: Run From Source (Node.js `>= 20`)
+No API key is required to start the server and use all local statutory, taxonomy, catalog, resource, and prompt capabilities:
+
+```bash
+git clone https://github.com/QuantLedgerAPI/quantledger-mcp.git
+cd quantledger-mcp
+npm ci --omit=dev
+node src/index.mjs
 ```
 
-### Step 2B: Local Stdio Bridge (`npx -y quantledger-mcp`)
-For stdio-only MCP hosts:
-
+**Claude Desktop / Cursor / VS Code (`mcp.json`):**
 ```json
 {
   "mcpServers": {
     "quantledger": {
-      "command": "npx",
-      "args": ["-y", "quantledger-mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/quantledger-mcp/src/index.mjs"],
       "env": {
-        "RAPIDAPI_KEY": "YOUR_RAPIDAPI_KEY"
+        "RAPIDAPI_KEY": "OPTIONAL_FOR_LOCAL_TOOLS__SET_FOR_CLOUD_SOLVERS"
       }
     }
   }
 }
 ```
 
----
+### Option 2: Run via Docker
+```bash
+docker build -t quantledger-mcp .
+docker run -i --rm -e RAPIDAPI_KEY=your_optional_key quantledger-mcp
+```
 
-## Included Tools for CPA & Financial Institution Agents
-
-| Tool Name | What Your AI Agent Can Execute |
-| :--- | :--- |
-| **`execute_institutional_math_engine`** | Runs any of the **73 deterministic CPU engines (`BI-01`–`BI-73`, 292 laws)** in `< 1 ms` CPU time across **57 US jurisdictions** (`50` States + `DC` + `PR`, `GU`, `VI`, `AS`, `MP` + `US` Federal) with stateless zero-retention RAM privacy. |
-| **`analyze_sec_credit_covenants_and_tariffs`** | Pulls any public company's live **SEC EDGAR Form 10-K XBRL + footnotes**, ties out GAAP Operating Income to Adjusted EBITDA, computes Altman Z-Score, DSCR & `19 U.S.C. § 1401a` tariff stress, and substring-verifies every extracted debt covenant quote. |
-| **`get_live_us_statutory_rates_and_57_jurisdictions`** | Returns **24 live official `.gov` benchmarks** (**NY Fed SOFR & EFFR**, **FOMC Prime**, **US Treasury 2Y/5Y/10Y/30Y Curve**, **IRC § 382 Rate**, **BLS CPI-U**, **CMS MPFS**, **FAR 31.205-6(p) Cap**) + state corporate tax & apportionment formulas across 57 jurisdictions. |
-| **`list_institutional_math_suites_73`** | Lists all 10 suites, governing statutes, input slots, and mathematical laws across `BI-01`–`BI-73`. |
-| **`resolve_universal_industry_taxonomy`** | Deterministic bidirectional crosswalk across `1,012` 6-digit NAICS, `163` 8-digit GICS, and `1,184` 4-digit SIC codes. |
+### Optional API Key for Cloud Calculation Solvers (`5 Free Calls/Month`)
+To unlock remote execution of `execute_institutional_math_engine` (`BI-01`–`BI-73`) and `analyze_sec_credit_covenants_and_tariffs`, grab a free `BASIC` API key at **[https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)** and pass `RAPIDAPI_KEY` in your environment.
 
 ---
 
 ## Complete Directory of All 73 Individual Reports & Calculation Engines (`BI-01` to `BI-73`)
 
-Every engine below executes deterministically via `execute_institutional_math_engine(engine_code=..., jurisdiction=..., structured_inputs=...)` or `POST /v1/suites/{engine_code}/compute` across all 57 US jurisdictions:
+Every engine below can be inspected locally via `list_institutional_math_suites_73` and executed deterministically via `execute_institutional_math_engine(engine_code=..., jurisdiction=..., structured_inputs=...)` across all 57 US jurisdictions:
 
 ### 1. Commercial Credit, Working Capital & Unit-Economics Suite (`suite-01` | `BI-01`–`BI-05`)
 
@@ -196,5 +191,5 @@ Every engine below executes deterministically via `execute_institutional_math_en
 ---
 
 ## Disclaimers & Privacy
-* **Stateless Zero-Retention Processing:** Inputs are processed strictly in volatile container RAM to return the JSON calculation and are never stored, logged, or used for model training.
+* **Stateless Zero-Retention Processing:** Structured and unstructured inputs sent to cloud calculation endpoints execute strictly in volatile container RAM and are never stored, logged, or used for model training.
 * **Computational Utility Only:** Outputs provide deterministic statutory and mathematical calculations for professional review and do not constitute CPA attest/assurance opinions, formal tax opinions, legal advice, or registered investment advice.

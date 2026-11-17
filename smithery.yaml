@@ -1,17 +1,14 @@
-# Smithery.ai MCP Registry Manifest
 startCommand:
   type: stdio
   configSchema:
     type: object
-    required:
-      - rapidapiKey
     properties:
-      rapidapiKey:
+      rapidApiKey:
         type: string
-        description: "Your RapidAPI key (Free BASIC 5/mo tier available at https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)"
+        description: Optional for keyless local statutory/taxonomy/catalog tools; set RapidAPI key to execute remote 73-engine CPU solvers and SEC 10-K audits.
   commandFunction: |-
     (config) => ({
       command: 'node',
-      args: ['index.mjs'],
-      env: { RAPIDAPI_KEY: config.rapidapiKey }
+      args: ['src/index.mjs'],
+      env: config && config.rapidApiKey ? { RAPIDAPI_KEY: config.rapidApiKey } : {}
     })
