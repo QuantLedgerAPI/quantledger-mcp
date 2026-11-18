@@ -3,7 +3,7 @@
   "name": "io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-tax-409a-dcaa-sec-10-k-credit-finance",
   "title": "QuantLedger 73-Engine CPA, GAAP, IRC Tax, Credit & SEC 10-K API",
   "description": "73 CPA, GAAP, IRC Tax, 409A, DCAA, Credit & SEC 10-K calculation engines across 57 US jurisdictions",
-  "version": "2.3.1",
+  "version": "2.4.1",
   "websiteUrl": "https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api",
   "repository": {
     "url": "https://github.com/QuantLedgerAPI/quantledger-mcp",

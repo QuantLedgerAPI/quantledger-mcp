@@ -1,5 +1,5 @@
 {
-  "catalog_version": "2.3.1",
+  "catalog_version": "2.4.1",
   "air_gap_certified": true,
   "total_suites": 10,
   "total_engines": 73,
@@ -165,6 +165,16 @@
         "(3) Credit-Agreement Fixed-Charge Coverage Ratio (Strict 5% EBITDA Add-Back Cap) [OCC Leveraged & Commercial Credit Examination Guidelines (Contractual FCCR >= 1.15x)] \u2014 FCCR = (EBIT + D&A + min(AddBacks, 0.05 * EBITDA) - MaintCapEx - CashTax) / (SchedPrincipal + CashInterest)",
         "(4) FASB ASC 205-40-50 12-Month Unadjusted Going-Concern Cash-Sufficiency Test [FASB ASC 205-40-50-1 through 50-11 (Presentation of Financial Statements \u2014 Going Concern)] \u2014 Cash_12M = Cash_0 + ContractedReceipts_12M - DirectOpOutflows_12M - FixedCharges_12M"
       ],
+      "sample_structured_inputs": {
+        "opening_cash": 4180000,
+        "minimum_liquidity_floor": 1250000,
+        "revolver_commitment": 8500000,
+        "drawn_revolver": 3470000,
+        "cross_aging_taint_threshold": 0.25,
+        "ar_advance_rate": 0.85,
+        "unbilled_wip": 680000,
+        "wip_advance_rate": 0.5
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -218,6 +228,16 @@
         "(3) UCC Article 9 / OCC ABL Dilution Reserve Formula & Obligor Concentration Cap [OCC Comptroller's Handbook: Asset-Based Lending Field Exam & UCC Article 9] \u2014 DilutionReserve_Pct = max(0, 2 * Dilution_Pct - 0.05); Net_ABL = 0.85 * (AR_<90d - ExcessConc) - DilutionReserve",
         "(4) Federal Reserve SR 11-7 Out-of-Sample Allowance Back-Testing Variance Ratio [Federal Reserve SR 11-7 / OCC Bulletin 2011-12 Supervisory Guidance on Model Risk Management] \u2014 MAE_bps = (1/K) * sum_k |Pred_k - Actual_k| * 10000; VarianceRatio = mean(Pred) / mean(Actual)"
       ],
+      "sample_structured_inputs": {
+        "ar_0_30": 7600000,
+        "ar_31_60": 3400000,
+        "ar_61_90": 2350000,
+        "ar_over_90": 850000,
+        "sovereign_zero_loss_ar": 4800000,
+        "roll_rate_0_to_31": 0.145,
+        "roll_rate_31_to_61": 0.285,
+        "roll_rate_61_to_90": 0.425
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -271,6 +291,16 @@
         "(3) Trade Credit Early-Pay Discount Annualized APR vs. Revolver Carry [Corporate Treasury Trade-Credit Yield Formula & ABL Working-Capital Cost of Carry] \u2014 APR_Disc = (d / (1 - d)) * (365 / (Net - DiscDays)); NetSavings = EligibleDelta * [d - (1 - d)*r_Rev*(Net - DiscDays)/365]",
         "(4) Working Capital DPO & FASB ASC 405-20 Liability Extinguishment Cut-Off Reconciliation [FASB ASC 405-20-40-1 (Extinguishments of Liabilities), ASC 340-10 & UCC Sec. 2-319] \u2014 AP_Adj = AP_GL + Accrual_GRN + FOB_Origin - Prepaid_Reclass - VendorDebit_Dup + Unreleased_StaleChecks; DPO = (AP_Adj / Spend)*365"
       ],
+      "sample_structured_inputs": {
+        "annual_ap_spend": 38160000,
+        "po_matched_spend_usd": 28400000,
+        "unit_price_overbilling_rate": 0.011211,
+        "quantity_overbilling_usd": 134800,
+        "three_way_tolerance_cap_pct": 0.02,
+        "pcard_ach_duplicate_usd": 99400,
+        "fuzzy_invoice_duplicate_usd": 31800,
+        "dual_vendor_master_duplicate_usd": 15000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -324,6 +354,16 @@
         "(3) Standard-to-Actual Purchase Price, Material Usage & Labor Efficiency Variance Tie-Out [FASB ASC 330-10-30-12 Standard Costing & Period Variance Proration Rules] \u2014 PPV = (P_act - P_std)*Q_act; MUV = (Q_act - Q_std)*P_std; LEV = (H_act - H_std)*R_std",
         "(4) IRC Sec. 263A Simplified Production Absorption Ratio & Ending Inventory Tax Add-On [IRC Sec. 263A, Treas. Reg. Sec. 1.263A-2(b) (Simplified Production Method) & IRS Form 1125-A] \u2014 Ratio_263A = Addl_263A_Costs / Sec471_Incurred_Costs; Tax_Ending_Inv = Ending_Sec471 * (1 + Ratio_263A)"
       ],
+      "sample_structured_inputs": {
+        "normal_capacity_hours": 38400,
+        "actual_production_hours": 33280,
+        "fixed_production_overhead_usd": 5184000,
+        "abnormal_spoilage_and_rework_usd": 184500,
+        "lcnrv_reserve_usd": 412000,
+        "std_material_unit_price": 24.5,
+        "actual_material_unit_price": 25.35,
+        "actual_material_qty": 420000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -377,6 +417,16 @@
         "(3) FASB ASU 2022-02 (ASC 326) Modified Loan Effective-Interest Yield & Concession Test [FASB ASU 2022-02 (ASC 310-10-50-38 Financial-Difficulty Modifications & ASC 326-20-35-4)] \u2014 Impairment_CECL = max(0, Carrying_PostCure - NPV(CF_Mod, EIR_Orig)); OLV_Coverage = OLV / Carrying_PostCure",
         "(4) 11 U.S.C. Sec. 1129(a)(7) Best-Interests Waterfall vs. Sec. 1129(a)(11) Feasibility [11 U.S.C. Sec. 1129(a)(7) (Best Interests of Creditors), Sec. 1129(a)(11) & Sec. 326] \u2014 Surplus_1129a7 = (PV_Reorg_Sec + PV_Reorg_Unsec) - (Ch7_Sec + Ch7_Unsec); Feasibility_1129a11 = CumCFADS / CumDS"
       ],
+      "sample_structured_inputs": {
+        "pre_mod_carrying_debt_usd": 18500000,
+        "equity_cure_paydown_usd": 1000000,
+        "original_eir": 0.07792,
+        "modified_coupon_rate": 0.0825,
+        "modified_term_years": 5,
+        "modified_annual_amort_pct": 0.06,
+        "lender_amendment_fees_usd": 142500,
+        "trough_ltm_ebitda_usd": 4470000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -430,6 +480,16 @@
         "(3) FAR 15.404-1(d) Government Most Probable Cost (MPC) Upward Cost-Realism Adjustment [FAR 15.404-1(d)(2) Cost Realism Analysis & SSEB Probable Cost Evaluation Rules] \u2014 MPC_5Yr = sum_{t=1..5}[DL_Floor*(1+max(g_bid,g_ECI))^{t-1}*Wrap_MPC + ODC_t]; Adj_MPC = max(0, MPC_5Yr - BidCost_5Yr)",
         "(4) Section B CLIN Wrap-Rate Build-Up & FAR 15.404-4(c)(4) Statutory CPFF Fee Ceiling Check [FAR 15.404-4(c)(4)(i)(C) (10% Statutory CPFF Fee Cap) & Section B CLIN Pricing Structure] \u2014 Wrap_Cost = (1+r_Fr)*(1+r_OH)*(1+r_GA); Fee_Cap = 10.0% (Non-R&D CPFF); Wrap_Total = Wrap_Cost*(1+min(Fee,Cap))"
       ],
+      "sample_structured_inputs": {
+        "productive_hours_per_fte": 1920,
+        "compensated_hours_per_fte": 2080,
+        "total_ftes": 120,
+        "statutory_payroll_tax_rate": 0.079,
+        "paid_absences_leave_rate": 0.1478,
+        "group_medical_hsa_rate": 0.077,
+        "safe_harbor_401k_rate": 0.0382,
+        "sseb_fringe_realism_floor": 0.32
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -483,6 +543,16 @@
         "(3) CAS 418 Homogeneous On-Site SCIF vs. Client-Site Overhead & Subcontract Handling Rates [48 CFR 9904.418-50(b) Homogeneous Indirect Cost Pools & DCAA ICE Schedules B & C] \u2014 r_Fr = Fr / TotalLabor; r_OH_Site = NetPool_Site / (DL_Site + Fr_Site); r_Subk = NetPool_Subk / SubkMatBase",
         "(4) CAS 410-50 Total Cost Input (TCI) vs. Value-Added G&A & DD Form 1861 CAS 414 FCCOM [48 CFR 9904.410-50(d)(1)-(2) (CAS 410 G&A Base) & 48 CFR 9904.414 (DD Form 1861 FCCOM)] \u2014 r_GA_TCI = GA / Base_TCI; r_GA_VA = GA / (Base_TCI - SubkMat); FCCOM = (NBV_Fac * r_Treas) / Base_OH"
       ],
+      "sample_structured_inputs": {
+        "omb_statutory_exec_cap_usd": 646000,
+        "claimed_executive_comp_single_usd": 740000,
+        "unallowable_oh_entertainment_usd": 112000,
+        "unallowable_ga_other_usd": 780500,
+        "facilities_service_center_usd": 3840000,
+        "it_cmmc_service_center_usd": 2580000,
+        "total_labor_base_usd": 58400000,
+        "allowable_fringe_pool_usd": 19739200
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -536,6 +606,16 @@
         "(3) FAR 52.215-23 Excessive Pass-Through Charge Audit (>70% Subcontract Threshold) [FAR 52.215-22 & FAR 52.215-23 (Limitations on Pass-Through Charges \u2014 70% Trigger)] \u2014 SubkRatio = TotalSubk / TotalPrice; Disallowance = I(PeakSubk > 70% & !AddedValue) * ExcessSubk * Markup",
         "(4) Direct Labor Utilization, Funded Backlog Burn Coverage & Schedule I Billing Reconciliation [FAR 52.232-22 (Limitation of Funds), FAR 42.704 Provisional Billing Rates & DCAA ICE Schedule I] \u2014 Util_Prod = Hrs_Direct / (Hrs_Paid - Hrs_Leave); BurnCov_Mo = Backlog_Funded / (AnnualPrice / 12)"
       ],
+      "sample_structured_inputs": {
+        "exempt_ftes": 185,
+        "standard_weekly_hours": 40,
+        "actual_weekly_hours_worked": 42.5,
+        "avg_annual_salary_usd": 156976,
+        "cost_reimbursable_direct_share": 0.62,
+        "total_services_contract_price_usd": 64200000,
+        "prime_services_billings_usd": 32410000,
+        "sse_subcontract_billings_usd": 9580000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -589,6 +669,16 @@
         "(3) DFARS 252.225-7009 Specialty Metals 2% CDMA De Minimis & Berry 100% Domestic Rule [10 U.S.C. Sec. 4863 (DFARS 252.225-7009), 10 U.S.C. Sec. 4872 & 10 U.S.C. Sec. 4862 (Berry)] \u2014 Pass_7009 = I(NonCompliantMetal_Wt <= 2.0%); Pass_Berry = I(DomesticFiber_Pct == 100.0%)",
         "(4) 19 U.S.C. Sec. 2518 TAA Country-of-Origin & Sec. 301/232 Tariff Cost-Absorption Impact [19 U.S.C. Sec. 2518(4)(B) (TAA), 19 U.S.C. Sec. 2411 (Sec. 301), FAR 52.229-3 & FAR 52.216-4] \u2014 DutyDelta = max(0, r_Post - r_Base)*ImportBase; FFP_Absorbed = (DutyDelta + PPI_Shock) - Claim_EPA_52_229_3"
       ],
+      "sample_structured_inputs": {
+        "total_component_bom_cost_usd": 46480000,
+        "us_domestic_component_cost_usd": 33358800,
+        "dfars_qualifying_country_component_usd": 3191600,
+        "agency_is_dod": 1,
+        "baa_current_threshold_pct": 0.65,
+        "baa_2029_threshold_pct": 0.75,
+        "domestic_offer_price_usd": 78500000,
+        "competing_foreign_offer_price_usd": 69800000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -642,6 +732,16 @@
         "(3) 180-Day Statutory POA&M Closeout Schedule & Enclave Remediation Cost Budget [32 CFR Sec. 170.21(b) (180-Day POA&M Closeout Expiration) & DFARS 252.204-7012(b)(2)(ii)(D)] \u2014 Buffer_Days = 180 - Days_Closeout; Budget = Enclave_GCC_High + FIPS_SIEM + C3PAO_Fee + POA&M_Fixes",
         "(4) DFARS 252.204-7019 / 7020 SPRS Attestation Variance & False Claims Act Exposure Check [32 CFR Sec. 170.22 (Annual Affirmation), 31 U.S.C. Sec. 3729 (False Claims Act) & 28 CFR 85.5] \u2014 Overstatement = max(0, Posted_SPRS - Verified_SPRS); FCA_Risk = I(Overstatement > 0)*(Penalties_28CFR85 + 3xDamages)"
       ],
+      "sample_structured_inputs": {
+        "open_5pt_controls": 0.0,
+        "open_3pt_controls": 0.0,
+        "open_1pt_controls": 4,
+        "legacy_sprs_score": 42,
+        "open_barred_1pt_controls": 0.0,
+        "cmmc_conditional_min_score_pts": 88,
+        "projected_poam_closeout_days": 150,
+        "cui_enclave_seats": 48
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -695,6 +795,16 @@
         "(3) Statutory Clean-Claim Prompt-Pay Interest Accrual (30/45-Day Window) [State Clean-Claim Prompt Pay Statutes (30-Day Electronic / 45-Day Paper Window)] \u2014 Interest_PromptPay = Principal_Overdue * r_monthly * max(0, Days_Remit - Window_Days) / 30",
         "(4) 45 CFR Sec. 149.510 No Surprises Act QPA & ERISA Sec. 1133 Timely-Appeal Recovery [ERISA 29 U.S.C. Sec. 1133, 29 CFR Sec. 2560.503-1 & 45 CFR Sec. 149.510] \u2014 Demand_Net = (Variance_Gross * Timely_180d_Pct) + Interest_PromptPay + max(0, IDR_Offer - QPA_Paid)"
       ],
+      "sample_structured_inputs": {
+        "total_wrvu": 584000,
+        "total_pe_rvu": 482000,
+        "total_mp_rvu": 64500,
+        "gpci_work": 1.028,
+        "gpci_pe": 1.181,
+        "gpci_mp": 1.148,
+        "mpfs_conversion_factor": 33.2875,
+        "blended_contract_mpfs_multiplier": 1.3282
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -748,6 +858,16 @@
         "(3) 42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Standalone Practice Margin [42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Definition (85 Fed. Reg. 77492)] \u2014 Margin_Standalone_Ex_DHS = Collections_Prof - Total_Provider_Comp - Overhead_Practice",
         "(4) 42 CFR Sec. 1001.952(d) Medical-Directorship & Call-Coverage Hourly FMV Cap [42 U.S.C. Sec. 1320a-7b(b) & 42 CFR Sec. 1001.952(d) Personal Services Safe Harbor] \u2014 Allowable_AdminCall = Hrs_Logged * min(Rate_Hr, Cap_Hr) + Shifts * min(Stipend, Cap_Stipend)"
       ],
+      "sample_structured_inputs": {
+        "personal_clinical_wrvus": 312400,
+        "clinical_provider_comp_usd": 18681520,
+        "mgma_50th_comp_per_wrvu": 56.2,
+        "mgma_75th_comp_per_wrvu": 66.5,
+        "mgma_90th_comp_per_wrvu": 78.4,
+        "dhs_ancillary_collections_usd": 9350000,
+        "dhs_direct_expenses_usd": 5142200,
+        "dhs_pod_count": 8
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -801,6 +921,16 @@
         "(3) 42 U.S.C. Sec. 256b(a)(5)(A)-(B) 340B Duplicate-Discount & Diversion Audit [42 U.S.C. Sec. 256b(a)(5)(A)-(B) Public Health Service Act Section 340B] \u2014 Escrow_340B = (Claims_DupDisc * Avg_Mfg_Rebate) + (Claims_Diversion * Avg_340B_Spread)",
         "(4) 42 U.S.C. Sec. 1396a(bb)(5) Medicaid MCO Supplemental Wraparound Settlement [42 U.S.C. Sec. 1396a(bb)(5) Quarterly State Supplemental FQHC Wraparound Rule] \u2014 Wraparound_Due = max(0, Visits_MCO * PPS_Rate - MCO_Interim_Paid - TPL_Copay)"
       ],
+      "sample_structured_inputs": {
+        "direct_clinical_cost_usd": 39180000,
+        "allowable_facility_admin_usd": 13620000,
+        "non_reimbursable_excluded_usd": 1140000,
+        "billable_clinical_visits": 184036,
+        "baseline_pps_rate_usd": 244,
+        "mei_inflation_pct": 0.018,
+        "change_in_scope_threshold_pct": 0.05,
+        "medicaid_medical_visits": 90000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -854,6 +984,16 @@
         "(3) 42 CFR Sec. 416.171 & 416.179 ASC Device-Intensive Pass-Through Margin [42 CFR Part 416 Subpart F (42 CFR Sec. 416.171 & Sec. 416.179 Transitional Pass-Through)] \u2014 Margin_Case = (ASC_Facility_Rate + C_Code_Offset) - Gross_Implant*(1 - r_Disc) - Direct_OR_Cost",
         "(4) Preference-Card Standardization & Consignment Par-Level Working-Capital Release [CMS ASC Cost-Reporting Standards & Consignment Inventory Bailment Controls] \u2014 Savings_Card = (Cost_Legacy - Cost_Std) * Cases; WC_Release = max(0, Inv_Owned - Inv_Consigned_Par)"
       ],
+      "sample_structured_inputs": {
+        "gross_implant_invoice_spend_usd": 21680000,
+        "earned_volume_rebates_usd": 740000,
+        "warranty_replacement_credits_usd": 184000,
+        "gpo_contracted_spend_usd": 24600000,
+        "gpo_vendor_fees_usd": 528900,
+        "gpo_safe_harbor_cap_pct": 0.03,
+        "device_intensive_cases": 5690,
+        "asc_facility_rate_per_case_usd": 3840
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -907,6 +1047,16 @@
         "(3) State SHPDA Certificate of Need (CON) Capital & Equipment Statutory Thresholds [State Health Planning & Certificate of Need Capital & Major Equipment Threshold Rules] \u2014 Non_Reviewable = (CapEx_Total < Cap_CON) AND (Equip_Diag < Cap_Equip) AND (Charity_Pct >= Floor)",
         "(4) Corporate Practice of Medicine (CPOM) MSO Cost-Plus FMV Management Fee Test [State Corporate Practice of Medicine Doctrine & 42 CFR Sec. 1001.952(d) Safe Harbor] \u2014 Markup_MSO = (Fee_Fixed_Advance - Cost_Base_MSO) / Cost_Base_MSO <= FMV_Cap; Rev_Split_Pct = 0%"
       ],
+      "sample_structured_inputs": {
+        "cash_bank_collections_usd": 57620000,
+        "delta_gross_patient_ar_usd": 2140000,
+        "delta_contractual_allowance_usd": 1180000,
+        "credit_balance_recoupment_adj_usd": 180000,
+        "historical_owner_draws_usd": 11420000,
+        "owner_retained_wrvus": 138500,
+        "post_close_market_rate_per_wrvu": 61.5,
+        "verified_non_recurring_opex_usd": 640000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -960,6 +1110,16 @@
         "(3) IRS Form 8846 / IRC Sec. 45B Employer FICA Tip Tax Credit (7.65% Above $5.15 Peg) [26 U.S.C. Sec. 45B(b)(1)(B) (IRC Sec. 45B General Business Tax Credit & Form 8846)] \u2014 Credit_45B = 0.0765 * max(0, Voluntary_Tips - max(0, $5.15 - W_cash)*Hrs - NonCreditable_Offset)",
         "(4) USAR 12th Edition Prime Cost Ratio Benchmark (<= 65.0% of Gross Sales) [Uniform System of Accounts for Restaurants (USAR 12th Ed.) Prime Cost Standard] \u2014 Prime_Cost_Pct = (Food_Bev_COGS + Direct_FOH_Payroll + BOH_Mgmt_Taxes) / Gross_Sales <= 65.0%"
       ],
+      "sample_structured_inputs": {
+        "tipped_regular_hours": 328500,
+        "tipped_overtime_hours": 28600,
+        "statutory_full_min_wage_hr": 17.95,
+        "cash_tipped_base_wage_hr": 14,
+        "voluntary_tips_declared_usd": 9340000,
+        "automatic_service_charge_usd": 5640000,
+        "fb_sales_tax_rate": 0.1,
+        "irc_45b_statutory_wage_peg_hr": 5.15
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1013,6 +1173,16 @@
         "(3) 95% Occupancy Gross-Up Isolation (Excluding Fixed Real-Estate Taxes & Insurance) [Commercial Lease Gross-Up Accounting Rules & AICPA CS Sec. 100 Lease Audit Standards] \u2014 Pool_Allowed = OpEx_Var * (0.95 / Occ_Actual) + Fixed_Tax_Ins; Refund = (Pool_Billed - Pool_Allowed) * ProRata",
         "(4) Controllable CAM Cap & Structural Capital-Expenditure Disallowance Claim [Lease Operating-Expense Exclusion Clauses & GAAP Capital vs. Repair Distinction] \u2014 Allowed_CAM = Base_0 * (1 + r_cap * t); Total_Recovery = Over_BOMA + Over_GrossUp + Over_Cap + Excluded_CapEx"
       ],
+      "sample_structured_inputs": {
+        "remaining_lease_years": 8,
+        "annual_fixed_rent_usd": 9213750,
+        "annual_rent_escalation_pct": 0.0275,
+        "incremental_borrowing_rate": 0.0685,
+        "unamortized_ti_incentive_usd": 1420000,
+        "initial_direct_costs_usd": 185000,
+        "verified_usable_sf": 161840,
+        "capped_boma_load_factor": 0.12
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1066,6 +1236,16 @@
         "(3) Undistributed Operating Expenses, Gross Operating Profit (GOPPAR) & Management Fees [USALI 12th Revised Edition Summary Operating Statement & Schedules 5\u20139] \u2014 GOP = Total_Dept_Profit - Undistributed_OpEx; GOPPAR = GOP / Avail_Nights",
         "(4) 4.0% FF&E Reserve, Stabilized EBITDAre & CMBS Debt-Yield / DSCR Covenant Gate [CREFC / CMBS Hotel Loan Servicing Covenants & NAREIT EBITDAre Standard] \u2014 EBITDAre = GOP - Mgmt_Fees - Tax_Ins_Ground - 0.04*Gross_Rev; DY = EBITDAre / Loan"
       ],
+      "sample_structured_inputs": {
+        "hotel_keys": 920,
+        "operating_days": 365,
+        "occupancy_pct": 0.764,
+        "adr_usd": 278.5,
+        "ota_and_loyalty_commission_pct": 0.095,
+        "rooms_direct_labor_supply_pct": 0.137,
+        "fb_outlet_banquet_rev_usd": 26450000,
+        "banquet_admin_fee_retained_usd": 1820000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1119,6 +1299,16 @@
         "(3) Rent-Weighted WALT, 24-Month Rollover Exposure & Upfront TI/LC Escrow [CREFC Rent Roll & Reserve Escrow Underwriting Standards] \u2014 WALT = sum(Rent_i * Term_i) / sum(Rent_i); Escrow_TILC = Rollover_24M_RSF * TILC_per_RSF",
         "(4) Maturing Note Refinance Rescue Gap & OCC Current-Pay Blended DSCR Test [OCC / FDIC / Federal Reserve 2023 Policy Statement on Prudent CRE Loan Workouts] \u2014 Rescue_Gap = max(0, Loan_Maturing - Loan_Senior); DSCR_Blended = NCF / (DS_Senior + DS_Rescue)"
       ],
+      "sample_structured_inputs": {
+        "gross_potential_revenue_usd": 29450000,
+        "vacancy_concession_loss_usd": 3820000,
+        "crefc_operating_expenses_usd": 8830000,
+        "annual_ti_lc_reserve_usd": 1150000,
+        "annual_capex_reserve_usd": 550000,
+        "stabilized_cap_rate": 0.07688,
+        "lender_max_ltv_pct": 0.6,
+        "lender_min_dscr_x": 1.38
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1172,6 +1362,16 @@
         "(3) FASB ASC 606-10-55 Pre-Opening Distinct Services SSP vs. License Deferral [FASB ASC 606-10-55-58A Practical Expedient & Pre-Opening Performance Obligations] \u2014 Contract_Liab_t = (Fee_Init - SSP_PreOpen) * N * (1 - t / Term_Years)",
         "(4) 16 CFR Sec. 436.5(h),(l) Item 8/12 Credits & Franchisee Debt Coverage Gate [16 CFR Sec. 436.5(h) Supplier Rebates, Sec. 436.5(l) Territory & Lender FCCR Covenants] \u2014 FCCR_Post = (FourWall_EBITDA + Item8_Rebate_Cure) / Senior_Fixed_Debt_Service"
       ],
+      "sample_structured_inputs": {
+        "fdd_item19_claimed_mean_usd": 2380000,
+        "non_revenue_royalty_exclusions_usd": 3152941,
+        "contractual_royalty_pct": 0.06,
+        "contractual_ad_fund_pct": 0.025,
+        "four_wall_opex_pct_of_net_sales": 0.741,
+        "initial_franchise_fee_per_unit_usd": 45000,
+        "distinct_preopening_ssp_per_unit_usd": 13500,
+        "franchise_license_term_years": 10
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1225,6 +1425,16 @@
         "(3) LTM 12-Month Normalized NWC Peg, Collar & Closing Dollar-for-Dollar True-Up [SPA Section 2.04 Working Capital Purchase-Price Adjustment Mechanics] \u2014 Peg_NWC = (1/12)*sum(NWC_m); TrueUp = sign(Delta)*max(0, |Closing_NWC - Peg_NWC| - Collar)",
         "(4) SPA Indebtedness & Debt-Like Liability Purchase-Price Deduction Schedule [FASB ASC 606 Contract Liabilities, ASC 450 Contingencies & SPA Indebtedness Schedule] \u2014 Debt_Like = DefRev * Cost_Pct + Stretched_AP_>60d + Unfunded_PTO_Bonus + Deposits_Contingencies"
       ],
+      "sample_structured_inputs": {
+        "deposits_bank_12m": 87760000,
+        "non_revenue_bank_deposits_usd": 1240000,
+        "net_accrual_timing_bridge_usd": -120000,
+        "receipts_gl_12m": 86400000,
+        "disbursements_bank_12m": 70880000,
+        "gl_cash_cogs_and_opex_12m": 70920000,
+        "ebitda_gaap": 15480000,
+        "addbacks_verified": 1840000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1278,6 +1488,16 @@
         "(3) SEC Reg S-X Article 11 Day-1 Standalone Autonomous Entity Cost Bridge [17 CFR Sec. 210.11-01 & Sec. 210.11-02(a)(6)(ii) Autonomous Entity Adjustments] \u2014 EBITDA_Standalone = Contribution_Direct - Cost_Day1_Standalone; Gap = Cost_Day1 - Alloc_SAB1B",
         "(4) Transition Services Agreement (TSA) Exhibit T Cost-Plus & Module Step-Down Schedule [APA Exhibit T Transition Services SLA Pricing & IRC Sec. 482 Services Cost Method] \u2014 TSA_Total = Base_Mo * M_1 + max(0, Base_Mo - Exit_Credit) * (1 + Markup) * M_2"
       ],
+      "sample_structured_inputs": {
+        "parent_hr_pool_usd": 4800000,
+        "carveout_fte_share": 0.28,
+        "parent_finance_legal_pool_usd": 6500000,
+        "carveout_rev_share": 0.24,
+        "parent_it_erp_pool_usd": 5250000,
+        "carveout_it_ticket_share": 0.246857,
+        "divisional_gross_rev_usd": 77600000,
+        "intercompany_rev_eliminated_usd": 3100000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1331,6 +1551,16 @@
         "(3) Cohort Gross Dollar Retention (GDR <= 100%) & Net Dollar Retention (NDR) [SEC Division of Corporation Finance SaaS Key Operating Metrics Disclosure Rules] \u2014 GDR = (ARR_0 - Contraction - Churn)/ARR_0; NDR = (ARR_0 + Expansion - Contraction - Churn)/ARR_0",
         "(4) FASB ASC 340-40 Incremental Commission Capitalization & CAC Payback Months [FASB ASC 340-40-25-1 Incremental Costs of Obtaining a Contract] \u2014 Asset_Add_340 = Comm_Paid * (1 - 1/T_Amort); Payback_Mo = 12 * S&M / ((New+Exp_ARR) * GM_SaaS)"
       ],
+      "sample_structured_inputs": {
+        "bundled_contract_tcv_usd": 29900000,
+        "observable_ssp_saas_usd": 28050000,
+        "observable_ssp_proserv_usd": 4460000,
+        "stated_proserv_invoice_usd": 2450000,
+        "arr_open": 22800000,
+        "arr_new_logos": 3450000,
+        "arr_expansion": 2920000,
+        "arr_contraction": 1120000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1384,6 +1614,16 @@
         "(3) FASB ASC 805-20 Opening PPA Liability vs. ASC 420-10 Post-Close Expense Gate [FASB ASC 805-10-55-18 & ASC 420-10-25 Exit or Disposal Cost Obligations] \u2014 Goodwill_Assumed_Exit = Obligated_PreClose; PostClose_P&L_Expense = CTA_Total - Obligated_PreClose",
         "(4) Credit-Agreement 100-Day Pro-Forma Synergy Add-Back Cap (<= 20% & <= 18 Months) [Senior Syndicated Credit Agreement Pro-Forma Cost-Savings Certification Rules] \u2014 AddBack_Permitted = min(Cognizable_<=18M, Cap_Pct * Combined_Base_EBITDA)"
       ],
+      "sample_structured_inputs": {
+        "claimed_gross_synergies_usd": 7150000,
+        "disallowed_revenue_synergies_usd": 1420000,
+        "non_merger_specific_haircut_usd": 890000,
+        "anticompetitive_suppression_haircut_usd": 580000,
+        "cta_severance_usd": 1100000,
+        "cta_lease_exit_usd": 780000,
+        "cta_it_integration_usd": 570000,
+        "synergy_discount_rate": 0.105
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1437,6 +1677,16 @@
         "(3) AICPA VS Sec. 100 Customer-Concentration Haircut & Protective-Put DLOM [IRS Discount for Lack of Marketability (DLOM) Job Aid & AICPA VS Sec. 100.40] \u2014 EV_PostDLOM = EV_Marketable * (1 - Haircut_Concentration) * (1 - DLOM_ProtectivePut)",
         "(4) Cash-Conversion-Cycle (DSO + DIO - DPO) Release & Enterprise-to-Equity Bridge [Sell-Side SPA Enterprise-to-Equity Waterfall & Multistate Sales-Tax VDA Standards] \u2014 CCC = DSO + DIO - DPO; Equity_Proceeds = EV_Adj + WC_Release - Net_Debt - Tax_VDA"
       ],
+      "sample_structured_inputs": {
+        "unadjusted_ebitda_usd": 12840000,
+        "founder_total_comp_perks_usd": 2410000,
+        "market_replacement_exec_comp_usd": 980000,
+        "non_recurring_sellside_addbacks_usd": 330000,
+        "wacc": 0.1115,
+        "terminal_growth_rate": 0.03,
+        "guideline_ev_ebitda_multiple": 8.75,
+        "dcf_valuation_weight": 0.5
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1490,6 +1740,16 @@
         "(3) Indicated Equalized Fair Market Value vs. Proposed Assessment Variance [Uniformity Clause Equalization Standard & Administrative Assessment Appeal Rules] \u2014 FMV_ind = NOI_stab / R_loaded; Over_Assessment = max(0, Assessed_Proposed - FMV_ind * Ratio)",
         "(4) First-Level & Appeal Commission Annual Tax Refund & Cycle Present-Value Savings [Real Property Tax Appeal Commission (RPTAC) Refund & Statutory Interest Schedule] \u2014 Tax_Refund_Yr1 = Over_Assessment * tau_nominal; PV_Savings = NPV(r_disc, Refund_t)"
       ],
+      "sample_structured_inputs": {
+        "gsf": 185000,
+        "pgi": 8880000,
+        "vacancy_rate": 0.185,
+        "concessions": 425000,
+        "opex_ex_tax": 2640000,
+        "amort_ti_lc_capres": 555000,
+        "intangible_strip": 165000,
+        "proposed_assessed_value": 68500000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1543,6 +1803,16 @@
         "(3) Duty-to-Mitigate Substitute Margin Offset & Incidental Reliance Cost Addition [Restatement (Second) of Contracts Sec. 350 (Avoidability) & Sec. 349 (Incidental Reliance)] \u2014 Damages_Principal = max(0, Lost_Profit_Incr - Mitigation_Net_Margin) + Incidental_Costs",
         "(4) Statutory Pre-Judgment Interest Accrual & Trial-Date Present-Value Discounting [28 U.S.C. Sec. 1961 / State Statutory PJI Schedule & FRE 702 Ex-Post Trial Discounting] \u2014 Award_Trial = Past_Principal + sum(Past_t * r_PJI * dt) + NPV(r_disc, Future_Damages_t)"
       ],
+      "sample_structured_inputs": {
+        "pre_breach_annual_rev": 18400000,
+        "yardstick_growth_pct": 0.065,
+        "actual_post_breach_annual_rev": 11900000,
+        "past_damage_years": 2,
+        "future_damage_years": 2,
+        "avoided_variable_cost_ratio": 0.565,
+        "mitigation_annual_rev": 950000,
+        "mitigation_direct_cost_ratio": 0.62
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1596,6 +1866,16 @@
         "(3) Unilateral Gross Upward Pricing Pressure Index (GUPPI) & SSNIP Critical-Loss Test [2023 FTC/DOJ Merger Guidelines Sec. 2.2 & Sec. 4.3 Hypothetical Monopolist SSNIP Test] \u2014 GUPPI_1 = D_12 * m_2 * (P_2 / P_1); Critical_Loss = SSNIP / (SSNIP + m_avg)",
         "(4) Sec. 3.1 Failing-Firm Defense & Sec. 3.3 Cognizable Marginal-Cost Efficiency Offset [2023 FTC/DOJ Merger Guidelines Sec. 3.1 (Failing Firm) & Sec. 3.3 (Procompetitive Efficiencies)] \u2014 Req_MC_Drop_1 = GUPPI_1 / (1 - m_1); Net_GUPPI = max(0, Max_GUPPI - Eff_MC * (1 - m_avg))"
       ],
+      "sample_structured_inputs": {
+        "firm1_revenue_m": 145,
+        "firm2_revenue_m": 110,
+        "transaction_value_m": 385,
+        "price_firm1": 100,
+        "price_firm2": 96,
+        "margin_firm1": 0.34,
+        "margin_firm2": 0.31,
+        "diversion_1_to_2": 0.28
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1649,6 +1929,16 @@
         "(3) State & Municipal Tax Revenue Yield (Income, Sales/Use, Property & Corporate Franchise) [State & Municipal Statutory Tax Code Fiscal Scoring Standards] \u2014 Tax_Annual = Earnings_Ops * (tau_inc + tau_sales) + Property_Tax + Franchise_Tax",
         "(4) OMB Circular A-4 Dual Real Discount-Rate (2.0% / 3.0% & 7.0%) Benefit-Cost Ratio [White House OMB Circular A-4 Regulatory & Public Investment Benefit-Cost Analysis] \u2014 BCR_r = NPV(r, Fiscal_Tax_Yield_t) / PV_Public_Incentive; Net_Fiscal = PV_Tax - PV_Incentive"
       ],
+      "sample_structured_inputs": {
+        "construction_capex_usd": 55000000,
+        "annual_operating_output_usd": 30000000,
+        "regional_purchase_coeff": 0.72,
+        "rims_type_i_output_multiplier": 1.42,
+        "rims_type_ii_output_multiplier": 1.86,
+        "rims_construction_jobs_per_m": 9.4,
+        "rims_operations_jobs_per_m": 6.8,
+        "rims_earnings_final_demand_mult": 0.54
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1702,6 +1992,16 @@
         "(3) 13 CFR Sec. 121.103 Control, Negative-Veto & 70% Economic-Dependence Affiliation Test [13 CFR Sec. 121.103(a), (c), (e) & (f)(2) (70% 3-Year Single-Customer Rule)] \u2014 Affiliated_Avg = Standalone_Avg + I(Ctrl_or_Veto_or_Cust3Yr>=70%) * Affiliate_Avg",
         "(4) Primary NAICS Size-Standard Headroom & 13 CFR Sec. 121.103(h) Unpopulated JV Check [13 CFR Sec. 121.201 NAICS Table, SBA Form 355 & 13 CFR Sec. 121.103(h) Joint Ventures] \u2014 Headroom = NAICS_Cap - Aggregated_Avg; JV_Valid = (~Populated) & (Aggregated_Avg <= Cap)"
       ],
+      "sample_structured_inputs": {
+        "annual_receipts": 31500000,
+        "naics_size_cap": 34000000,
+        "minority_operational_veto_count": 0.0,
+        "investor_affiliate_receipts_5yr_avg": 12500000,
+        "majority_or_common_control_flag": 0.0,
+        "single_customer_3yr_rev_share": 0.41,
+        "jv_partner_5yr_avg_receipts": 28500000,
+        "jv_populated_with_performers_flag": 0.0
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1755,6 +2055,14 @@
         "(3) IRC Sec. 162(e) Non-Deductible Lobbying & Sec. 6033(e) 21% Proxy-Tax Liability [26 U.S.C. Sec. 162(e), Sec. 6033(e)(2)(A) & IRS Form 990 Schedule C Part III] \u2014 Proxy_Tax = 0.21 * max(0, Lobbying_162e - Dues_Rev * Noticed_Nondeduct_Pct)",
         "(4) FASB ASC 958-605 Contribution vs. ASC 606 Exchange-Benefit Deferred Revenue Split [FASB ASU 2018-08 (ASC 958-605) & ASC 606-10-32 Bifurcated Membership Dues Standard] \u2014 Exchange_ASC606 = Dues * SSP_Ratio; Contribution_ASC958 = Dues * (1 - SSP_Ratio)"
       ],
+      "sample_structured_inputs": {
+        "current_dues_revenue": 12800000,
+        "top10_member_dues_share": 0.28,
+        "annual_non_renewal_rate": 0.135,
+        "noticed_nondeduct_dues_pct": 0.12,
+        "asc606_exchange_share_pct": 0.24,
+        "unearned_term_remaining_ratio": 0.42
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1808,6 +2116,12 @@
         "(3) IRC Sec. 514 Debt-Financed Property Acquisition-Indebtedness Ratio [26 U.S.C. Sec. 514(a)(1)-(2) & Treas. Reg. Sec. 1.514(a)-1 Debt/Basis Percentage] \u2014 Ratio_514 = min(1.0, Avg_Acq_Debt / Avg_Adj_Basis); Silo53_UBI = Net_Rent * Ratio_514",
         "(4) IRC Sec. 513(i) Corporate Sponsorship 2% Safe Harbor & 21% Form 990-T Tax Liability [26 U.S.C. Sec. 511(a), Sec. 513(i) & Treas. Reg. Sec. 1.512(a)-1(f) Periodical Rules] \u2014 Tax_990T = 0.21 * Total_UBTI; Qualified_Sponsorship = Pool - I(FMV > 2%)*FMV - Ad_Banners"
       ],
+      "sample_structured_inputs": {
+        "silo54_advertising_gross": 2150000,
+        "commercial_use_hours": 1420,
+        "total_actual_used_hours": 4600,
+        "commercial_sqft_ratio": 0.28
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1861,6 +2175,11 @@
         "(3) UPMIFA Sec. 4(d) 7% Prudence Presumption & 12-Quarter Rolling Endowment Appropriation [Uniform Prudent Management of Institutional Funds Act (UPMIFA) Sec. 4(a) & Optional Sec. 4(d)] \u2014 Spend_Appropriated = r_policy * mean(NAV_Q1..Q12); Effective_Rate = Spend / NAV_spot <= 7.0%",
         "(4) FASB ASC 958-205-45-28 Underwater Endowment Donor-Principal Deficit Footnote [FASB ASU 2016-14 & ASC 958-205-45-28 / 50-2 Underwater Endowment Disclosure] \u2014 Underwater_Deficit = sum_i max(0, Historic_Dollar_Gift_i - Current_FMV_i)"
       ],
+      "sample_structured_inputs": {
+        "endowment_nav": 92000000,
+        "board_reserve_floor_months": 6,
+        "target_spending_rate": 0.0475
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1914,6 +2233,11 @@
         "(3) EPA ABEL Phase II 5-Year Projected Internally Generated Cash Flow Available [U.S. EPA ABEL Phase II Cash-Flow Projection & Disallowed Outlay Add-Back Rules] \u2014 PV_ABEL = max(0, NPV(r, OCF_t + Officer_Excess_t - CapEx_Ess_t - Debt_Prin_t - Remed_t))",
         "(4) DOJ Inability-to-Pay Capacity Ceiling & 12-Quarter Installment Mitigation Schedule [DOJ ENRD Corporate Financial Questionnaire & EPA Inability-to-Pay Guidance (2015)] \u2014 Payable_Cap = min(Proposed_Fine, PV_ABEL + Residual_Debt_Cap + Excess_Cash)"
       ],
+      "sample_structured_inputs": {
+        "revenue": 24500000,
+        "noncompliance_duration_years": 2.5,
+        "max_lender_leverage_multiple": 3.25
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -1967,6 +2291,14 @@
         "(3) Commercially Useful Function (CUF) Pass-Through & Conduit Broker Disallowance [49 CFR Sec. 26.55(c) & Municipal SBE/CBE CUF Audit Verification Standard] \u2014 Countable_CUF_USD = max(0, Gross_Certified_Sub_USD - Broker_PassThrough_USD)",
         "(4) Statutory 10% Liquidated-Damages Fine on Unmet Subcontracting Dollar Shortfall [Municipal SBE/CBE Enforcement Code (10% Unmet Subcontracting Shortfall Fine)] \u2014 Penalty_10pct = 0.10 * max(0, Required_Sub_USD - Countable_CUF_USD)"
       ],
+      "sample_structured_inputs": {
+        "contract_adjusted_total": 28000000,
+        "cbe_equity_share": 0.51,
+        "cbe_profit_share": 0.51,
+        "cbe_work_share": 0.52,
+        "cbe_managing_venturer_flag": 1,
+        "dc_assisted_project_flag": 0.0
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2020,6 +2352,16 @@
         "(3) GSAR 552.216-70 & Clause I-FSS-969 Economic Price Adjustment (BLS ECI Ceiling) [GSAR 552.216-70, GSA Acquisition Letter MV-22-02 & Clause I-FSS-969] \u2014 EPA_Pct = min((ECI_curr - ECI_base) / ECI_base, EPA_Ceiling_Cap)",
         "(4) FAR 52.222-46 Realism & SCA 29 CFR Part 4 Wage-Determination / H&W Floor Audit [41 U.S.C. Sec. 6703 (Service Contract Act), 29 CFR Part 4 & FAR 52.222-41 / 52.222-46] \u2014 Surplus_Wage = Cash_Hr - WD_Min_Hr >= 0; Surplus_HW = Fringe_Hr - DOL_HW_Hr >= 0"
       ],
+      "sample_structured_inputs": {
+        "commercial_list_hourly_rate": 185,
+        "mfc_commercial_discount_pct": 0.12,
+        "proposed_gsa_net_discount_pct": 0.135,
+        "observed_boa_customer_discount_pct": 0.12,
+        "annual_gsa_billable_hours": 61440,
+        "bls_eci_base_index": 154.2,
+        "bls_eci_current_index": 161.3,
+        "gsa_epa_cap_pct": 0.05
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2073,6 +2415,16 @@
         "(3) Measured-Mile Unimpacted vs. Impacted Direct-Labor Productivity Disruption [FAR 52.243-1 / 52.243-4 Equitable Adjustment & Bell BCI Co. v. United States] \u2014 Disruption_USD = max(0, Hrs_Imp*(1 - r_CO) - Units_Imp*(Hrs_Unimp/Units_Unimp)) * Rate_Craft",
         "(4) 41 U.S.C. Sec. 7109 Contract Disputes Act (CDA) Prompt-Payment Simple Interest [41 U.S.C. Sec. 7103(b) Certification, Sec. 7109 Interest & FAR 33.208] \u2014 CDA_Total = Quantum_Principal * (1 + r_Treasury_PromptPay * Years_Since_CO_Receipt)"
       ],
+      "sample_structured_inputs": {
+        "contract_billings_delay_pd": 18500000,
+        "actual_performance_days": 540,
+        "critical_path_delay_days": 148,
+        "contractor_sole_delay_days": 14,
+        "concurrent_excusable_noncomp_days": 22,
+        "unimpacted_crew_hours": 18400,
+        "unimpacted_units_installed": 4600,
+        "impacted_actual_crew_hours": 34200
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2126,6 +2478,14 @@
         "(3) Pay-As-You-Go (PAYGO) Sufficiency & Statutory Capital Debt-Service Cap Check [Balanced Budget PAYGO Rule & Municipal 12% General-Fund Debt-Service Cap Act] \u2014 PAYGO_OK = (FIS_FY1 >= 0) & (FIS_4Yr >= 0); Debt_Ratio = Debt_Service / Gen_Fund_Rev <= Cap",
         "(4) First-Year Effective-Date Collection Lag (Cash vs. Modified-Accrual Phasing) [GASB Statement No. 33 / 65 Modified-Accrual Tax Recognition & Withholding Remittance Lag] \u2014 Cash_FY1 = Accrual_FY1 * phi_lag; Spillover_FY2 = Accrual_FY1 * (1 - phi_lag)"
       ],
+      "sample_structured_inputs": {
+        "statutory_tax_base_usd": 1850000000,
+        "proposed_rate_change": 0.0075,
+        "tax_base_elasticity": -0.22,
+        "identified_budget_offset_yr": 0.0,
+        "fy1_collection_phasing_factor": 0.72,
+        "statutory_debt_service_cap_pct": 0.12
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2179,6 +2539,15 @@
         "(3) Technical Feedstock Supply-Contract Coverage & EPC Construction Contingency Audit [7 CFR Part 5001 Appendix A Sec. (c) Technical Feasibility & Risk Mitigation] \u2014 Feedstock_Cov = Contracted_Tons / Planned_Tons; Contingency_% = EPC_Reserve / Open_Hard_Cost",
         "(4) USDA OneRD Financial Feasibility DSCR (>=1.25x Base & +/-10% Adverse Stress) [7 CFR Part 5001 Appendix A Sec. (d) Financial Feasibility & 10% Sensitivity Test] \u2014 DSCR_Base = CFADS / DS >= 1.25x; DSCR_Stress = (0.90*Rev - 1.10*VC - Fixed) / DS >= 1.00x"
       ],
+      "sample_structured_inputs": {
+        "total_project_cost_usd": 32000000,
+        "new_venture_or_energy_flag": 1,
+        "bi_lender_spread": 0.0265,
+        "loan_term_years": 20,
+        "oee_availability_factor": 0.82,
+        "offtake_price_per_ton": 345,
+        "variable_feedstock_energy_per_ton": 198
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2232,6 +2601,10 @@
         "(3) NARUC Customer-Class Cost-of-Service Allocation & Volumetric Rate Design [NARUC Electric & Water Utility Cost Allocation Manuals \u2014 Class Equitability Standard] \u2014 Class_RR_c = Base_Pool * (Vol_c / Vol_Tot) + Extra_Pool * (PeakWt_c * Vol_c / Sum_PeakVol)",
         "(4) Senior Revenue-Bond Master Ordinance DSCR Covenant & Days Cash on Hand [Municipal Utility Revenue-Bond Trust Indenture Rate Covenant & Rating-Agency Liquidity Test] \u2014 DSCR_Bond = (Gross_Rev - O&M - PILOT) / Annual_Debt_Service; DCOH = Cash * 365 / O&M"
       ],
+      "sample_structured_inputs": {
+        "allowable_om_expense": 46500000,
+        "bond_covenant_dscr": 1.35
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2285,6 +2658,16 @@
         "(3) GASB Statement No. 68 Net Pension Liability & +/-100 bps Discount-Rate Sensitivity [GASB Statement No. 68 Par. 42 & 78(g) Entry-Age Normal NPL Sensitivity Disclosure] \u2014 NPL_base = TPL - FNP; NPL_-100bps = TPL*(1.01^Duration) - FNP",
         "(4) GASB Statement No. 75 OPEB Healthcare-Trend & 4-Year Fully Fringed Budget Impact [GASB Statement No. 75 OPEB Valuation & 4-Year Financial-Plan Certification] \u2014 Delta_4Yr_Budget = sum_{t=1..4} (Fully_Fringed_Cost_t - Frozen_Baseline_Cost)"
       ],
+      "sample_structured_inputs": {
+        "bargaining_unit_headcount": 850,
+        "current_avg_base_salary": 96500,
+        "proposed_annual_cola_pct": 0.035,
+        "step_increment_pct": 0.024,
+        "step_eligible_cohort_share": 0.68,
+        "specialty_shift_diff_pct": 0.055,
+        "scheduled_plus_holdover_hrs_28d": 182,
+        "flsa_207k_threshold_28d": 171
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2338,6 +2721,16 @@
         "(3) Feedstock-to-Output Crush Gross-Margin Spread & Forward-Hedge Price Floor [USDA ERS Commodity Cost-and-Return Framework & FASB ASC 815 Normal Purchases/Sales] \u2014 Margin_Crush = Net_Vol * (h*P_fwd + (1-h)*P_spot) + Cull_Rev - Accum_Cost - Sell_Cost",
         "(4) Farm Credit Seasonal Crop-Line Borrowing Base & Post-Harvest Coverage Covenant [12 U.S.C. Sec. 2011 (Farm Credit Act) & FCA 12 CFR Part 614 Seasonal Production Lending] \u2014 BB_Ag = 0.65 * Carrying_Val + 0.15 * Hedged_Contract_Val; DSCR = CFADS / Ag_Debt_Service"
       ],
+      "sample_structured_inputs": {
+        "gross_planted_or_stocked_units": 6500000,
+        "historical_cohort_mortality_pct": 0.065,
+        "harvest_handling_shrinkage_pct": 0.025,
+        "usda_ams_grade_a_yield_pct": 0.94,
+        "usda_spot_price_per_unit": 6.45,
+        "forward_contract_price_per_unit": 6.7,
+        "forward_hedged_volume_share": 0.6,
+        "harvest_selling_cost_per_unit": 0.42
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2391,6 +2784,16 @@
         "(3) Payment-Network 0.90% Chargeback Monitoring Threshold & Billing Dispute Audit [Visa Acquirer Monitoring Program (VAMP) / Mastercard Excessive Chargeback Program & CFPB Circular 2023-01] \u2014 Chargeback_Ratio = Monthly_Disputed_Tx / Total_Monthly_Card_Tx < 0.0090",
         "(4) 15 U.S.C. Sec. 45(m)(1)(A) Civil-Penalty Statutory Ceiling vs. Voluntary Refund Remediation [15 U.S.C. Sec. 45(m)(1)(A), 16 CFR Sec. 1.98(d) & 12 U.S.C. Sec. 5565(c) Civil Penalties] \u2014 Ceiling_Statutory = Actionable_Violations * $51,744; Remediation_Savings = Settlement_Est - Restitution"
       ],
+      "sample_structured_inputs": {
+        "affected_subscriber_accounts": 185000,
+        "recurring_subscription_fee_usd": 49,
+        "unconsented_negative_option_fee_usd": 19.95,
+        "unconsented_addon_account_share": 0.085,
+        "enrollment_click_steps": 2,
+        "cancellation_click_steps": 6,
+        "same_medium_online_cancel_flag": 1,
+        "pre_renewal_reminder_days": 15
+      },
       "expected_payload_datasets": [
         {
           "slot": "S1",
@@ -2444,6 +2847,16 @@
         "(3) 10 CFR Part 436 Lifecycle Net Present Value & Yield-on-Net-CapEx Rule [10 CFR Part 436 Subpart A & DOEE BEPS Cost-Effectiveness Standard] \u2014 NPV_Lifecycle = PV(Savings_t, r_disc) - CapEx_net; Yield_on_Cost = Savings_Yr1 / CapEx_net",
         "(4) IRC Sec. 179D Prevailing-Wage Energy-Efficient Commercial Building Deduction [26 U.S.C. Sec. 179D(b)(3), IRS Form 7205 & D.C. Sustainable Energy Utility Rules] \u2014 CapEx_net = CapEx_gross - R_DCSEU - tau_eff * (D_179D_rate * GSF_qual)"
       ],
+      "sample_structured_inputs": {
+        "gsf": 385000,
+        "delta_eui_actual": 0.215,
+        "capex_gross": 7450000,
+        "dcseu_rebate": 620000,
+        "d_179d_rate": 5.65,
+        "fed_tax_rate": 0.21,
+        "annual_utility_savings": 645000,
+        "annual_om_savings": 115000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2497,6 +2910,16 @@
         "(3) Stabilized Yield-on-Cost vs. Exit Cap Spread Underwriting Rule [CREFC / HUD Multifamily Adaptive-Reuse Yield-on-Cost Standard] \u2014 Spread_dev = (NOI_stab / Total_Dev_Cost) - Cap_exit >= 150 bps",
         "(4) Fannie Mae / Freddie Mac Permanent Takeout LTC & DSCR Loan Sizing [Fannie Mae Multifamily Selling & Servicing Guide Part III (DSCR >= 1.25x)] \u2014 Loan_max = min(LTC_max * Total_Dev_Cost, NOI_stab / (DSCR_min * K_mort))"
       ],
+      "sample_structured_inputs": {
+        "rsf_conv": 290000,
+        "total_units": 284,
+        "iz_share": 0.15,
+        "rent_mkt_monthly": 3420,
+        "rent_mfi_monthly": 1865,
+        "total_dev_cost": 118500000,
+        "assessed_value": 132000000,
+        "class1_tax_rate": 0.0085
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2550,6 +2973,16 @@
         "(3) FASB ASC 740-10-35 State Apportionment Deferred Tax Remeasurement [FASB ASC 740-10-35 & D.C. Official Code Sec. 47-1810.04(c)(2)] \u2014 Delta_DTA_DC = Temp_Diff_net * (Alpha_DC_new * tau_DC - Alpha_DC_old * tau_DC_prior)",
         "(4) D.C. OTR Sec. 47-4201 Daily Compounded Underpayment Interest & Sec. 47-4213 Penalty [D.C. Official Code Secs. 47-4201, 47-4213 & 47-4221] \u2014 Int_47_4201 = Tax_Underpaid * [(1 + 0.10 / 365)^d - 1] + Penalty_47_4213"
       ],
+      "sample_structured_inputs": {
+        "sales_dc_finnigan": 54800000,
+        "sales_everywhere": 142800000,
+        "sales_excluded_treasury": 4200000,
+        "ti_fed_sum": 31500000,
+        "dc_addbacks": 3850000,
+        "dc_subtractions": 1450000,
+        "elim_interco": 5600000,
+        "temp_diff_net": 12400000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2603,6 +3036,16 @@
         "(3) D.C. First Source 5% Covered-Labor Penalty & DOES Good-Faith Waiver Offset [D.C. Official Code Sec. 2-219.03(e)(4) & Living Wage Sec. 2-220.03] \u2014 Penalty_net = max(0, 0.05 * Labor_Covered_USD - Waiver_GoodFaith_Offset)",
         "(4) DOL Form WH-347 Certified Payroll to IRS Form 941 Line 5c Reconciliation [29 CFR Sec. 5.5(a)(3)(ii), DOL Form WH-347 & IRS Form 941 Line 5c] \u2014 Var_Payroll = (Wages_WH347_Cov + Wages_NonCov_Comm) - Wages_Form941_Line5c = $0.00"
       ],
+      "sample_structured_inputs": {
+        "hires_dc": 34,
+        "hires_total": 62,
+        "hrs_appr_dc": 14800,
+        "hrs_appr_total": 23500,
+        "annual_erisa_contrib": 1680000,
+        "hrs_all_work": 192000,
+        "labor_covered_usd": 11400000,
+        "waiver_goodfaith_offset": 520000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2656,6 +3099,16 @@
         "(3) Finnerty Average-Strike Protective-Put DLOM & IRC Sec. 409A Ceiling Strike Rule [IRS DLOM Job Aid, Finnerty (2012) Protective-Put Model & FASB ASC 718] \u2014 DLOM_Finnerty = [N(v*sqrt(T)/2) - N(-v*sqrt(T)/2)], Strike_409A = ceil(FMV_pre * (1 - DLOM))",
         "(4) IRS Rev. Rul. 59-60 & FASB ASC 820 Build-Up Weighted Average Cost of Capital [IRS Rev. Rul. 59-60, 1959-1 C.B. 237 & FASB ASC 820] \u2014 WACC = (E/V)*(R_f + beta_L * ERP + RP_size) + (D/V)*R_d*(1 - tau)"
       ],
+      "sample_structured_inputs": {
+        "ev_equity": 94000000,
+        "volatility": 0.58,
+        "time_to_liquidity": 3.25,
+        "common_shares": 15200000,
+        "total_diluted_shares": 24500000,
+        "beta_levered": 1.32,
+        "erp": 0.055,
+        "size_premium": 0.0365
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2709,6 +3162,16 @@
         "(3) IRC Sec. 382(h) NUBIG Threshold & IRS Notice 2003-65 Section 338 RBIG Uplift [26 U.S.C. Sec. 382(h)(3)(B) & IRS Notice 2003-65, 2003-2 C.B. 747] \u2014 Cap_382_aug,t = Cap_382_base + RBIG_338,t, if NUBIG > min(0.15 * FMV_Assets, $10M)",
         "(4) Treas. Reg. Sec. 1.383-1 Sequential Tax-Attribute Ordering & R&D Credit Limitation [26 U.S.C. Secs. 383, 163(j) & Treas. Reg. Sec. 1.383-1(d)] \u2014 Cap_rem_383 = (Cap_382_aug - RBIL_used - NOL_used - Sec163j_used) * tau_corp"
       ],
+      "sample_structured_inputs": {
+        "fmv_prechange": 142000000,
+        "haircut_382l1": 18500000,
+        "adj_382l4": 0.0,
+        "fmv_assets": 165000000,
+        "tax_basis_assets": 118000000,
+        "prechange_nol": 68400000,
+        "sec41_credits": 4250000,
+        "sec163j_carryforward": 2400000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2762,6 +3225,16 @@
         "(3) IRC Sec. 174(a)(2)(B) Specified Research & Experimental Mid-Year Amortization [26 U.S.C. Sec. 174(a)(2)(B) (5-Year Domestic / 15-Year Foreign Schedule)] \u2014 Amort_174,t = SRE_Dom * (0.10 if t=1 else 0.20) + SRE_For * (1/30 if t=1 else 1/15)",
         "(4) FASB ASC 740-10-25-6 More-Likely-Than-Not Recognition & Form 6765 Sec. G UTP Reserve [FASB ASC 740-10-25-6 & Updated IRS Form 6765 Sec. G / Schedule UTP] \u2014 Benefit_Recognized = max{B_k : sum P(Sustained) > 0.50}; Reserve_UTP = Credit_Claimed - Benefit_Recognized"
       ],
+      "sample_structured_inputs": {
+        "qre_current": 22800000,
+        "avg_qre_3yr": 17400000,
+        "avg_rev_4yr": 86000000,
+        "fixed_base_pct": 0.115,
+        "sre_domestic": 26400000,
+        "sre_foreign": 2100000,
+        "fed_tax_rate": 0.21,
+        "mltn_sustained_ratio": 0.86
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2815,6 +3288,16 @@
         "(3) Treas. Reg. Secs. 1.482-3 & 1.482-4 CUT Royalty & Cost-Plus Cross-Check [Treas. Reg. Secs. 1.482-3, 1.482-4 & 1.482-9] \u2014 P_RP = P_Resale * (1 - GM_arm); Royalty_CUT = r_CUT * Net_Licensed_Sales",
         "(4) IRC Sec. 6662(e)(3)(B) Contemporaneous Ten-Principal-Document Penalty Exemption [26 U.S.C. Sec. 6662(e)(3)(B) & Treas. Reg. Sec. 1.6662-6(d)(2)(iii)] \u2014 Penalty_6662e = 0 if Contemporaneous_10Docs_Locked else (20% or 40% misstatement tier)"
       ],
+      "sample_structured_inputs": {
+        "sales_ic": 186000000,
+        "pli_tested_unadj": 0.031,
+        "nwc_tested_to_sales": 0.145,
+        "nwc_comp_to_sales": 0.195,
+        "gross_profit": 42800000,
+        "opex": 37034000,
+        "net_licensed_sales": 92000000,
+        "cut_royalty_rate": 0.0475
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2868,6 +3351,15 @@
         "(3) Treas. Reg. Sec. 1.280G-1 Q&A-9 & Q&A-42 Reasonable Compensation Carve-Outs [26 U.S.C. Sec. 280G(b)(4) & Treas. Reg. Sec. 1.280G-1 Q&A-9, Q&A-40, Q&A-42] \u2014 Parachute_Net = Parachute_Gross - V_NonCompete_PostClose - Comp_Earned_PreClose",
         "(4) IRC Sec. 280G(b)(5)(B) >75% Disinterested Shareholder Cleansing Vote & Q&A-7 Waiver [26 U.S.C. Sec. 280G(b)(5)(B) & Treas. Reg. Sec. 1.280G-1 Q&A-7] \u2014 Votes_Cleanse_Req = floor(0.75 * (Votes_Total - Votes_Interested)) + 1; Waiver = max(0, Net - SafeHarbor)"
       ],
+      "sample_structured_inputs": {
+        "cash_severance_and_bonus": 1350000,
+        "accelerated_equity_spread": 2150000,
+        "accelerated_months": 18,
+        "v_noncompete_postclose": 420000,
+        "comp_earned_preclose": 145000,
+        "votes_total": 18500000,
+        "votes_interested": 3200000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2921,6 +3413,16 @@
         "(3) FASB ASC 805-20-55 With-and-Without Non-Compete & Assembled Workforce CAC [FASB ASC 805-20-55-6 & AICPA Intangible Asset Practice Aid] \u2014 FV_NonComp = TAB_197 * p_compete * PV(CF_With - CF_Without); CAC_WF = Cost_WF * (1 - tau)",
         "(4) IRS Form 8594 Seven-Class Residual Purchase Price Waterfall [26 U.S.C. Sec. 1060, Treas. Reg. Sec. 1.1060-1 & FASB ASC 805-30] \u2014 Goodwill_ClassVII = Purchase_Price - sum_{I..VI} FV_Identifiable; WARA ~= WACC"
       ],
+      "sample_structured_inputs": {
+        "purchase_price": 164000000,
+        "nwc_fv": 14200000,
+        "ppe_fv": 18600000,
+        "base_customer_revenue": 68000000,
+        "annual_attrition": 0.095,
+        "ebita_margin": 0.285,
+        "ip_royalty_rate": 0.065,
+        "workforce_replacement_cost": 6400000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -2974,6 +3476,14 @@
         "(3) MTC Multistate Voluntary Disclosure Program Lookback Limitation & Penalty Waiver [Multistate Tax Commission National Nexus Program & State DOR VDA Rules] \u2014 Savings_VDA = (Tax_PreLookback + Penalty_AllYrs + Int_Waived) - (Tax_Lookback + Int_Stat_VDA)",
         "(4) FASB ASC 450-20 Probable & Estimable SALT Loss Contingency Net of Exemption Certificates [FASB ASC 450-20-25-2 & Streamlined Sales Tax Exemption Rules] \u2014 Reserve_ASC450 = sum_{s: MLTN_Nexus} [Sales_Taxable_Net_Exempt,s * tau_comb,s + Int_Accrued,s]"
       ],
+      "sample_structured_inputs": {
+        "exempt_cert_pct": 0.58,
+        "avg_combined_sales_rate": 0.0785,
+        "ti_fed_adj": 16400000,
+        "total_us_sales": 76200000,
+        "unregistered_years": 6.5,
+        "vda_lookback_years": 3.25
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3027,6 +3537,16 @@
         "(3) Treas. Reg. Sec. 1.1202-2 Five-Percent De Minimis Stock Redemption Taint Test [26 U.S.C. Sec. 1202(c)(3) & Treas. Reg. Sec. 1.1202-2(a)-(d)] \u2014 Taint_Related = I(Redemp_[-1,+1] > 5%); Taint_Sig = I(Redemp_[-2,+2] > 5% Pre-Redemp FMV)",
         "(4) IRC Sec. 1202(b)(1) Greater of $10,000,000 or 10x Basis Per-Taxpayer Gain Exclusion [26 U.S.C. Secs. 1202(a)(4) & 1202(b)(1)(A)-(B)] \u2014 Gain_Excl_Holder = pct_vintage * max($10,000,000, 10.0 * Basis_1202_Issued)"
       ],
+      "sample_structured_inputs": {
+        "cash_post_issuance": 19200000,
+        "adjusted_tax_basis_assets": 15600000,
+        "contributed_builtin_fmv": 0.0,
+        "assets_qual_trade": 26800000,
+        "wc_safeharbor_1202e6": 3960000,
+        "total_assets_fmv": 34800000,
+        "redemp_related_pct": 0.012,
+        "redemp_sig_pct": 0.024
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3080,6 +3600,16 @@
         "(3) IRC Secs. 754, 743(b) & 755 Transferee Inside Basis Adjustment & Hot-Asset Split [26 U.S.C. Secs. 743(b), 751(a), 754, 755 & Treas. Reg. Sec. 1.755-1] \u2014 Adj_743b = (Outside_Basis_Transferee - Share_Inside_Tax_Basis); Alloc_755 = Residual_Split",
         "(4) IRC Sec. 704(c)(1)(A) Ceiling Rule Limitation & Treas. Reg. 1.704-3(d) Remedial Allocation [26 U.S.C. Sec. 704(c)(1)(A) & Treas. Reg. Sec. 1.704-3(d)] \u2014 Depr_Tax_NonContrib = min(Depr_Book_Share, Depr_Tax_Ceiling) + Remedial_704c_Offset"
       ],
+      "sample_structured_inputs": {
+        "hlbv_open_lp": 62000000,
+        "hlbv_close_lp": 69400000,
+        "distributions_lp": 5200000,
+        "contributions_lp": 1500000,
+        "delta_min_gain_lp": -450000,
+        "outside_basis_transferee": 44800000,
+        "share_inside_tax_basis": 20200000,
+        "sec751_ordinary_share": 0.28
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3133,6 +3663,16 @@
         "(3) Treas. Reg. Sec. 1.163(j)-5 Consolidated Group Single-Entity ATI & SRLY Absorption [Treas. Reg. Secs. 1.163(j)-4(d) & 1.163(j)-5(b)] \u2014 Cap_Consol = BII_Group + 0.30 * ATI_Consol; Absorb_SRLY = min(CF_Member, Residual_Lim)",
         "(4) IRC Sec. 163(j)(4)(B) Partnership Excess Business Interest Expense (EBIE) & ETI Release [26 U.S.C. Sec. 163(j)(4)(B) & Schedule K-1 Rules] \u2014 Basis_Partner_Adj = Basis_Open - EBIE_Allocated; Freed_EBIE = min(EBIE_Susp, ETI_Alloc)"
       ],
+      "sample_structured_inputs": {
+        "debt_principal": 195000000,
+        "blended_spread": 0.0315,
+        "business_interest_income": 820000,
+        "ebit_ati": 29400000,
+        "real_property_basis": 168000000,
+        "qip_basis": 24000000,
+        "srly_member_carryforward": 4600000,
+        "consol_residual_lim": 3100000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3186,6 +3726,16 @@
         "(3) 12 Del. C. Sec. 1172 Delaware SOS VDA Base-Period Gross Error Extrapolation [12 Del. C. Secs. 1172-1173 & 1 Del. Admin. C. Sec. 301] \u2014 Est_Unresearched = Rev_Unresearched * [sum Unremediated_Error(b) / sum Sampled_Denom(b)]",
         "(4) 12 Del. C. Sec. 1183 Statutory 50% Audit Interest Waiver via SOS VDA Settlement [12 Del. C. Secs. 1173(a) & 1183(a)] \u2014 Savings_SOS_VDA = (Est_Exam_15Yr + Int_50Pct_Stat + Civil_Penalties) - Liability_VDA_10Yr_ZeroInt"
       ],
+      "sample_structured_inputs": {
+        "addressed_dormant_usd": 640000,
+        "unaddressed_dormant_usd": 485000,
+        "b2b_exempt_share": 0.28,
+        "base_yrs_unremediated_error": 310000,
+        "base_yrs_sampled_denom": 285000000,
+        "unresearched_vda_rev": 540000000,
+        "unresearched_exam_rev": 960000000,
+        "exam_civil_penalties": 125000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3239,6 +3789,14 @@
         "(3) FASB ASC 820 Level-3 Income & Market Fair-Value Reconciliation [FASB ASC 820-10-35 & AICPA Accounting & Valuation Guide: Goodwill] \u2014 FV_RU_Blended = w_DCF * FV_RU_DCF + w_GPC * (EBITDA_Norm * Mult_GPC_Harmonic) + w_MA * (EBITDA_Norm * Mult_Precedent)",
         "(4) FASB ASU 2017-04 Single-Step Goodwill Write-Down & IRC Sec. 197 Tax Shield [FASB ASU 2017-04 (ASC 350-20-35-3C to 35-13) & 26 U.S.C. Sec. 197] \u2014 Impairment_GW = min(GW_Carrying_RU, max(0, (CV_RU_Incl_GW - FV_RU_Blended) / (1 - tau_Sec197_Factor)))"
       ],
+      "sample_structured_inputs": {
+        "consolidated_carrying_value": 310000000,
+        "terminal_growth_rate": 0.025,
+        "precedent_ma_multiple": 9.8,
+        "weight_dcf": 0.5,
+        "weight_gpc": 0.3,
+        "tax_amortizable_gw_ratio": 0.65
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3292,6 +3850,16 @@
         "(3) FASB ASU 2020-06 (ASC 470-20) Convertible Debt & ASC 815-40 Warrant Liability [FASB ASU 2020-06 (ASC 470-20 / ASC 260) & ASC 815-40-15-7D] \u2014 V_Conv = V_Equity_Settlement + V_Debt_CreditDiscounted; Liability_Warrant = Units * BSM_FairValue(S, K_DownRound)",
         "(4) FASB ASC 718-10-35-8 Accelerated Graded-Vesting Expense Attribution [FASB ASC 718-10-35-8 & ASU 2016-09 Forfeiture Attribution] \u2014 Exp_Graded(t) = sum_{k=t}^K (FV_Tranche,k / Vest_Yrs,k) * (1 - Forfeiture_Est)^k"
       ],
+      "sample_structured_inputs": {
+        "spot_price": 18.5,
+        "strike_price": 18.5,
+        "volatility": 0.46,
+        "contractual_term_years": 6,
+        "vesting_years": 3,
+        "early_exercise_multiple": 2.2,
+        "annual_forfeiture_rate": 0.065,
+        "option_award_units": 650000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3345,6 +3913,9 @@
         "(3) Treas. Reg. Sec. 1.263A-2(b)(4) 3-Year Historic Absorption Ratio (HAR) Election [Treas. Reg. Sec. 1.263A-2(b)(4) Qualifying 3-Year HAR Election] \u2014 Ratio_HAR = sum_{y=t-3}^{t-1} Additional_263A(y) / sum_{y=t-3}^{t-1} Sec471_Incurred(y)",
         "(4) IRS Form 3115 & 26 U.S.C. Sec. 481(a) Method-Change Adjustment [26 U.S.C. Sec. 481(a) & IRS Rev. Proc. 2024-23 Automatic Change #237] \u2014 Adj_481a = Inv_Tax_NewMethod_Open - Inv_Tax_OldMethod_Open (100% Yr-1 Deduction if < 0; 25%/Yr x 4 Yrs if > 0)"
       ],
+      "sample_structured_inputs": {
+        "sec471_ending_fifo_inventory": 64800000
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3398,6 +3969,14 @@
         "(3) FASB ASC 470-50-40-17 Lender vs. Third-Party Fee Bifurcation Rule [FASB ASC 470-50-40-17 to 40-18 Debt Issuance Cost Rules] \u2014 Modification: Lender_Fees -> Defer/OID, 3rdParty_Fees -> Expense; Extinguishment: Old_OID -> WriteOff, 3rdParty -> Defer",
         "(4) OCC Bulletin 2013-9 Leveraged-Lending Fixed-Charge & Leverage Test [OCC Bulletin 2013-9 Interagency Leveraged-Lending Guidance] \u2014 FCCR_post = (EBITDA_Adj - CapEx_Maint - Cash_Tax) / (Int_Cash_Post + Prin_Sched_Post); Net_Lev = Debt_Net / EBITDA_Adj"
       ],
+      "sample_structured_inputs": {
+        "syndicated_facility_principal": 145000000,
+        "original_eir": 0.0785,
+        "new_credit_spread": 0.0315,
+        "old_remaining_years": 3,
+        "new_maturity_years": 5,
+        "old_coupon_rate": 0.074
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3451,6 +4030,10 @@
         "(3) FASB ASC 740-10-25-6 (FIN 48) & Schedule UTP >50% Measurement Rule [FASB ASC 740-10-25-6 (FIN 48) & IRS Form 1120 Schedule UTP] \u2014 UTP_Recognized = max{X_k : P(Outcome >= X_k) > 0.50}; Liability_FIN48 = Tax_Benefit_AsFiled - UTP_Recognized + Int_Pen",
         "(4) 26 U.S.C. Secs. 951A & 250 GILTI Inclusion & 80% Foreign Tax Credit Haircut [26 U.S.C. Secs. 951A, 250, 960(d) & FASB ASC 740-10] \u2014 GILTI_Net_Tax = max(0, max(0, Net_CFC_Tested_Income - (0.10 * QBAI - Int_Spec)) * 0.50 * 0.21 - 0.80 * FTC_Alloc)"
       ],
+      "sample_structured_inputs": {
+        "pre_tax_book_income": 42000000,
+        "utp_mltn_prob": 0.78
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3504,6 +4087,13 @@
         "(3) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) Unreasonably-Small-Capital Adequacy Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) & UVTA Sec. 4(a)(2)(i)] \u2014 Lev_Net_Post <= Q_75(Peer_SIC_Lev) and Interest_Cov_Post >= Q_25(Peer_SIC_Cov)",
         "(4) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) Maturing Debt-Service & Revolving Liquidity Sufficiency Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) & UVTA Sec. 4(a)(2)(ii)] \u2014 Sufficiency_548_III = (CFO_Stressed + Revolver_Undrawn_Committed) / (Principal_Sched + Interest_Cash + CapEx_Required) >= 1.25x"
       ],
+      "sample_structured_inputs": {
+        "enterprise_fair_value": 340000000,
+        "statutory_par_capital": 250000,
+        "recap_credit_spread": 0.0365,
+        "peer_sic_q75_net_leverage": 4.65,
+        "peer_sic_q25_interest_coverage": 2.15
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3557,6 +4147,11 @@
         "(3) 8 Del. C. Sec. 144(a)(3) Economic Fairness & Acquirer Return-on-Capital Test [8 Del. C. Sec. 144(a)(3) Fair-Price Safe Harbor & FINRA Rule 5150] \u2014 ROIC_Deal = NOPAT_Stabilized / Capital_Invested >= WACC_Acquirer; Delta_NAV_Per_Unit >= 0",
         "(4) FASB ASC 850 & Treas. Reg. Sec. 1.482-1 Related-Party Arm's-Length Rate Test [FASB ASC 850-10-50, 8 Del. C. Sec. 144 & 26 CFR Sec. 1.482-1] \u2014 |Rate_Affiliate - Median_ArmLength_Quote| / Median_ArmLength_Quote <= 0.05"
       ],
+      "sample_structured_inputs": {
+        "proposed_transaction_ev": 265000000,
+        "legacy_carry_rate": 0.2,
+        "cv_projected_gross_moic": 1.82
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3610,6 +4205,11 @@
         "(3) IRS Rev. Rul. 59-60 Sec. 4 Comparable NAICS Closed-Transaction Corridor [IRS Revenue Ruling 59-60 Sec. 4 & SBA SOP 50 10 7.1 Appraisal Rules] \u2014 MVIC_Benchmark = Base_Asset_Floor + w_Rev * Rev_4506C + w_SDE * SDE_Norm (within +/- 1.0 sigma)",
         "(4) SBA SOP 50 10 7.1 Change-of-Ownership 10% Equity Injection & 24-Mo Standby Cap [SBA SOP 50 10 7.1 Ch. 4 Change-of-Ownership Equity Rule] \u2014 Equity_Buyer_Cash + min(Seller_Note_24Mo_FullStandby, 0.05 * Total_Project_Cost) >= 0.10 * Total_Project_Cost"
       ],
+      "sample_structured_inputs": {
+        "proposed_purchase_price": 4850000,
+        "comparable_ma_median_ebitda_multiple": 3.65,
+        "sba_7a_spread": 0.0225
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3663,6 +4263,11 @@
         "(3) OCC ABL Lesser-of-65%-Cost-or-85%-NOLV Inventory Cap & PACA/Landlord Reserves [OCC ABL Inventory Valuation Guidelines & 7 U.S.C. Sec. 499e(c) Priority] \u2014 Inv_Avail = min(0.65 * Inv_Eligible_FIFO_Cost, 0.85 * NOLV_Pct_Appraised * Inv_Eligible_FIFO_Cost) - Reserves_Statutory",
         "(4) UCC Sec. 9-104 Deposit-Account Control (DACA) & Springing Cash-Dominion Gate [UCC Sec. 9-104 Deposit-Account Control & OCC ABL Covenant Standards] \u2014 Spring_Dominion = I(Excess_Availability < max($3.50M, 0.10 * Loan_Cap)); Springing_FCCR >= 1.10x"
       ],
+      "sample_structured_inputs": {
+        "gross_accounts_receivable": 29600000,
+        "trailing_12m_ar_dilution_pct": 0.064,
+        "appraised_nolv_pct": 0.715
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3716,6 +4321,14 @@
         "(3) 42 U.S.C. Sec. 300gg-115 (CAA 2021 RxDC) CMS NADAC Spread & Retained Rebate Audit [42 U.S.C. Sec. 300gg-115 (CAA 2021 Sec. 204 RxDC) & CMS NADAC Schedule] \u2014 Spread_PBM = (Billed_Rx_Spend - CMS_NADAC_Plus_Dispensing) + (Rebates_Mfr - Rebates_Remitted)",
         "(4) 29 U.S.C. Sec. 1108(b)(2)(B) (CAA 2021 Sec. 202) Broker Direct & Indirect Fee Reasonableness [29 U.S.C. Sec. 1108(b)(2)(B) & DOL Field Assistance Bulletin 2021-03] \u2014 Comp_Broker_Total = Fee_Direct_PEPM * 12 * Participants + Commissions_and_Overrides <= Peer_Reasonable_Cap"
       ],
+      "sample_structured_inputs": {
+        "plan_401k_assets_usd": 285000000,
+        "weighted_12b1_subta_revshare_rate": 0.00095,
+        "form5500_peer_p50_per_capita_usd": 54,
+        "current_weighted_expense_ratio": 0.0056,
+        "institutional_r6_cit_expense_ratio": 0.0029,
+        "broker_direct_pepm_usd": 24.5
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3769,6 +4382,14 @@
         "(3) 26 U.S.C. Secs. 409(p) & 4979A S-Corp ESOP <50% Nonallocation & Synthetic Equity Test [26 U.S.C. Secs. 409(p), 4979A & Treas. Reg. Sec. 1.409(p)-1] \u2014 Disq_409p = I(DeemedOwned_i >= 0.10 or Family_i >= 0.20); Viol_409p = I(sum_{i in Disq} (Deemed_i + Synth_i) >= 0.50)",
         "(4) Treas. Reg. Sec. 54.4975-7(b)(8)(i) Suspense-Account Proportional P&I Share Release [26 CFR Sec. 54.4975-7(b)(8)(i) Exempt ESOP Loan Encumbrance Release] \u2014 Shares_Released(t) = Shares_Suspense_Open(t) * [(Prin_Paid(t) + Int_Paid(t)) / (Prin_Paid(t) + Int_Paid(t) + P_and_I_Future)]"
       ],
+      "sample_structured_inputs": {
+        "esop_enterprise_value": 162000000,
+        "put_right_dlom_pct": 0.045,
+        "total_esop_shares": 1200000,
+        "annual_share_price_growth": 0.055,
+        "allocated_participant_shares": 820000,
+        "internal_loan_rem_years": 12
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3822,6 +4443,12 @@
         "(3) 19 U.S.C. Sec. 1313(j)(2) & 19 CFR Part 190 TFTEA 99% Substitution Drawback [19 U.S.C. Sec. 1313(j)(2) (TFTEA) & 19 CFR Part 190] \u2014 Refund_Drawback = 0.99 * min(Duty_MPF_301_Import_PerUnit, Duty_Substituted_8Digit_HTSUS) * Units_Exported_5Yr",
         "(4) 19 U.S.C. Sec. 4531 & 19 CFR Part 182 USMCA Regional Value Content (RVC) [19 U.S.C. Sec. 4531, 19 CFR Part 182 & 19 U.S.C. Sec. 1592] \u2014 RVC_NetCost = [(Net_Cost - VNM_NonOrig) / Net_Cost] >= 0.45; RVC_TxVal = [(TV - VNM) / TV] >= 0.60"
       ],
+      "sample_structured_inputs": {
+        "annual_entered_import_value": 134000000,
+        "blended_htsus_and_sec301_duty_rate": 0.148,
+        "trading_company_markup_pct": 0.165,
+        "htsus_8digit_lesser_of_cap_ratio": 0.92
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3875,6 +4502,16 @@
         "(3) 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A Voluntary Self-Disclosure Cap [50 U.S.C. Secs. 1705, 4819; 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A] \u2014 Penalty_VSD_Max = 0.50 * min(Statutory_Max_IEEPA_ECRA, 0.50 * Transaction_Value_NonEgregious)",
         "(4) 15 CFR Part 744 & OFAC Sanctions Framework CSL Fuzzy-Match Quarantine [15 CFR Part 744 Entity List & OFAC Framework for Sanctions Compliance] \u2014 Sim_CSL(s_1, s_2) >= Threshold_0.88; Exposure_Blocked = sum_{Sim >= 0.88} Open_Order_USD"
       ],
+      "sample_structured_inputs": {
+        "international_dual_use_shipments_usd": 92500000,
+        "us_controlled_eccn_content_fmv": 4350,
+        "foreign_finished_assembly_fmv": 24000,
+        "destination_is_e1_or_d5_flag": 0.0,
+        "itar_usml_embedded_component_fmv": 0.0,
+        "sdn1_direct_pct_in_holding_a": 0.34,
+        "sdn2_direct_pct_in_holding_a": 0.19,
+        "holding_a_pct_in_counterparty": 0.38
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3928,6 +4565,16 @@
         "(3) SEC SAB No. 99 & Form 8-K Item 1.05 Quantitative (>=5% PTI/Rev/Equity) & Qualitative Materiality Test [SEC Staff Accounting Bulletin No. 99 & 17 CFR Sec. 249.308 Form 8-K Item 1.05] \u2014 Trigger_8K_105 = I(max(Loss_Net/PTI, Loss_Net/Rev, Loss_Net/Equity) >= 0.05 or SAB99_Qualitative_ICFR_Breach)",
         "(4) FASB ASC 450-20 Loss Contingencies & Cyber Tower Net Uninsured Retention [FASB ASC 450-20-25 Loss Contingencies & ASC 410-30 Insurance Recoveries] \u2014 Exposure_Retained = Retention_SIR + max(0, Loss_Extort - SubLimit) + CoIns_Pct * Covered_Layer + max(0, Loss_Tot - Limit)"
       ],
+      "sample_structured_inputs": {
+        "annual_revenue": 410000000,
+        "tef_min": 1.2,
+        "tef_mode": 2.8,
+        "tef_max": 6.4,
+        "baseline_vulnerability_prob": 0.22,
+        "secondary_reg_litigation_prob": 0.48,
+        "statutory_notification_monitoring_per_record_usd": 18.5,
+        "extortion_coinsurance_pct": 0.15
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -3981,6 +4628,14 @@
         "(3) FDIC 12 CFR Sec. 330.1 $250,000 ICS/CDARS Allocation & 30-Day Stress LCR Test [12 CFR Sec. 330.1, 12 U.S.C. Sec. 1829b(q) Reciprocal Deposits & 12 CFR Part 249 LCR] \u2014 N_ICS_Banks = ceil(Cash_Sweep / $248,500_SMDIA_Cap); LCR_30d = HQLA / max(0.25*Out_30d, Out_30d - min(In_30d, 0.75*Out_30d)) >= 1.00x",
         "(4) 17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) Govt MMF Liquidity & FASB ASC 305-10 <=90d Gate [17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) & FASB ASC 305-10-20 Cash Equivalents] \u2014 Weekly_Liquid_2a7 >= 0.50 & WAM_Days <= 60 (ASC 305 <= 90d); Yield_Pickup = Cash_ICS_2a7 * (r_GovMMF - r_ECR)"
       ],
+      "sample_structured_inputs": {
+        "corporate_operating_cash_usd": 84200000,
+        "uninsured_deposit_lgd": 0.35,
+        "ics_cdars_network_member_banks": 380,
+        "depository_ecr_yield_rate": 0.0125,
+        "rule_2a7_govt_mmf_weekly_liquid_pct": 0.88,
+        "treasury_mmf_wam_days": 34
+      },
       "expected_payload_datasets": [
         {
           "slot": "FILE-1",
@@ -4650,7 +5305,7 @@
       "numeric_value": 0.0388,
       "unit_type": "rate_decimal",
       "source_agency": "Federal Reserve Bank of New York",
-      "effective_period": "NY Fed Official EFFR (2026-11-16)",
+      "effective_period": "NY Fed Official EFFR (2026-11-17)",
       "statutory_citation": "Federal Reserve H.15 / FOMC Target Corridor",
       "applicable_engines": [
         "BI-01",
@@ -4838,11 +5493,11 @@
       "parameter_key": "IRC_382_LT_TAX_EXEMPT_RATE",
       "category": "National IRC Corporate Tax",
       "label": "IRC \u00a7 382 Long-Term Tax-Exempt NOL Ownership-Shift Limitation Rate",
-      "current_value": "3.80%",
-      "numeric_value": 0.038,
+      "current_value": "3.77%",
+      "numeric_value": 0.0377,
       "unit_type": "rate_decimal",
       "source_agency": "Internal Revenue Service",
-      "effective_period": "Treasury Long-Term AFR Tax-Exempt Equivalent (11/17/2026)",
+      "effective_period": "Treasury Long-Term AFR Tax-Exempt Equivalent (11/18/2026)",
       "statutory_citation": "26 U.S.C. \u00a7 382(f); IRS Monthly AFR Revenue Ruling",
       "applicable_engines": [
         "BI-44",
@@ -4860,7 +5515,7 @@
       "numeric_value": 0.07,
       "unit_type": "rate_decimal",
       "source_agency": "Board of Governors of the Federal Reserve System",
-      "effective_period": "FOMC Upper Target 4.00% + 300 bps (2026-11-16)",
+      "effective_period": "FOMC Upper Target 4.00% + 300 bps (2026-11-17)",
       "statutory_citation": "Federal Reserve H.15 Selected Interest Rates",
       "applicable_engines": [
         "BI-01",
@@ -4915,11 +5570,11 @@
       "parameter_key": "SOFR_BENCHMARK",
       "category": "Monetary & Credit Reference Rates",
       "label": "Secured Overnight Financing Rate (NY Fed Official Overnight SOFR)",
-      "current_value": "3.93%",
-      "numeric_value": 0.0393,
+      "current_value": "3.92%",
+      "numeric_value": 0.0392,
       "unit_type": "rate_decimal",
       "source_agency": "Federal Reserve Bank of New York",
-      "effective_period": "NY Fed Official Release (2026-11-16)",
+      "effective_period": "NY Fed Official Release (2026-11-17)",
       "statutory_citation": "Federal Reserve Bank of New York / ARRC Commercial Credit Standard",
       "applicable_engines": [
         "BI-01",
@@ -4940,11 +5595,11 @@
       "parameter_key": "US_10YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 10-Year Treasury Constant Maturity Risk-Free Yield",
-      "current_value": "5.10%",
-      "numeric_value": 0.051,
+      "current_value": "5.07%",
+      "numeric_value": 0.0507,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/18/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-01",
@@ -5030,7 +5685,7 @@
       "numeric_value": 0.048,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/18/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-01",
@@ -5047,11 +5702,11 @@
       "parameter_key": "US_30YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 30-Year Treasury Constant Maturity Long Bond Yield",
-      "current_value": "5.46%",
-      "numeric_value": 0.0546,
+      "current_value": "5.41%",
+      "numeric_value": 0.0541,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/18/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-19",
@@ -5067,11 +5722,11 @@
       "parameter_key": "US_5YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 5-Year Treasury Constant Maturity Yield",
-      "current_value": "4.90%",
-      "numeric_value": 0.049,
+      "current_value": "4.89%",
+      "numeric_value": 0.0489,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/18/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-17",
@@ -5105,5 +5760,5 @@
       ]
     }
   },
-  "last_live_gov_hydration_utc": "2026-11-18T12:05:41.985260+00:00"
+  "last_live_gov_hydration_utc": "2026-11-18T23:41:54.880664+00:00"
 }

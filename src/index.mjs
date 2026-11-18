@@ -37,7 +37,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.3.1',
+    version: '2.4.1',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
