@@ -22,7 +22,8 @@ export function searchCatalogSuites({ suiteId, keyword, engineCode } = {}) {
   if (keyword) {
     const kw = String(keyword).trim().toLowerCase();
     entries = entries.filter((e) => {
-      const hay = `${e.engine_code} ${e.engine_title} ${e.governing_statutes} ${(e.domain_mathematical_laws || []).join(' ')}`.toLowerCase();
+      const aliases = (e.searchable_common_aliases || []).join(' ');
+      const hay = `${e.engine_code} ${e.engine_title} ${e.industry_common_report_name || ''} ${e.statutory_filing_title || ''} ${e.electronic_standard || ''} ${aliases} ${e.governing_statutes} ${(e.domain_mathematical_laws || []).join(' ')}`.toLowerCase();
       return hay.includes(kw);
     });
   }
@@ -37,6 +38,9 @@ export function searchCatalogSuites({ suiteId, keyword, engineCode } = {}) {
       engine_code: e.engine_code,
       suite_id: e.suite_id,
       engine_title: e.engine_title,
+      industry_common_report_name: e.industry_common_report_name,
+      statutory_filing_title: e.statutory_filing_title,
+      searchable_common_aliases: e.searchable_common_aliases,
       governing_statutes: e.governing_statutes,
       electronic_standard: e.electronic_standard,
       domain_mathematical_laws: e.domain_mathematical_laws,
