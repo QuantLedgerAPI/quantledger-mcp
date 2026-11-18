@@ -4,6 +4,7 @@ mcp-name: io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-ta
 
 > Give compatible AI clients (`Claude Desktop`, `Cursor`, `VS Code Copilot`, `Windsurf`, `LangGraph`, `CrewAI`) keyless local **US 57-jurisdiction corporate tax & apportionment calculations**, **live NY Fed `.gov` SOFR/EFFR benchmarks**, **`1,012`-NAICS / `1,184`-SIC / `163`-GICS industry crosswalks**, **MCP Resources**, and **CPA/Audit Prompts** — plus authenticated REST execution across **73 deterministic CPU calculation engines (`BI-01`–`BI-73`, 292 mathematical & statutory laws)** and **live quote-verified SEC EDGAR Form 10-K covenant audits**.
 
+[![npm version](https://img.shields.io/npm/v/quantledger-mcp.svg)](https://www.npmjs.com/package/quantledger-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![QuantLedgerAPI/quantledger-mcp MCP server](https://glama.ai/mcp/servers/QuantLedgerAPI/quantledger-mcp/badges/score.svg)](https://glama.ai/mcp/servers/QuantLedgerAPI/quantledger-mcp)
 [![Get Free API Key](https://img.shields.io/badge/API%20Key-Free%20Tier%20(5%2FMo)-0055FF)](https://rapidapi.com/quantledger/api/quantledger-73-engine-financial-and-statutory-api)
@@ -23,9 +24,26 @@ mcp-name: io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-ta
 
 ---
 
-## Quickstart — Install & Run From Source or Docker
+## Quickstart — Install & Run via `npx`, Source, or Docker
 
-### Option 1: Run From Source (Node.js `>= 20`)
+### Option 1: Zero-Install `npx` (`Claude Desktop` / `Cursor` / `VS Code` / `Windsurf`)
+No API key is required for the 3 local statutory, NAICS/SIC/GICS crosswalk, and catalog tools:
+
+```json
+{
+  "mcpServers": {
+    "quantledger": {
+      "command": "npx",
+      "args": ["-y", "quantledger-mcp"],
+      "env": {
+        "RAPIDAPI_KEY": "OPTIONAL_FOR_LOCAL_TOOLS__SET_FOR_CLOUD_SOLVERS"
+      }
+    }
+  }
+}
+```
+
+### Option 2: Run From Source (Node.js `>= 20`)
 No API key is required to start the server and use all local statutory, taxonomy, catalog, resource, and prompt capabilities:
 
 ```bash
@@ -50,7 +68,7 @@ node src/index.mjs
 }
 ```
 
-### Option 2: Run via Docker
+### Option 3: Run via Docker
 ```bash
 docker build -t quantledger-mcp .
 docker run -i --rm -e RAPIDAPI_KEY=your_optional_key quantledger-mcp

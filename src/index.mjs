@@ -37,7 +37,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.1.0',
+    version: '2.2.2',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
@@ -212,7 +212,7 @@ export function createQuantLedgerMcpServer() {
           role: 'user',
           content: {
             type: 'text',
-            text: `Prepare a deterministic FASB ASC 842 lease liability and Right-of-Use (ROU) audit workpaper for jurisdiction ${jurisdiction}. First call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to pull live US Treasury / SOFR reference rates, inspect BI-59 and BI-17 via list_institutional_math_suites_73, and if RAPIDAPI_KEY is configured execute BI-59 on: ${lease_summary}`,
+            text: `Prepare a deterministic FASB ASC 842 lease liability and Right-of-Use (ROU) audit workpaper for jurisdiction ${jurisdiction}. First call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to pull live US Treasury / SOFR reference rates, inspect BI-17 via list_institutional_math_suites_73, and if RAPIDAPI_KEY is configured execute BI-17 on: ${lease_summary}`,
           },
         },
       ],
@@ -235,7 +235,7 @@ export function createQuantLedgerMcpServer() {
           role: 'user',
           content: {
             type: 'text',
-            text: `Run an IRC Sec 382 & Sec 409A corporate tax diagnostic for ${jurisdiction}. Call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to confirm the current IRC Sec 382 long-term tax-exempt rate and blended effective tax rate, inspect BI-47 and BI-48 via list_institutional_math_suites_73, and evaluate: ${cap_table_notes}`,
+            text: `Run an IRC Sec 382 & Sec 409A corporate tax diagnostic for ${jurisdiction}. Call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to confirm the current IRC Sec 382 long-term tax-exempt rate and blended effective tax rate, inspect BI-49 and BI-48 via list_institutional_math_suites_73, and evaluate: ${cap_table_notes}`,
           },
         },
       ],

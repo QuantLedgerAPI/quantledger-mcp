@@ -1,5 +1,5 @@
 {
-  "catalog_version": "2.1.0",
+  "catalog_version": "2.2.2",
   "air_gap_certified": true,
   "total_suites": 10,
   "total_engines": 73,
@@ -3992,7 +3992,7 @@
       "numeric_value": 0.0388,
       "unit_type": "rate_decimal",
       "source_agency": "Federal Reserve Bank of New York",
-      "effective_period": "NY Fed Official EFFR (2026-11-13)",
+      "effective_period": "NY Fed Official EFFR (2026-11-16)",
       "statutory_citation": "Federal Reserve H.15 / FOMC Target Corridor",
       "applicable_engines": [
         "BI-01",
@@ -4180,11 +4180,11 @@
       "parameter_key": "IRC_382_LT_TAX_EXEMPT_RATE",
       "category": "National IRC Corporate Tax",
       "label": "IRC \u00a7 382 Long-Term Tax-Exempt NOL Ownership-Shift Limitation Rate",
-      "current_value": "3.81%",
-      "numeric_value": 0.0381,
+      "current_value": "3.80%",
+      "numeric_value": 0.038,
       "unit_type": "rate_decimal",
       "source_agency": "Internal Revenue Service",
-      "effective_period": "Treasury Long-Term AFR Tax-Exempt Equivalent (11/16/2026)",
+      "effective_period": "Treasury Long-Term AFR Tax-Exempt Equivalent (11/17/2026)",
       "statutory_citation": "26 U.S.C. \u00a7 382(f); IRS Monthly AFR Revenue Ruling",
       "applicable_engines": [
         "BI-44",
@@ -4202,7 +4202,7 @@
       "numeric_value": 0.07,
       "unit_type": "rate_decimal",
       "source_agency": "Board of Governors of the Federal Reserve System",
-      "effective_period": "FOMC Upper Target 4.00% + 300 bps (2026-11-13)",
+      "effective_period": "FOMC Upper Target 4.00% + 300 bps (2026-11-16)",
       "statutory_citation": "Federal Reserve H.15 Selected Interest Rates",
       "applicable_engines": [
         "BI-01",
@@ -4257,11 +4257,11 @@
       "parameter_key": "SOFR_BENCHMARK",
       "category": "Monetary & Credit Reference Rates",
       "label": "Secured Overnight Financing Rate (NY Fed Official Overnight SOFR)",
-      "current_value": "3.90%",
-      "numeric_value": 0.039,
+      "current_value": "3.93%",
+      "numeric_value": 0.0393,
       "unit_type": "rate_decimal",
       "source_agency": "Federal Reserve Bank of New York",
-      "effective_period": "NY Fed Official Release (2026-11-13)",
+      "effective_period": "NY Fed Official Release (2026-11-16)",
       "statutory_citation": "Federal Reserve Bank of New York / ARRC Commercial Credit Standard",
       "applicable_engines": [
         "BI-01",
@@ -4282,11 +4282,11 @@
       "parameter_key": "US_10YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 10-Year Treasury Constant Maturity Risk-Free Yield",
-      "current_value": "5.12%",
-      "numeric_value": 0.0512,
+      "current_value": "5.10%",
+      "numeric_value": 0.051,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/16/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-01",
@@ -4368,11 +4368,11 @@
       "parameter_key": "US_2YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 2-Year Treasury Constant Maturity Yield",
-      "current_value": "4.83%",
-      "numeric_value": 0.0483,
+      "current_value": "4.80%",
+      "numeric_value": 0.048,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/16/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-01",
@@ -4393,7 +4393,7 @@
       "numeric_value": 0.0546,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/16/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-19",
@@ -4409,11 +4409,11 @@
       "parameter_key": "US_5YR_TREASURY",
       "category": "Monetary & Credit Reference Rates",
       "label": "U.S. 5-Year Treasury Constant Maturity Yield",
-      "current_value": "4.93%",
-      "numeric_value": 0.0493,
+      "current_value": "4.90%",
+      "numeric_value": 0.049,
       "unit_type": "rate_decimal",
       "source_agency": "U.S. Department of the Treasury",
-      "effective_period": "U.S. Treasury Par Curve (11/16/2026)",
+      "effective_period": "U.S. Treasury Par Curve (11/17/2026)",
       "statutory_citation": "U.S. Department of the Treasury Daily Par Yield Curve",
       "applicable_engines": [
         "BI-17",
@@ -4447,5 +4447,5 @@
       ]
     }
   },
-  "last_live_gov_hydration_utc": "2026-11-17T09:52:43.932161+00:00"
+  "last_live_gov_hydration_utc": "2026-11-18T05:33:05.351957+00:00"
 }
