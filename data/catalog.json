@@ -1,5 +1,5 @@
 {
-  "catalog_version": "2.8.0",
+  "catalog_version": "2.8.2",
   "air_gap_certified": true,
   "total_suites": 10,
   "total_engines": 73,
@@ -160,10 +160,10 @@
       "governing_statutes": "FASB ASC 205-40 (Going Concern Evaluation); OCC Commercial Lending Comptroller's Handbook; ABI 13-Week Cash-Flow Protocol",
       "electronic_standard": "OCC ABL Handbook / FASB ASC 205-40 / UCC Art. 9 BBC",
       "domain_mathematical_laws": [
-        "(1) 13-Week Reconciled Direct Cash-Flow Bridge & Minimum Liquidity Floor Test [OCC Comptroller's Handbook: Rating Credit Risk & Cash Dominion DACA Standards] \u2014 Cash_w = Cash_0 + sum_{t=1..w}(Receipts_t - OpOutflows_t - DebtService_t); Liq_Trough = min_w(Cash_w) + Undrawn_BB",
-        "(2) OCC Borrowing-Base AR Eligibility (>90d Past-Due & 25% Cross-Age Taint + Capped WIP) [OCC Comptroller's Handbook: Asset-Based Lending & UCC Article 9 Perfection Rules] \u2014 BB = min(Commit, 0.85 * (Gross_AR - AR_>90d - AR_CrossAge_25pct) + min(WIP_Cap, 0.50 * WIP))",
-        "(3) Credit-Agreement Fixed-Charge Coverage Ratio (Strict 5% EBITDA Add-Back Cap) [OCC Leveraged & Commercial Credit Examination Guidelines (Contractual FCCR >= 1.15x)] \u2014 FCCR = (EBIT + D&A + min(AddBacks, 0.05 * EBITDA) - MaintCapEx - CashTax) / (SchedPrincipal + CashInterest)",
-        "(4) FASB ASC 205-40-50 12-Month Unadjusted Going-Concern Cash-Sufficiency Test [FASB ASC 205-40-50-1 through 50-11 (Presentation of Financial Statements \u2014 Going Concern)] \u2014 Cash_12M = Cash_0 + ContractedReceipts_12M - DirectOpOutflows_12M - FixedCharges_12M"
+        "(1) 13-Week Reconciled Direct Cash-Flow Bridge & Minimum Liquidity Floor Test [OCC Comptroller's Handbook: Rating Credit Risk & Cash Dominion DACA Standards]",
+        "(2) OCC Borrowing-Base AR Eligibility (>90d Past-Due & 25% Cross-Age Taint + Capped WIP) [OCC Comptroller's Handbook: Asset-Based Lending & UCC Article 9 Perfection Rules]",
+        "(3) Credit-Agreement Fixed-Charge Coverage Ratio (Strict 5% EBITDA Add-Back Cap) [OCC Leveraged & Commercial Credit Examination Guidelines (Contractual FCCR >= 1.15x)]",
+        "(4) FASB ASC 205-40-50 12-Month Unadjusted Going-Concern Cash-Sufficiency Test [FASB ASC 205-40-50-1 through 50-11 (Presentation of Financial Statements \u2014 Going Concern)]"
       ],
       "sample_structured_inputs": {
         "opening_cash": 4180000,
@@ -223,10 +223,10 @@
       "governing_statutes": "FASB ASC 326-20 (Financial Instruments \u2014 Credit Losses / CECL); UCC Article 9 Borrowing Base Eligibility Rules",
       "electronic_standard": "FASB ASC 326-20 (CECL) / OCC SR 11-7 / UCC Art. 9 Field Exam",
       "domain_mathematical_laws": [
-        "(1) ASC 326-20 Aging-Bucket Historical Loss Roll-Rate Transition Schedule [FASB ASC 326-20-30-2, ASC 326-20-30-5A (Zero-Loss Sovereign) & ASC 326-20-30-7] \u2014 LossRate_b = prod_{j>=b}(RollRate_{j->j+1}); Hist_ACL = sum_b(EligibleBasis_b * LossRate_b)",
-        "(2) 4-Quarter R&S Macroeconomic Forecast Window & Straight-Line Mean Reversion [FASB ASC 326-20-30-9 (Reasonable & Supportable Forecast & Historical Reversion)] \u2014 Addon_eff = mean([RS_1..RS_4, RS_4*(1 - q/4)_{q=1..4}]) + Q_Factor; Ending_ACL = Hist_ACL + Basis * Addon_eff",
-        "(3) UCC Article 9 / OCC ABL Dilution Reserve Formula & Obligor Concentration Cap [OCC Comptroller's Handbook: Asset-Based Lending Field Exam & UCC Article 9] \u2014 DilutionReserve_Pct = max(0, 2 * Dilution_Pct - 0.05); Net_ABL = 0.85 * (AR_<90d - ExcessConc) - DilutionReserve",
-        "(4) Federal Reserve SR 11-7 Out-of-Sample Allowance Back-Testing Variance Ratio [Federal Reserve SR 11-7 / OCC Bulletin 2011-12 Supervisory Guidance on Model Risk Management] \u2014 MAE_bps = (1/K) * sum_k |Pred_k - Actual_k| * 10000; VarianceRatio = mean(Pred) / mean(Actual)"
+        "(1) ASC 326-20 Aging-Bucket Historical Loss Roll-Rate Transition Schedule [FASB ASC 326-20-30-2, ASC 326-20-30-5A (Zero-Loss Sovereign) & ASC 326-20-30-7]",
+        "(2) 4-Quarter R&S Macroeconomic Forecast Window & Straight-Line Mean Reversion [FASB ASC 326-20-30-9 (Reasonable & Supportable Forecast & Historical Reversion)]",
+        "(3) UCC Article 9 / OCC ABL Dilution Reserve Formula & Obligor Concentration Cap [OCC Comptroller's Handbook: Asset-Based Lending Field Exam & UCC Article 9]",
+        "(4) Federal Reserve SR 11-7 Out-of-Sample Allowance Back-Testing Variance Ratio [Federal Reserve SR 11-7 / OCC Bulletin 2011-12 Supervisory Guidance on Model Risk Management]"
       ],
       "sample_structured_inputs": {
         "ar_0_30": 7600000,
@@ -286,10 +286,10 @@
       "governing_statutes": "IIA IPPF Standard 2130; ISM Principles of Sustainability & Supply Management; FASB ASC 405 (Liabilities / AP Cutoff)",
       "electronic_standard": "FASB ASC 405-20 / IIA IPPF 2130 Three-Way Match Workpaper",
       "domain_mathematical_laws": [
-        "(1) PO-Receipt-Invoice 3-Way Match Price & Quantity Overbilling Variance Recovery [IIA IPPF Standard 2130.A1 & COSO Internal Control \u2014 Integrated Framework Principle 10] \u2014 Recovery_3Way = sum_i max(0, (P_inv,i - P_PO,i) * Q_rec,i) + sum_i max(0, (Q_inv,i - Q_GRN,i) * P_PO,i)",
-        "(2) Duplicate Invoice & Off-Contract Maverick Spend Segregation [IIA IPPF Standard 2130 & AICPA AU-C 240 Disbursement Control Segregation] \u2014 Dup_VendorAR = Dup_PCard_ACH + Dup_FuzzyINV + Dup_DualTIN; Leakage_Mav = Spend_OffContract * Premium_Pct",
-        "(3) Trade Credit Early-Pay Discount Annualized APR vs. Revolver Carry [Corporate Treasury Trade-Credit Yield Formula & ABL Working-Capital Cost of Carry] \u2014 APR_Disc = (d / (1 - d)) * (365 / (Net - DiscDays)); NetSavings = EligibleDelta * [d - (1 - d)*r_Rev*(Net - DiscDays)/365]",
-        "(4) Working Capital DPO & FASB ASC 405-20 Liability Extinguishment Cut-Off Reconciliation [FASB ASC 405-20-40-1 (Extinguishments of Liabilities), ASC 340-10 & UCC Sec. 2-319] \u2014 AP_Adj = AP_GL + Accrual_GRN + FOB_Origin - Prepaid_Reclass - VendorDebit_Dup + Unreleased_StaleChecks; DPO = (AP_Adj / Spend)*365"
+        "(1) PO-Receipt-Invoice 3-Way Match Price & Quantity Overbilling Variance Recovery [IIA IPPF Standard 2130.A1 & COSO Internal Control \u2014 Integrated Framework Principle 10]",
+        "(2) Duplicate Invoice & Off-Contract Maverick Spend Segregation [IIA IPPF Standard 2130 & AICPA AU-C 240 Disbursement Control Segregation]",
+        "(3) Trade Credit Early-Pay Discount Annualized APR vs. Revolver Carry [Corporate Treasury Trade-Credit Yield Formula & ABL Working-Capital Cost of Carry]",
+        "(4) Working Capital DPO & FASB ASC 405-20 Liability Extinguishment Cut-Off Reconciliation [FASB ASC 405-20-40-1 (Extinguishments of Liabilities), ASC 340-10 & UCC Sec. 2-319]"
       ],
       "sample_structured_inputs": {
         "annual_ap_spend": 38160000,
@@ -349,10 +349,10 @@
       "governing_statutes": "IMA Statement on Management Accounting (SMA): Activity-Based Costing; FASB ASC 330 (Inventory Overhead Allocation)",
       "electronic_standard": "FASB ASC 330-10 / IRC Sec. 263A Simplified Production Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 330-10 Normal-Capacity Fixed Overhead Allocation & Idle-Plant Period Expense [FASB ASC 330-10-30-3 through 30-7 (Inventory \u2014 Unallocated Fixed Overhead & Abnormal Spoilage)] \u2014 OH_Absorbed = FixedOH * min(1, Hrs_Actual / Hrs_Normal); Idle_COGS = (FixedOH - OH_Absorbed) + AbnormalSpoilage",
-        "(2) Lower of Cost and Net Realizable Value (LCNRV) / Obsolete & Excess SKU Reserve [FASB ASC 330-10-35-1B (Subsequent Measurement of FIFO/Average-Cost Inventory at LCNRV)] \u2014 Reserve_LCNRV = sum_s max(0, Cost_FIFO,s - NRV_s); Net_GAAP_Inv = Gross_FIFO - Reserve_LCNRV",
-        "(3) Standard-to-Actual Purchase Price, Material Usage & Labor Efficiency Variance Tie-Out [FASB ASC 330-10-30-12 Standard Costing & Period Variance Proration Rules] \u2014 PPV = (P_act - P_std)*Q_act; MUV = (Q_act - Q_std)*P_std; LEV = (H_act - H_std)*R_std",
-        "(4) IRC Sec. 263A Simplified Production Absorption Ratio & Ending Inventory Tax Add-On [IRC Sec. 263A, Treas. Reg. Sec. 1.263A-2(b) (Simplified Production Method) & IRS Form 1125-A] \u2014 Ratio_263A = Addl_263A_Costs / Sec471_Incurred_Costs; Tax_Ending_Inv = Ending_Sec471 * (1 + Ratio_263A)"
+        "(1) FASB ASC 330-10 Normal-Capacity Fixed Overhead Allocation & Idle-Plant Period Expense [FASB ASC 330-10-30-3 through 30-7 (Inventory \u2014 Unallocated Fixed Overhead & Abnormal Spoilage)]",
+        "(2) Lower of Cost and Net Realizable Value (LCNRV) / Obsolete & Excess SKU Reserve [FASB ASC 330-10-35-1B (Subsequent Measurement of FIFO/Average-Cost Inventory at LCNRV)]",
+        "(3) Standard-to-Actual Purchase Price, Material Usage & Labor Efficiency Variance Tie-Out [FASB ASC 330-10-30-12 Standard Costing & Period Variance Proration Rules]",
+        "(4) IRC Sec. 263A Simplified Production Absorption Ratio & Ending Inventory Tax Add-On [IRC Sec. 263A, Treas. Reg. Sec. 1.263A-2(b) (Simplified Production Method) & IRS Form 1125-A]"
       ],
       "sample_structured_inputs": {
         "normal_capacity_hours": 38400,
@@ -412,10 +412,10 @@
       "governing_statutes": "OCC Troubled Debt Restructuring / Loan Modification Guidance (ASU 2022-02); 11 U.S.C. \u00a7 1129(a)(11) Feasibility Standard",
       "electronic_standard": "FASB ASC 470-50 / ASU 2022-02 / 11 U.S.C. Sec. 1129 Workout Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 470-50-40 Lender-by-Lender 10% Present-Value Cash-Flow Modification Test [FASB ASC 470-50-40-10 & ASC 470-50-40-12 (Debt \u2014 Modifications and Extinguishments)] \u2014 PV_Diff_Pct = |NPV(CF_Mod, EIR_Orig) - Fees_Paid - Carrying_PostCure| / Carrying_PostCure < 10.0%",
-        "(2) Contractual Debt-Service Coverage Ratio (DSCR) & Equity-Cure Resizing Bridge [OCC Comptroller's Handbook: Rating Credit Risk (Pass Commercial DSCR >= 1.25x)] \u2014 DSCR_Post = (EBITDA_RunRate - MaintCapEx - CashTaxes) / ResizedDebtService; Relief = DS_Pre - DS_Post",
-        "(3) FASB ASU 2022-02 (ASC 326) Modified Loan Effective-Interest Yield & Concession Test [FASB ASU 2022-02 (ASC 310-10-50-38 Financial-Difficulty Modifications & ASC 326-20-35-4)] \u2014 Impairment_CECL = max(0, Carrying_PostCure - NPV(CF_Mod, EIR_Orig)); OLV_Coverage = OLV / Carrying_PostCure",
-        "(4) 11 U.S.C. Sec. 1129(a)(7) Best-Interests Waterfall vs. Sec. 1129(a)(11) Feasibility [11 U.S.C. Sec. 1129(a)(7) (Best Interests of Creditors), Sec. 1129(a)(11) & Sec. 326] \u2014 Surplus_1129a7 = (PV_Reorg_Sec + PV_Reorg_Unsec) - (Ch7_Sec + Ch7_Unsec); Feasibility_1129a11 = CumCFADS / CumDS"
+        "(1) FASB ASC 470-50-40 Lender-by-Lender 10% Present-Value Cash-Flow Modification Test [FASB ASC 470-50-40-10 & ASC 470-50-40-12 (Debt \u2014 Modifications and Extinguishments)]",
+        "(2) Contractual Debt-Service Coverage Ratio (DSCR) & Equity-Cure Resizing Bridge [OCC Comptroller's Handbook: Rating Credit Risk (Pass Commercial DSCR >= 1.25x)]",
+        "(3) FASB ASU 2022-02 (ASC 326) Modified Loan Effective-Interest Yield & Concession Test [FASB ASU 2022-02 (ASC 310-10-50-38 Financial-Difficulty Modifications & ASC 326-20-35-4)]",
+        "(4) 11 U.S.C. Sec. 1129(a)(7) Best-Interests Waterfall vs. Sec. 1129(a)(11) Feasibility [11 U.S.C. Sec. 1129(a)(7) (Best Interests of Creditors), Sec. 1129(a)(11) & Sec. 326]"
       ],
       "sample_structured_inputs": {
         "pre_mod_carrying_debt_usd": 18500000,
@@ -475,10 +475,10 @@
       "governing_statutes": "FAR 15.404-1(b)\u2013(d) (Proposal Analysis Techniques & Cost Realism); FAR 52.222-46 (Professional Employee Compensation)",
       "electronic_standard": "FAR 52.222-46 / FAR 15.404-1(d) Cost Volume Pricing Schedule",
       "domain_mathematical_laws": [
-        "(1) FAR 52.222-46 Direct Labor Rate vs. BLS OEWS & GSA CALC+ Locality Wage Floor Test [FAR 52.222-46 (Evaluation of Compensation for Professional Employees) & BLS OEWS Locality Survey] \u2014 WageRatio = Rate_Proposed / Rate_BLS_50th; FloorPass = I(Rate_Proposed,c >= max(BLS_50th,c, 0.98 * Incumbent_c))",
-        "(2) Fringe-Benefits-to-Base-Wage Adequacy Ratio & Incumbent Retention Realism Check [FAR 52.222-46(a)-(b) & FAR 31.205-6(f)/(m) Compensation & Fringe Cost Principles] \u2014 r_Fringe = (Tax_FICA + Leave_PTO + Med_HSA + Match_401k); Margin_bps = (r_Fringe - Floor_SSEB) * 10000",
-        "(3) FAR 15.404-1(d) Government Most Probable Cost (MPC) Upward Cost-Realism Adjustment [FAR 15.404-1(d)(2) Cost Realism Analysis & SSEB Probable Cost Evaluation Rules] \u2014 MPC_5Yr = sum_{t=1..5}[DL_Floor*(1+max(g_bid,g_ECI))^{t-1}*Wrap_MPC + ODC_t]; Adj_MPC = max(0, MPC_5Yr - BidCost_5Yr)",
-        "(4) Section B CLIN Wrap-Rate Build-Up & FAR 15.404-4(c)(4) Statutory CPFF Fee Ceiling Check [FAR 15.404-4(c)(4)(i)(C) (10% Statutory CPFF Fee Cap) & Section B CLIN Pricing Structure] \u2014 Wrap_Cost = (1+r_Fr)*(1+r_OH)*(1+r_GA); Fee_Cap = 10.0% (Non-R&D CPFF); Wrap_Total = Wrap_Cost*(1+min(Fee,Cap))"
+        "(1) FAR 52.222-46 Direct Labor Rate vs. BLS OEWS & GSA CALC+ Locality Wage Floor Test [FAR 52.222-46 (Evaluation of Compensation for Professional Employees) & BLS OEWS Locality Survey]",
+        "(2) Fringe-Benefits-to-Base-Wage Adequacy Ratio & Incumbent Retention Realism Check [FAR 52.222-46(a)-(b) & FAR 31.205-6(f)/(m) Compensation & Fringe Cost Principles]",
+        "(3) FAR 15.404-1(d) Government Most Probable Cost (MPC) Upward Cost-Realism Adjustment [FAR 15.404-1(d)(2) Cost Realism Analysis & SSEB Probable Cost Evaluation Rules]",
+        "(4) Section B CLIN Wrap-Rate Build-Up & FAR 15.404-4(c)(4) Statutory CPFF Fee Ceiling Check [FAR 15.404-4(c)(4)(i)(C) (10% Statutory CPFF Fee Cap) & Section B CLIN Pricing Structure]"
       ],
       "sample_structured_inputs": {
         "productive_hours_per_fte": 1920,
@@ -538,10 +538,10 @@
       "governing_statutes": "FAR Subpart 31.2 (Cost Principles for Commercial Organizations); 48 CFR Part 9904 (CAS 403, 410, 418); DCAA CAM Chapter 9 (ICE Model / FPRP)",
       "electronic_standard": "DCAA ICE Model v2026 (Schedules A-H) / DD Form 1861 / CASB DS-1",
       "domain_mathematical_laws": [
-        "(1) CAS 405 / FAR 31.205 Expressly Unallowable GL Scrub & FAR 31.205-6(p) Executive Cap [48 CFR 9904.405 (CAS 405), FAR 31.205-6(p)(4), FAR 31.201-6 & FAR 42.709-1] \u2014 Scrub_CAS405 = sum_e max(0, Comp_e - $646,000) + Unallowable_FAR31_205_OH + Unallowable_FAR31_205_GA",
-        "(2) CAS 418-50(e) Intermediate Service-Center Clearance (Facilities SqFt & IT Headcount) [48 CFR 9904.418-50(e) & DCAA ICE Model Schedule F Intermediate Pool Allocation] \u2014 Cleared_Pool_p = Facilities * (SqFt_p / Total_SqFt) + IT_CMMC * (FTE_p / Total_FTE); Residual = $0",
-        "(3) CAS 418 Homogeneous On-Site SCIF vs. Client-Site Overhead & Subcontract Handling Rates [48 CFR 9904.418-50(b) Homogeneous Indirect Cost Pools & DCAA ICE Schedules B & C] \u2014 r_Fr = Fr / TotalLabor; r_OH_Site = NetPool_Site / (DL_Site + Fr_Site); r_Subk = NetPool_Subk / SubkMatBase",
-        "(4) CAS 410-50 Total Cost Input (TCI) vs. Value-Added G&A & DD Form 1861 CAS 414 FCCOM [48 CFR 9904.410-50(d)(1)-(2) (CAS 410 G&A Base) & 48 CFR 9904.414 (DD Form 1861 FCCOM)] \u2014 r_GA_TCI = GA / Base_TCI; r_GA_VA = GA / (Base_TCI - SubkMat); FCCOM = (NBV_Fac * r_Treas) / Base_OH"
+        "(1) CAS 405 / FAR 31.205 Expressly Unallowable GL Scrub & FAR 31.205-6(p) Executive Cap [48 CFR 9904.405 (CAS 405), FAR 31.205-6(p)(4), FAR 31.201-6 & FAR 42.709-1]",
+        "(2) CAS 418-50(e) Intermediate Service-Center Clearance (Facilities SqFt & IT Headcount) [48 CFR 9904.418-50(e) & DCAA ICE Model Schedule F Intermediate Pool Allocation]",
+        "(3) CAS 418 Homogeneous On-Site SCIF vs. Client-Site Overhead & Subcontract Handling Rates [48 CFR 9904.418-50(b) Homogeneous Indirect Cost Pools & DCAA ICE Schedules B & C]",
+        "(4) CAS 410-50 Total Cost Input (TCI) vs. Value-Added G&A & DD Form 1861 CAS 414 FCCOM [48 CFR 9904.410-50(d)(1)-(2) (CAS 410 G&A Base) & 48 CFR 9904.414 (DD Form 1861 FCCOM)]"
       ],
       "sample_structured_inputs": {
         "omb_statutory_exec_cap_usd": 646000,
@@ -601,10 +601,10 @@
       "governing_statutes": "FAR 52.215-22 / 52.215-23 (Limitations on Pass-Through Charges); DCAA CAM 6-410 (Uncompensated Overtime); 13 CFR \u00a7 125.6 (Limitations on Subcontracting / Ostensible Subcontractor)",
       "electronic_standard": "DCAA CAM 6-410 / 13 CFR Sec. 125.6 / FAR 52.215-23 Compliance Schedule",
       "domain_mathematical_laws": [
-        "(1) DCAA CAM 6-410 Total-Time Accounting Effective Hourly Rate Dilution & Proration [DCAA Contract Audit Manual (CAM) Section 6-410.4 (Method A Pro-Rata Allocation) & FAR 31.201-4] \u2014 Rate_Eff = AnnualSalary / (52 * Hrs_Worked_Wk); Dilution_Pct = (Hrs_Worked - 40) / Hrs_Worked",
-        "(2) 13 CFR Sec. 125.6 Limitations on Subcontracting (50% Services Cap & SSE Exclusion) [13 CFR Sec. 125.6(a)(1), FAR 52.219-14 & 15 U.S.C. Sec. 645(d) Subcontracting Penalties] \u2014 NonSSE_Pct = [TotalServicesPrice - (PrimeBillings + Verified_SSE_Billings)] / TotalServicesPrice <= 50.0%",
-        "(3) FAR 52.215-23 Excessive Pass-Through Charge Audit (>70% Subcontract Threshold) [FAR 52.215-22 & FAR 52.215-23 (Limitations on Pass-Through Charges \u2014 70% Trigger)] \u2014 SubkRatio = TotalSubk / TotalPrice; Disallowance = I(PeakSubk > 70% & !AddedValue) * ExcessSubk * Markup",
-        "(4) Direct Labor Utilization, Funded Backlog Burn Coverage & Schedule I Billing Reconciliation [FAR 52.232-22 (Limitation of Funds), FAR 42.704 Provisional Billing Rates & DCAA ICE Schedule I] \u2014 Util_Prod = Hrs_Direct / (Hrs_Paid - Hrs_Leave); BurnCov_Mo = Backlog_Funded / (AnnualPrice / 12)"
+        "(1) DCAA CAM 6-410 Total-Time Accounting Effective Hourly Rate Dilution & Proration [DCAA Contract Audit Manual (CAM) Section 6-410.4 (Method A Pro-Rata Allocation) & FAR 31.201-4]",
+        "(2) 13 CFR Sec. 125.6 Limitations on Subcontracting (50% Services Cap & SSE Exclusion) [13 CFR Sec. 125.6(a)(1), FAR 52.219-14 & 15 U.S.C. Sec. 645(d) Subcontracting Penalties]",
+        "(3) FAR 52.215-23 Excessive Pass-Through Charge Audit (>70% Subcontract Threshold) [FAR 52.215-22 & FAR 52.215-23 (Limitations on Pass-Through Charges \u2014 70% Trigger)]",
+        "(4) Direct Labor Utilization, Funded Backlog Burn Coverage & Schedule I Billing Reconciliation [FAR 52.232-22 (Limitation of Funds), FAR 42.704 Provisional Billing Rates & DCAA ICE Schedule I]"
       ],
       "sample_structured_inputs": {
         "exempt_ftes": 185,
@@ -664,10 +664,10 @@
       "governing_statutes": "FAR Part 25 (Buy American Act \u2014 65% scaling to 75% in 2029 domestic content rule); DFARS 252.225-7001 / 7012 (Berry Amendment & Specialty Metals); 19 U.S.C. \u00a7 2411 (Section 301 Tariffs)",
       "electronic_standard": "FAR 52.225-1 / DFARS 252.225-7001 & 7009 Bill-of-Materials Origin Schedule",
       "domain_mathematical_laws": [
-        "(1) FAR 25.101 / 52.225-1 Buy American Act Domestic Component Cost Test (65% -> 75% Floor) [41 U.S.C. Sec. 8302, FAR 25.101, FAR 52.225-1/2 & DFARS 252.225-7001 / 225.872-1] \u2014 BAA_Pct = (Comp_US + I_DoD * Comp_QualifyingMOU) / Comp_Total >= 65.0% (Current) & 75.0% (CY2029)",
-        "(2) FAR 25.504 Evaluation Price-Preference Penalty Addition (20% Large / 30% Small / 50% DoD) [FAR 25.106, FAR 25.504-1 & DFARS 225.502(c)(ii)(B) (50% DoD Evaluation Factor)] \u2014 EvalPrice_Foreign = Offer_Foreign * (1 + Penalty_Rate); Penalty_Rate in {0.20, 0.30, 0.50}",
-        "(3) DFARS 252.225-7009 Specialty Metals 2% CDMA De Minimis & Berry 100% Domestic Rule [10 U.S.C. Sec. 4863 (DFARS 252.225-7009), 10 U.S.C. Sec. 4872 & 10 U.S.C. Sec. 4862 (Berry)] \u2014 Pass_7009 = I(NonCompliantMetal_Wt <= 2.0%); Pass_Berry = I(DomesticFiber_Pct == 100.0%)",
-        "(4) 19 U.S.C. Sec. 2518 TAA Country-of-Origin & Sec. 301/232 Tariff Cost-Absorption Impact [19 U.S.C. Sec. 2518(4)(B) (TAA), 19 U.S.C. Sec. 2411 (Sec. 301), FAR 52.229-3 & FAR 52.216-4] \u2014 DutyDelta = max(0, r_Post - r_Base)*ImportBase; FFP_Absorbed = (DutyDelta + PPI_Shock) - Claim_EPA_52_229_3"
+        "(1) FAR 25.101 / 52.225-1 Buy American Act Domestic Component Cost Test (65% -> 75% Floor) [41 U.S.C. Sec. 8302, FAR 25.101, FAR 52.225-1/2 & DFARS 252.225-7001 / 225.872-1]",
+        "(2) FAR 25.504 Evaluation Price-Preference Penalty Addition (20% Large / 30% Small / 50% DoD) [FAR 25.106, FAR 25.504-1 & DFARS 225.502(c)(ii)(B) (50% DoD Evaluation Factor)]",
+        "(3) DFARS 252.225-7009 Specialty Metals 2% CDMA De Minimis & Berry 100% Domestic Rule [10 U.S.C. Sec. 4863 (DFARS 252.225-7009), 10 U.S.C. Sec. 4872 & 10 U.S.C. Sec. 4862 (Berry)]",
+        "(4) 19 U.S.C. Sec. 2518 TAA Country-of-Origin & Sec. 301/232 Tariff Cost-Absorption Impact [19 U.S.C. Sec. 2518(4)(B) (TAA), 19 U.S.C. Sec. 2411 (Sec. 301), FAR 52.229-3 & FAR 52.216-4]"
       ],
       "sample_structured_inputs": {
         "total_component_bom_cost_usd": 46480000,
@@ -727,10 +727,10 @@
       "governing_statutes": "32 CFR Part 170 (CMMC Program Final Rule); 48 CFR / DFARS 252.204-7012, -7019, -7020, -7021; NIST SP 800-171 Rev. 2 / Rev. 3 (110 Security Requirements)",
       "electronic_standard": "DoD SPRS NIST SP 800-171A Assessment / 32 CFR Sec. 170.21 POA&M Schedule",
       "domain_mathematical_laws": [
-        "(1) DoD SPRS Weighted 110-Control Scoring Methodology (+110 Max Down to -203 Min) [NIST SP 800-171 DoD Assessment Methodology v1.2.1 & DFARS 252.204-7019 / 252.204-7020] \u2014 SPRS = max(-203, 110 - (5 * Open_5pt + 3 * Open_3pt + 1 * Open_1pt))",
-        "(2) 32 CFR Sec. 170.21 CMMC Level 2 Conditional Certification & Critical-Control Gate [32 CFR Sec. 170.21(a)(2) (CMMC Level 2 Conditional Certification Minimum 80% / 88 Score)] \u2014 ConditionalPass = I(SPRS >= 88.0) * I(Open_5pt == 0 & Open_3pt == 0 & Open_Barred_1pt == 0)",
-        "(3) 180-Day Statutory POA&M Closeout Schedule & Enclave Remediation Cost Budget [32 CFR Sec. 170.21(b) (180-Day POA&M Closeout Expiration) & DFARS 252.204-7012(b)(2)(ii)(D)] \u2014 Buffer_Days = 180 - Days_Closeout; Budget = Enclave_GCC_High + FIPS_SIEM + C3PAO_Fee + POA&M_Fixes",
-        "(4) DFARS 252.204-7019 / 7020 SPRS Attestation Variance & False Claims Act Exposure Check [32 CFR Sec. 170.22 (Annual Affirmation), 31 U.S.C. Sec. 3729 (False Claims Act) & 28 CFR 85.5] \u2014 Overstatement = max(0, Posted_SPRS - Verified_SPRS); FCA_Risk = I(Overstatement > 0)*(Penalties_28CFR85 + 3xDamages)"
+        "(1) DoD SPRS Weighted 110-Control Scoring Methodology (+110 Max Down to -203 Min) [NIST SP 800-171 DoD Assessment Methodology v1.2.1 & DFARS 252.204-7019 / 252.204-7020]",
+        "(2) 32 CFR Sec. 170.21 CMMC Level 2 Conditional Certification & Critical-Control Gate [32 CFR Sec. 170.21(a)(2) (CMMC Level 2 Conditional Certification Minimum 80% / 88 Score)]",
+        "(3) 180-Day Statutory POA&M Closeout Schedule & Enclave Remediation Cost Budget [32 CFR Sec. 170.21(b) (180-Day POA&M Closeout Expiration) & DFARS 252.204-7012(b)(2)(ii)(D)]",
+        "(4) DFARS 252.204-7019 / 7020 SPRS Attestation Variance & False Claims Act Exposure Check [32 CFR Sec. 170.22 (Annual Affirmation), 31 U.S.C. Sec. 3729 (False Claims Act) & 28 CFR 85.5]"
       ],
       "sample_structured_inputs": {
         "open_5pt_controls": 0.0,
@@ -790,10 +790,10 @@
       "governing_statutes": "42 CFR Part 414 (CMS Medicare Physician Fee Schedule \u2014 MPFS); ERISA 29 U.S.C. \u00a7 1133; No Surprises Act (45 CFR Part 149); HFMA MAP Keys",
       "electronic_standard": "CMS MPFS RVU/GPCI Schedule / ANSI X12 835 Variance / NSA IDR Packet",
       "domain_mathematical_laws": [
-        "(1) 42 CFR Sec. 414.20 CMS MPFS Locality GPCI Allowed-Amount Formula [42 CFR Part 414 Subpart B (42 CFR Sec. 414.20 & Sec. 414.26 GPCI Adjustment)] \u2014 MPFS_Allowed = [(wRVU * GPCI_w) + (peRVU * GPCI_pe) + (mpRVU * GPCI_mp)] * CF",
-        "(2) Commercial % of Medicare Contract Variance & CPT Bundling Reconciliation [CMS NCCI Policy Manual & Commercial Payor Participating Provider Fee Schedules] \u2014 Variance_Gross = Allowed_Contract - ERA835_Remitted = ShortPay_Multiplier + ShortPay_Bundling",
-        "(3) Statutory Clean-Claim Prompt-Pay Interest Accrual (30/45-Day Window) [State Clean-Claim Prompt Pay Statutes (30-Day Electronic / 45-Day Paper Window)] \u2014 Interest_PromptPay = Principal_Overdue * r_monthly * max(0, Days_Remit - Window_Days) / 30",
-        "(4) 45 CFR Sec. 149.510 No Surprises Act QPA & ERISA Sec. 1133 Timely-Appeal Recovery [ERISA 29 U.S.C. Sec. 1133, 29 CFR Sec. 2560.503-1 & 45 CFR Sec. 149.510] \u2014 Demand_Net = (Variance_Gross * Timely_180d_Pct) + Interest_PromptPay + max(0, IDR_Offer - QPA_Paid)"
+        "(1) 42 CFR Sec. 414.20 CMS MPFS Locality GPCI Allowed-Amount Formula [42 CFR Part 414 Subpart B (42 CFR Sec. 414.20 & Sec. 414.26 GPCI Adjustment)]",
+        "(2) Commercial % of Medicare Contract Variance & CPT Bundling Reconciliation [CMS NCCI Policy Manual & Commercial Payor Participating Provider Fee Schedules]",
+        "(3) Statutory Clean-Claim Prompt-Pay Interest Accrual (30/45-Day Window) [State Clean-Claim Prompt Pay Statutes (30-Day Electronic / 45-Day Paper Window)]",
+        "(4) 45 CFR Sec. 149.510 No Surprises Act QPA & ERISA Sec. 1133 Timely-Appeal Recovery [ERISA 29 U.S.C. Sec. 1133, 29 CFR Sec. 2560.503-1 & 45 CFR Sec. 149.510]"
       ],
       "sample_structured_inputs": {
         "total_wrvu": 584000,
@@ -853,10 +853,10 @@
       "governing_statutes": "42 U.S.C. \u00a7 1395nn / 42 CFR \u00a7 411.354 (Stark Law FMV & Commercial Reasonableness Exceptions); 42 U.S.C. \u00a7 1320a-7b(b) (Anti-Kickback Statute)",
       "electronic_standard": "42 CFR Sec. 411.354 Stark Law FMV & Commercial Reasonableness Schedule",
       "domain_mathematical_laws": [
-        "(1) Stark Law Personally Performed wRVU vs. MGMA Compensation Corridor Test [42 U.S.C. Sec. 1395nn & 42 CFR Sec. 411.354(d)(2)-(3) Fair Market Value Standard] \u2014 Rate_wRVU = Comp_Clinical / wRVU_Personal; Excess_FMV = max(0, Comp_Clinical - wRVU_Personal * Rate_P75)",
-        "(2) 42 CFR Sec. 411.352(i) Group-Practice 5-Physician Pod DHS Profit Decoupling [42 CFR Sec. 411.352(g) & Sec. 411.352(i)(2) Special Rule for Profit Shares & Productivity Bonuses] \u2014 Pool_DHS = max(0, Rev_DHS - Cost_DHS); Pod_Share = Pool_DHS / Pods (requires >= 5 MDs/Pod & $0 Referral Split)",
-        "(3) 42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Standalone Practice Margin [42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Definition (85 Fed. Reg. 77492)] \u2014 Margin_Standalone_Ex_DHS = Collections_Prof - Total_Provider_Comp - Overhead_Practice",
-        "(4) 42 CFR Sec. 1001.952(d) Medical-Directorship & Call-Coverage Hourly FMV Cap [42 U.S.C. Sec. 1320a-7b(b) & 42 CFR Sec. 1001.952(d) Personal Services Safe Harbor] \u2014 Allowable_AdminCall = Hrs_Logged * min(Rate_Hr, Cap_Hr) + Shifts * min(Stipend, Cap_Stipend)"
+        "(1) Stark Law Personally Performed wRVU vs. MGMA Compensation Corridor Test [42 U.S.C. Sec. 1395nn & 42 CFR Sec. 411.354(d)(2)-(3) Fair Market Value Standard]",
+        "(2) 42 CFR Sec. 411.352(i) Group-Practice 5-Physician Pod DHS Profit Decoupling [42 CFR Sec. 411.352(g) & Sec. 411.352(i)(2) Special Rule for Profit Shares & Productivity Bonuses]",
+        "(3) 42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Standalone Practice Margin [42 CFR Sec. 411.354(d)(4) Commercial Reasonableness Definition (85 Fed. Reg. 77492)]",
+        "(4) 42 CFR Sec. 1001.952(d) Medical-Directorship & Call-Coverage Hourly FMV Cap [42 U.S.C. Sec. 1320a-7b(b) & 42 CFR Sec. 1001.952(d) Personal Services Safe Harbor]"
       ],
       "sample_structured_inputs": {
         "personal_clinical_wrvus": 312400,
@@ -916,10 +916,10 @@
       "governing_statutes": "42 U.S.C. \u00a7 254b (HRSA Health Center Program Compliance Manual Chapters 15\u201318); 42 U.S.C. \u00a7 256b (340B Drug Pricing Program); 45 CFR Part 75 (Uniform Guidance); 29 DCMR Chapter 45 (D.C. FQHC PPS & APM Rules)",
       "electronic_standard": "HRSA UDS Tables 8A, 9D & 9E / CMS Form 224-14 / OPAIS 340B Audit",
       "domain_mathematical_laws": [
-        "(1) HRSA UDS Table 8A Step-Down Facility & Admin Cost Allocation [42 U.S.C. Sec. 254b (HRSA BPHC UDS Manual Table 8A) & 45 CFR Sec. 75.405] \u2014 Cost_Per_Visit = (Direct_Clinical_8A + Allowable_Admin_Facility_8A) / Billable_Visits",
-        "(2) 42 U.S.C. Sec. 1396a(bb) Medicaid PPS MEI Indexing & Change-in-Scope Rebasing [42 U.S.C. Sec. 1396a(bb)(2)-(3) Medicaid FQHC Prospective Payment System] \u2014 PPS_Active = Cost_Per_Visit if |(Cost_Per_Visit - PPS_0*(1+MEI))/PPS_0*(1+MEI)| >= 5% else PPS_0*(1+MEI)",
-        "(3) 42 U.S.C. Sec. 256b(a)(5)(A)-(B) 340B Duplicate-Discount & Diversion Audit [42 U.S.C. Sec. 256b(a)(5)(A)-(B) Public Health Service Act Section 340B] \u2014 Escrow_340B = (Claims_DupDisc * Avg_Mfg_Rebate) + (Claims_Diversion * Avg_340B_Spread)",
-        "(4) 42 U.S.C. Sec. 1396a(bb)(5) Medicaid MCO Supplemental Wraparound Settlement [42 U.S.C. Sec. 1396a(bb)(5) Quarterly State Supplemental FQHC Wraparound Rule] \u2014 Wraparound_Due = max(0, Visits_MCO * PPS_Rate - MCO_Interim_Paid - TPL_Copay)"
+        "(1) HRSA UDS Table 8A Step-Down Facility & Admin Cost Allocation [42 U.S.C. Sec. 254b (HRSA BPHC UDS Manual Table 8A) & 45 CFR Sec. 75.405]",
+        "(2) 42 U.S.C. Sec. 1396a(bb) Medicaid PPS MEI Indexing & Change-in-Scope Rebasing [42 U.S.C. Sec. 1396a(bb)(2)-(3) Medicaid FQHC Prospective Payment System]",
+        "(3) 42 U.S.C. Sec. 256b(a)(5)(A)-(B) 340B Duplicate-Discount & Diversion Audit [42 U.S.C. Sec. 256b(a)(5)(A)-(B) Public Health Service Act Section 340B]",
+        "(4) 42 U.S.C. Sec. 1396a(bb)(5) Medicaid MCO Supplemental Wraparound Settlement [42 U.S.C. Sec. 1396a(bb)(5) Quarterly State Supplemental FQHC Wraparound Rule]"
       ],
       "sample_structured_inputs": {
         "direct_clinical_cost_usd": 39180000,
@@ -979,10 +979,10 @@
       "governing_statutes": "42 CFR \u00a7 1001.952(h)\u2013(j) (AKS Warranties, Discounts & GPO Safe Harbors); AHRMM Healthcare Supply Chain Standards",
       "electronic_standard": "42 CFR Sec. 1001.952(h)/(j) Cost-Report Rebate Disclosure & ASC Case Schedule",
       "domain_mathematical_laws": [
-        "(1) 42 CFR Sec. 1001.952(h) & (g) AKS Buyer Net-Cost Rebate & Warranty Allocation [42 CFR Sec. 1001.952(h)(1) Discount Safe Harbor & Sec. 1001.952(g) Warranties] \u2014 Net_Reportable_Cost = Gross_Invoice_Spend - Earned_Tier_Rebates - Warranty_Credits",
-        "(2) 42 CFR Sec. 1001.952(j) Group Purchasing Organization (GPO) 3.0% Fee Ceiling Test [42 CFR Sec. 1001.952(j)(1) Group Purchasing Organizations Safe Harbor] \u2014 Fee_GPO_Pct = Vendor_Admin_Fees / GPO_Contract_Spend <= 3.00%",
-        "(3) 42 CFR Sec. 416.171 & 416.179 ASC Device-Intensive Pass-Through Margin [42 CFR Part 416 Subpart F (42 CFR Sec. 416.171 & Sec. 416.179 Transitional Pass-Through)] \u2014 Margin_Case = (ASC_Facility_Rate + C_Code_Offset) - Gross_Implant*(1 - r_Disc) - Direct_OR_Cost",
-        "(4) Preference-Card Standardization & Consignment Par-Level Working-Capital Release [CMS ASC Cost-Reporting Standards & Consignment Inventory Bailment Controls] \u2014 Savings_Card = (Cost_Legacy - Cost_Std) * Cases; WC_Release = max(0, Inv_Owned - Inv_Consigned_Par)"
+        "(1) 42 CFR Sec. 1001.952(h) & (g) AKS Buyer Net-Cost Rebate & Warranty Allocation [42 CFR Sec. 1001.952(h)(1) Discount Safe Harbor & Sec. 1001.952(g) Warranties]",
+        "(2) 42 CFR Sec. 1001.952(j) Group Purchasing Organization (GPO) 3.0% Fee Ceiling Test [42 CFR Sec. 1001.952(j)(1) Group Purchasing Organizations Safe Harbor]",
+        "(3) 42 CFR Sec. 416.171 & 416.179 ASC Device-Intensive Pass-Through Margin [42 CFR Part 416 Subpart F (42 CFR Sec. 416.171 & Sec. 416.179 Transitional Pass-Through)]",
+        "(4) Preference-Card Standardization & Consignment Par-Level Working-Capital Release [CMS ASC Cost-Reporting Standards & Consignment Inventory Bailment Controls]"
       ],
       "sample_structured_inputs": {
         "gross_implant_invoice_spend_usd": 21680000,
@@ -1042,10 +1042,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 44-406 / 22-B DCMR Chapter 40 (SHPDA Certificate of Need); Corporate Practice of Medicine (CPOM) / MSO-Friendly PC Structuring; AICPA Healthcare Valuation Guidelines",
       "electronic_standard": "AICPA Healthcare QoE Cash-to-Accrual & MSO Management-Fee FMV Workpaper",
       "domain_mathematical_laws": [
-        "(1) Cash-Basis Lockbox Collections to GAAP Accrual Net Patient Revenue Bridge [FASB ASC 606-10-32-10 Implicit Price Concessions & AICPA Healthcare Audit Guide] \u2014 NPSR_GAAP = Cash_Collections + Delta_Gross_AR - Delta_Contractual_Allowance - Credit_Balance_Reserve",
-        "(2) Physician-Owner Compensation Rollover Scrape & Clinical QoE EBITDA Bridge [AICPA CS Sec. 100 Quality of Earnings Standards & 42 CFR Sec. 411.357(c) Employment FMV] \u2014 EBITDA_QoE = EBITDA_Pre + max(0, Draws_Owner - wRVU_Owner * Rate_Market) + AddBacks_OneTime",
-        "(3) State SHPDA Certificate of Need (CON) Capital & Equipment Statutory Thresholds [State Health Planning & Certificate of Need Capital & Major Equipment Threshold Rules] \u2014 Non_Reviewable = (CapEx_Total < Cap_CON) AND (Equip_Diag < Cap_Equip) AND (Charity_Pct >= Floor)",
-        "(4) Corporate Practice of Medicine (CPOM) MSO Cost-Plus FMV Management Fee Test [State Corporate Practice of Medicine Doctrine & 42 CFR Sec. 1001.952(d) Safe Harbor] \u2014 Markup_MSO = (Fee_Fixed_Advance - Cost_Base_MSO) / Cost_Base_MSO <= FMV_Cap; Rev_Split_Pct = 0%"
+        "(1) Cash-Basis Lockbox Collections to GAAP Accrual Net Patient Revenue Bridge [FASB ASC 606-10-32-10 Implicit Price Concessions & AICPA Healthcare Audit Guide]",
+        "(2) Physician-Owner Compensation Rollover Scrape & Clinical QoE EBITDA Bridge [AICPA CS Sec. 100 Quality of Earnings Standards & 42 CFR Sec. 411.357(c) Employment FMV]",
+        "(3) State SHPDA Certificate of Need (CON) Capital & Equipment Statutory Thresholds [State Health Planning & Certificate of Need Capital & Major Equipment Threshold Rules]",
+        "(4) Corporate Practice of Medicine (CPOM) MSO Cost-Plus FMV Management Fee Test [State Corporate Practice of Medicine Doctrine & 42 CFR Sec. 1001.952(d) Safe Harbor]"
       ],
       "sample_structured_inputs": {
         "cash_bank_collections_usd": 57620000,
@@ -1105,10 +1105,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 32-1003(f) (Tipped Wage Phase-In to 100% of Base Minimum Wage by July 1, 2027); 29 U.S.C. \u00a7 203(m) / 29 CFR Part 531 (FLSA Tip Pool vs. Service Charge); D.C. OAG statutory Fee Disclosure Guidance; Uniform System of Accounts for Restaurants (USAR 12th Ed.)",
       "electronic_standard": "IRS Form 8846 (IRC Sec. 45B) / FLSA 29 CFR 531.55 / USAR 12th Ed. Prime Cost",
       "domain_mathematical_laws": [
-        "(1) FLSA Sec. 203(m) & State Tipped Cash-Wage Make-Up & Regular-Rate Overtime Rule [29 U.S.C. Sec. 203(m), 29 CFR Sec. 531.59 & State Tipped Minimum Wage Step-Up Acts] \u2014 MakeUp = max(0, W_min - W_cash - Tips/Hrs)*Hrs; OT_Cash_Rate = 1.5*W_min - (W_min - W_cash)",
-        "(2) 29 CFR Sec. 531.55 Automatic Service-Charge Overtime & Tax Contamination Test [29 CFR Sec. 531.55, 29 CFR Sec. 778.208 & IRS Rev. Rul. 2012-18] \u2014 OT_Drag = 0.5 * (Service_Charge / Hrs) * Hrs_OT; FICA_Credit_Forfeited = 0.0765 * Service_Charge",
-        "(3) IRS Form 8846 / IRC Sec. 45B Employer FICA Tip Tax Credit (7.65% Above $5.15 Peg) [26 U.S.C. Sec. 45B(b)(1)(B) (IRC Sec. 45B General Business Tax Credit & Form 8846)] \u2014 Credit_45B = 0.0765 * max(0, Voluntary_Tips - max(0, $5.15 - W_cash)*Hrs - NonCreditable_Offset)",
-        "(4) USAR 12th Edition Prime Cost Ratio Benchmark (<= 65.0% of Gross Sales) [Uniform System of Accounts for Restaurants (USAR 12th Ed.) Prime Cost Standard] \u2014 Prime_Cost_Pct = (Food_Bev_COGS + Direct_FOH_Payroll + BOH_Mgmt_Taxes) / Gross_Sales <= 65.0%"
+        "(1) FLSA Sec. 203(m) & State Tipped Cash-Wage Make-Up & Regular-Rate Overtime Rule [29 U.S.C. Sec. 203(m), 29 CFR Sec. 531.59 & State Tipped Minimum Wage Step-Up Acts]",
+        "(2) 29 CFR Sec. 531.55 Automatic Service-Charge Overtime & Tax Contamination Test [29 CFR Sec. 531.55, 29 CFR Sec. 778.208 & IRS Rev. Rul. 2012-18]",
+        "(3) IRS Form 8846 / IRC Sec. 45B Employer FICA Tip Tax Credit (7.65% Above $5.15 Peg) [26 U.S.C. Sec. 45B(b)(1)(B) (IRC Sec. 45B General Business Tax Credit & Form 8846)]",
+        "(4) USAR 12th Edition Prime Cost Ratio Benchmark (<= 65.0% of Gross Sales) [Uniform System of Accounts for Restaurants (USAR 12th Ed.) Prime Cost Standard]"
       ],
       "sample_structured_inputs": {
         "tipped_regular_hours": 328500,
@@ -1168,10 +1168,10 @@
       "governing_statutes": "FASB ASC 842 (Leases); BOMA Z65.1 / Z65.5 (Office & Retail Area Measurement Standards); D.C. Official Code \u00a7 47-825.01a (Real Property Tax Pass-Through Verification)",
       "electronic_standard": "FASB ASC 842 Lease Amortization Schedule / BOMA Z65.1 CAM Reconciliation",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 842-20 Lease Liability, ROU Asset & Straight-Line Expense Schedule [FASB ASC 842-20-30 Initial & Subsequent Measurement of Operating Leases] \u2014 Liab_842 = sum_t Rent_t/(1+IBR)^t; ROU = Liab_842 - TI_Allowance + IDC; SL_Mo = Net_Lease_Cost / Months",
-        "(2) ANSI/BOMA Z65.1 Usable-to-Rentable Load Factor Cap & Pro-Rata Share Audit [ANSI/BOMA Z65.1 / Z65.5 Area Measurement Standard & Lease Pro-Rata Covenants] \u2014 RSF_Verified = Usable_SF * (1 + Load_Cap); Overcharge_BOMA = max(0, RSF_Billed - RSF_Verified) * NNN_Rate",
-        "(3) 95% Occupancy Gross-Up Isolation (Excluding Fixed Real-Estate Taxes & Insurance) [Commercial Lease Gross-Up Accounting Rules & AICPA CS Sec. 100 Lease Audit Standards] \u2014 Pool_Allowed = OpEx_Var * (0.95 / Occ_Actual) + Fixed_Tax_Ins; Refund = (Pool_Billed - Pool_Allowed) * ProRata",
-        "(4) Controllable CAM Cap & Structural Capital-Expenditure Disallowance Claim [Lease Operating-Expense Exclusion Clauses & GAAP Capital vs. Repair Distinction] \u2014 Allowed_CAM = Base_0 * (1 + r_cap * t); Total_Recovery = Over_BOMA + Over_GrossUp + Over_Cap + Excluded_CapEx"
+        "(1) FASB ASC 842-20 Lease Liability, ROU Asset & Straight-Line Expense Schedule [FASB ASC 842-20-30 Initial & Subsequent Measurement of Operating Leases]",
+        "(2) ANSI/BOMA Z65.1 Usable-to-Rentable Load Factor Cap & Pro-Rata Share Audit [ANSI/BOMA Z65.1 / Z65.5 Area Measurement Standard & Lease Pro-Rata Covenants]",
+        "(3) 95% Occupancy Gross-Up Isolation (Excluding Fixed Real-Estate Taxes & Insurance) [Commercial Lease Gross-Up Accounting Rules & AICPA CS Sec. 100 Lease Audit Standards]",
+        "(4) Controllable CAM Cap & Structural Capital-Expenditure Disallowance Claim [Lease Operating-Expense Exclusion Clauses & GAAP Capital vs. Repair Distinction]"
       ],
       "sample_structured_inputs": {
         "remaining_lease_years": 8,
@@ -1231,10 +1231,10 @@
       "governing_statutes": "Uniform System of Accounts for the Lodging Industry (USALI 12th Revised Edition \u2014 effective Jan 1, 2026); STR Benchmarking Standards",
       "electronic_standard": "USALI 12th Revised Edition Summary Operating Statement (Schedules 1-14)",
       "domain_mathematical_laws": [
-        "(1) USALI 12th Ed. Schedule 1 Rooms RevPAR, Net RevPAR & Departmental Margin [USALI 12th Revised Edition Schedule 1 (Rooms) & Loyalty/OTA Disaggregation] \u2014 RevPAR = (Occ_Nights * ADR) / Avail_Nights; Net_RevPAR = (Rooms_Rev - OTA_Loyalty) / Avail_Nights",
-        "(2) USALI Schedule 2 Food & Beverage Margin & Banquet Admin-Fee Flow-Through [USALI 12th Revised Edition Schedule 2 (Food & Beverage) & 29 CFR Sec. 531.54] \u2014 Profit_FB = (Outlet_Banquet_Rev + Retained_Banquet_Admin) - FB_COGS_Labor",
-        "(3) Undistributed Operating Expenses, Gross Operating Profit (GOPPAR) & Management Fees [USALI 12th Revised Edition Summary Operating Statement & Schedules 5\u20139] \u2014 GOP = Total_Dept_Profit - Undistributed_OpEx; GOPPAR = GOP / Avail_Nights",
-        "(4) 4.0% FF&E Reserve, Stabilized EBITDAre & CMBS Debt-Yield / DSCR Covenant Gate [CREFC / CMBS Hotel Loan Servicing Covenants & NAREIT EBITDAre Standard] \u2014 EBITDAre = GOP - Mgmt_Fees - Tax_Ins_Ground - 0.04*Gross_Rev; DY = EBITDAre / Loan"
+        "(1) USALI 12th Ed. Schedule 1 Rooms RevPAR, Net RevPAR & Departmental Margin [USALI 12th Revised Edition Schedule 1 (Rooms) & Loyalty/OTA Disaggregation]",
+        "(2) USALI Schedule 2 Food & Beverage Margin & Banquet Admin-Fee Flow-Through [USALI 12th Revised Edition Schedule 2 (Food & Beverage) & 29 CFR Sec. 531.54]",
+        "(3) Undistributed Operating Expenses, Gross Operating Profit (GOPPAR) & Management Fees [USALI 12th Revised Edition Summary Operating Statement & Schedules 5\u20139]",
+        "(4) 4.0% FF&E Reserve, Stabilized EBITDAre & CMBS Debt-Yield / DSCR Covenant Gate [CREFC / CMBS Hotel Loan Servicing Covenants & NAREIT EBITDAre Standard]"
       ],
       "sample_structured_inputs": {
         "hotel_keys": 920,
@@ -1294,10 +1294,10 @@
       "governing_statutes": "CREFC Investor Reporting Package (IRP) Standards; OCC CRE Lending Interagency Guidance on Prudent CRE Loan Accommodations; AICPA CS Section 100 Non-USPAP Direct Income Capitalization Financial Underwriting",
       "electronic_standard": "CREFC Investor Reporting Package (IRP) OSAR & Rent-Roll Underwriting Schedule",
       "domain_mathematical_laws": [
-        "(1) CREFC IRP v8.0+ OSAR Stabilized NOI & Verified NCF Waterfall [CREFC Investor Reporting Package (IRP) Version 8.0+ OSAR Standard] \u2014 NOI = GPR_Recov - Vacancy_Concessions - OpEx; NCF = NOI - Reserve_TI_LC - Reserve_CapEx",
-        "(2) Triple-Constraint Senior Mortgage Sizing (LTV, DSCR & Debt-Yield Gate) [OCC Commercial Real Estate Lending Comptroller's Handbook Sizing Standards] \u2014 Loan_Senior = min(Value * Max_LTV, (NCF / Min_DSCR) / k_const, NCF / Min_DebtYield)",
-        "(3) Rent-Weighted WALT, 24-Month Rollover Exposure & Upfront TI/LC Escrow [CREFC Rent Roll & Reserve Escrow Underwriting Standards] \u2014 WALT = sum(Rent_i * Term_i) / sum(Rent_i); Escrow_TILC = Rollover_24M_RSF * TILC_per_RSF",
-        "(4) Maturing Note Refinance Rescue Gap & OCC Current-Pay Blended DSCR Test [OCC / FDIC / Federal Reserve 2023 Policy Statement on Prudent CRE Loan Workouts] \u2014 Rescue_Gap = max(0, Loan_Maturing - Loan_Senior); DSCR_Blended = NCF / (DS_Senior + DS_Rescue)"
+        "(1) CREFC IRP v8.0+ OSAR Stabilized NOI & Verified NCF Waterfall [CREFC Investor Reporting Package (IRP) Version 8.0+ OSAR Standard]",
+        "(2) Triple-Constraint Senior Mortgage Sizing (LTV, DSCR & Debt-Yield Gate) [OCC Commercial Real Estate Lending Comptroller's Handbook Sizing Standards]",
+        "(3) Rent-Weighted WALT, 24-Month Rollover Exposure & Upfront TI/LC Escrow [CREFC Rent Roll & Reserve Escrow Underwriting Standards]",
+        "(4) Maturing Note Refinance Rescue Gap & OCC Current-Pay Blended DSCR Test [OCC / FDIC / Federal Reserve 2023 Policy Statement on Prudent CRE Loan Workouts]"
       ],
       "sample_structured_inputs": {
         "gross_potential_revenue_usd": 29450000,
@@ -1357,10 +1357,10 @@
       "governing_statutes": "16 CFR Part 436 (FTC Franchise Rule \u2014 Item 7 & Item 19 Financial Performance Representations); FASB ASC 606-10-55-65 (Sales-Based Royalties); Spatial Huff Gravity Model",
       "electronic_standard": "FTC 16 CFR Part 436 (FDD Items 7 & 19) / FASB ASC 606-10-55 Schedule",
       "domain_mathematical_laws": [
-        "(1) 16 CFR Sec. 436.5(s) FDD Item 19 Mean, Median & Attainment Substantiation [16 CFR Sec. 436.5(s)(3) FTC Franchise Rule Item 19 & NASAA FPR Commentary] \u2014 Attainment_Pct = Count(Sales_i >= Claimed_Item19_Mean) / N_Outlets * 100",
-        "(2) Store-Level Four-Wall EBITDA & ASC 606-10-55-65 Sales-Based Royalty Reconciliation [FASB ASC 606-10-55-65 Sales-Based IP Royalty Exception & 16 CFR Sec. 436.5(f)] \u2014 Royalty_Due = (Gross_POS - Tips_Taxes_3PD) * (r_Royalty + r_AdFund)",
-        "(3) FASB ASC 606-10-55 Pre-Opening Distinct Services SSP vs. License Deferral [FASB ASC 606-10-55-58A Practical Expedient & Pre-Opening Performance Obligations] \u2014 Contract_Liab_t = (Fee_Init - SSP_PreOpen) * N * (1 - t / Term_Years)",
-        "(4) 16 CFR Sec. 436.5(h),(l) Item 8/12 Credits & Franchisee Debt Coverage Gate [16 CFR Sec. 436.5(h) Supplier Rebates, Sec. 436.5(l) Territory & Lender FCCR Covenants] \u2014 FCCR_Post = (FourWall_EBITDA + Item8_Rebate_Cure) / Senior_Fixed_Debt_Service"
+        "(1) 16 CFR Sec. 436.5(s) FDD Item 19 Mean, Median & Attainment Substantiation [16 CFR Sec. 436.5(s)(3) FTC Franchise Rule Item 19 & NASAA FPR Commentary]",
+        "(2) Store-Level Four-Wall EBITDA & ASC 606-10-55-65 Sales-Based Royalty Reconciliation [FASB ASC 606-10-55-65 Sales-Based IP Royalty Exception & 16 CFR Sec. 436.5(f)]",
+        "(3) FASB ASC 606-10-55 Pre-Opening Distinct Services SSP vs. License Deferral [FASB ASC 606-10-55-58A Practical Expedient & Pre-Opening Performance Obligations]",
+        "(4) 16 CFR Sec. 436.5(h),(l) Item 8/12 Credits & Franchisee Debt Coverage Gate [16 CFR Sec. 436.5(h) Supplier Rebates, Sec. 436.5(l) Territory & Lender FCCR Covenants]"
       ],
       "sample_structured_inputs": {
         "fdd_item19_claimed_mean_usd": 2380000,
@@ -1420,10 +1420,10 @@
       "governing_statutes": "AICPA Consulting Services (CS Section 100) & Transaction Advisory QoE Framework; FASB ASC 606 / ASC 842 / ASC 450",
       "electronic_standard": "AICPA M&A QoE Databook (Proof of Cash, EBITDA Bridge, NWC Peg & Net Debt)",
       "domain_mathematical_laws": [
-        "(1) 12-Month Bank-Statement-to-General-Ledger Proof-of-Cash Tie-Out [AICPA Consulting Services Sec. 100 Buy-Side Proof-of-Cash Workpaper Standard] \u2014 Rev_PoC = (Deposits_Bank - NonRev_Transfers) + Delta_Net_AR_DefRev; Tie_Pct = 1 - |Rev_PoC - Rev_GL|/Rev_GL",
-        "(2) GAAP-to-Lender Adjusted EBITDA Bridge (Credit-Agreement Add-Back Cap) [Senior Leveraged Credit Agreement Consolidated EBITDA Definition & Cap Clauses] \u2014 EBITDA_Lender = EBITDA_GAAP - Deduct_QoE + min(Claimed_AddBacks, Cap_Pct * EBITDA_GAAP)",
-        "(3) LTM 12-Month Normalized NWC Peg, Collar & Closing Dollar-for-Dollar True-Up [SPA Section 2.04 Working Capital Purchase-Price Adjustment Mechanics] \u2014 Peg_NWC = (1/12)*sum(NWC_m); TrueUp = sign(Delta)*max(0, |Closing_NWC - Peg_NWC| - Collar)",
-        "(4) SPA Indebtedness & Debt-Like Liability Purchase-Price Deduction Schedule [FASB ASC 606 Contract Liabilities, ASC 450 Contingencies & SPA Indebtedness Schedule] \u2014 Debt_Like = DefRev * Cost_Pct + Stretched_AP_>60d + Unfunded_PTO_Bonus + Deposits_Contingencies"
+        "(1) 12-Month Bank-Statement-to-General-Ledger Proof-of-Cash Tie-Out [AICPA Consulting Services Sec. 100 Buy-Side Proof-of-Cash Workpaper Standard]",
+        "(2) GAAP-to-Lender Adjusted EBITDA Bridge (Credit-Agreement Add-Back Cap) [Senior Leveraged Credit Agreement Consolidated EBITDA Definition & Cap Clauses]",
+        "(3) LTM 12-Month Normalized NWC Peg, Collar & Closing Dollar-for-Dollar True-Up [SPA Section 2.04 Working Capital Purchase-Price Adjustment Mechanics]",
+        "(4) SPA Indebtedness & Debt-Like Liability Purchase-Price Deduction Schedule [FASB ASC 606 Contract Liabilities, ASC 450 Contingencies & SPA Indebtedness Schedule]"
       ],
       "sample_structured_inputs": {
         "deposits_bank_12m": 87760000,
@@ -1483,10 +1483,10 @@
       "governing_statutes": "SEC Regulation S-X Rule 3-05 & Article 11 (Carve-Out & Pro Forma Financial Statements); FASB ASC 205-20 (Discontinued Operations)",
       "electronic_standard": "SEC Reg S-X Rule 3-05 / SAB Topic 1.B / FASB ASC 205-20 Carve-Out Schedule",
       "domain_mathematical_laws": [
-        "(1) SEC Reg S-X SAB Topic 1.B Activity-Driver Shared-Service Allocation [17 CFR Sec. 210.3-05 (SEC Reg S-X Rule 3-05) & Staff Accounting Bulletin Topic 1.B] \u2014 Alloc_SAB1B = Pool_HR * Pct_FTE + Pool_FinLegal * Pct_Rev + Pool_IT * Pct_Tickets",
-        "(2) FASB ASC 205-20 Discontinued Operations Direct vs. Stranded Parent Cost Split [FASB ASC 205-20-45-3 through 45-5 Presentation of Discontinued Operations] \u2014 Rev_3P = Rev_Gross - Interco_Elim; Stranded_Parent = max(0, Alloc_SAB1B - Avoidable_Parent)",
-        "(3) SEC Reg S-X Article 11 Day-1 Standalone Autonomous Entity Cost Bridge [17 CFR Sec. 210.11-01 & Sec. 210.11-02(a)(6)(ii) Autonomous Entity Adjustments] \u2014 EBITDA_Standalone = Contribution_Direct - Cost_Day1_Standalone; Gap = Cost_Day1 - Alloc_SAB1B",
-        "(4) Transition Services Agreement (TSA) Exhibit T Cost-Plus & Module Step-Down Schedule [APA Exhibit T Transition Services SLA Pricing & IRC Sec. 482 Services Cost Method] \u2014 TSA_Total = Base_Mo * M_1 + max(0, Base_Mo - Exit_Credit) * (1 + Markup) * M_2"
+        "(1) SEC Reg S-X SAB Topic 1.B Activity-Driver Shared-Service Allocation [17 CFR Sec. 210.3-05 (SEC Reg S-X Rule 3-05) & Staff Accounting Bulletin Topic 1.B]",
+        "(2) FASB ASC 205-20 Discontinued Operations Direct vs. Stranded Parent Cost Split [FASB ASC 205-20-45-3 through 45-5 Presentation of Discontinued Operations]",
+        "(3) SEC Reg S-X Article 11 Day-1 Standalone Autonomous Entity Cost Bridge [17 CFR Sec. 210.11-01 & Sec. 210.11-02(a)(6)(ii) Autonomous Entity Adjustments]",
+        "(4) Transition Services Agreement (TSA) Exhibit T Cost-Plus & Module Step-Down Schedule [APA Exhibit T Transition Services SLA Pricing & IRC Sec. 482 Services Cost Method]"
       ],
       "sample_structured_inputs": {
         "parent_hr_pool_usd": 4800000,
@@ -1546,10 +1546,10 @@
       "governing_statutes": "FASB ASC 606 (Contract Identification, Performance Obligations & Variable Consideration); SEC Non-GAAP Financial Measures C&DI Guidance; SaaS Capital / Bessemer Institutional SaaS Metrics Standard",
       "electronic_standard": "FASB ASC 606-10-32 SSP / ASC 340-40 Commission / SaaS ARR Cohort Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 606-10-32 Relative Standalone Selling Price (SSP) Allocation [FASB ASC 606-10-32-28 through 32-35 Allocation Based on Standalone Selling Prices] \u2014 Alloc_i = TCV_Bundled * [SSP_i / (SSP_SaaS + SSP_Implementation)]",
-        "(2) Contracted ARR Roll-Forward & Recurring-Revenue Borrowing-Base Sizing [SEC Reg S-K Item 10(e) Non-GAAP KPI Guidance & Recurring-Revenue Credit Covenants] \u2014 ARR_Close = ARR_Open + New + Expansion - Contraction - Churn; Debt_Cap = Mult * ARR_Close",
-        "(3) Cohort Gross Dollar Retention (GDR <= 100%) & Net Dollar Retention (NDR) [SEC Division of Corporation Finance SaaS Key Operating Metrics Disclosure Rules] \u2014 GDR = (ARR_0 - Contraction - Churn)/ARR_0; NDR = (ARR_0 + Expansion - Contraction - Churn)/ARR_0",
-        "(4) FASB ASC 340-40 Incremental Commission Capitalization & CAC Payback Months [FASB ASC 340-40-25-1 Incremental Costs of Obtaining a Contract] \u2014 Asset_Add_340 = Comm_Paid * (1 - 1/T_Amort); Payback_Mo = 12 * S&M / ((New+Exp_ARR) * GM_SaaS)"
+        "(1) FASB ASC 606-10-32 Relative Standalone Selling Price (SSP) Allocation [FASB ASC 606-10-32-28 through 32-35 Allocation Based on Standalone Selling Prices]",
+        "(2) Contracted ARR Roll-Forward & Recurring-Revenue Borrowing-Base Sizing [SEC Reg S-K Item 10(e) Non-GAAP KPI Guidance & Recurring-Revenue Credit Covenants]",
+        "(3) Cohort Gross Dollar Retention (GDR <= 100%) & Net Dollar Retention (NDR) [SEC Division of Corporation Finance SaaS Key Operating Metrics Disclosure Rules]",
+        "(4) FASB ASC 340-40 Incremental Commission Capitalization & CAC Payback Months [FASB ASC 340-40-25-1 Incremental Costs of Obtaining a Contract]"
       ],
       "sample_structured_inputs": {
         "bundled_contract_tcv_usd": 29900000,
@@ -1609,10 +1609,10 @@
       "governing_statutes": "FASB ASC 805 (Business Combinations); FTC/DOJ 2023 Merger Guidelines \u00a7 3.3 (Verifiable Merger-Specific Efficiencies Standard)",
       "electronic_standard": "FASB ASC 805-20 / ASC 420-10 Restructuring & Lender Pro-Forma Synergy Schedule",
       "domain_mathematical_laws": [
-        "(1) FTC/DOJ 2023 Merger Guidelines Sec. 3.3 Cognizable Efficiency Haircut Schedule [FTC & DOJ 2023 Merger Guidelines Sec. 3.3 (Procompetitive Cognizable Efficiencies)] \u2014 Synergy_Cognizable = Claimed_Gross - Speculative_Rev - NonMergerSpecific - Anticompetitive",
-        "(2) One-Time Cash Costs-to-Achieve (CTA) vs. Run-Rate Cost-Savings Payback Bridge [AICPA CS Sec. 100 Post-Merger Integration Cash-Flow Substantiation] \u2014 CTA_Total = Severance + Lease_Exit + IT_Integration; Payback_Mo = 12 * CTA_Total / Synergy_RunRate",
-        "(3) FASB ASC 805-20 Opening PPA Liability vs. ASC 420-10 Post-Close Expense Gate [FASB ASC 805-10-55-18 & ASC 420-10-25 Exit or Disposal Cost Obligations] \u2014 Goodwill_Assumed_Exit = Obligated_PreClose; PostClose_P&L_Expense = CTA_Total - Obligated_PreClose",
-        "(4) Credit-Agreement 100-Day Pro-Forma Synergy Add-Back Cap (<= 20% & <= 18 Months) [Senior Syndicated Credit Agreement Pro-Forma Cost-Savings Certification Rules] \u2014 AddBack_Permitted = min(Cognizable_<=18M, Cap_Pct * Combined_Base_EBITDA)"
+        "(1) FTC/DOJ 2023 Merger Guidelines Sec. 3.3 Cognizable Efficiency Haircut Schedule [FTC & DOJ 2023 Merger Guidelines Sec. 3.3 (Procompetitive Cognizable Efficiencies)]",
+        "(2) One-Time Cash Costs-to-Achieve (CTA) vs. Run-Rate Cost-Savings Payback Bridge [AICPA CS Sec. 100 Post-Merger Integration Cash-Flow Substantiation]",
+        "(3) FASB ASC 805-20 Opening PPA Liability vs. ASC 420-10 Post-Close Expense Gate [FASB ASC 805-10-55-18 & ASC 420-10-25 Exit or Disposal Cost Obligations]",
+        "(4) Credit-Agreement 100-Day Pro-Forma Synergy Add-Back Cap (<= 20% & <= 18 Months) [Senior Syndicated Credit Agreement Pro-Forma Cost-Savings Certification Rules]"
       ],
       "sample_structured_inputs": {
         "claimed_gross_synergies_usd": 7150000,
@@ -1672,10 +1672,10 @@
       "governing_statutes": "AICPA SSVS No. 1 (VS Section 100) (Valuation of a Business, Business Ownership Interest, Security, or Intangible Asset); IRS Revenue Ruling 59-60",
       "electronic_standard": "AICPA SSVS No. 1 (VS Sec. 100) / IRS Revenue Ruling 59-60 Valuation Schedule",
       "domain_mathematical_laws": [
-        "(1) Seller's Discretionary Earnings (SDE) & Excess Owner Compensation Normalization [AICPA SSVS No. 1 (VS Sec. 100.33) Financial Statement Normalization Adjustments] \u2014 EBITDA_Norm = EBITDA_GAAP + max(0, Comp_Owner - FMV_CEO) + AddBacks; SDE = EBITDA_Norm + FMV_CEO",
-        "(2) IRS Revenue Ruling 59-60 Income (5-Yr DCF) & Market Multiple Weighted Synthesis [IRS Revenue Ruling 59-60, 1959-1 C.B. 237 & AICPA VS Sec. 100 Valuation Approaches] \u2014 EV_Marketable = w_DCF * [PV(UFCF_1..5) + PV(TV_Gordon)] + (1 - w_DCF) * (EBITDA_Norm * Mult)",
-        "(3) AICPA VS Sec. 100 Customer-Concentration Haircut & Protective-Put DLOM [IRS Discount for Lack of Marketability (DLOM) Job Aid & AICPA VS Sec. 100.40] \u2014 EV_PostDLOM = EV_Marketable * (1 - Haircut_Concentration) * (1 - DLOM_ProtectivePut)",
-        "(4) Cash-Conversion-Cycle (DSO + DIO - DPO) Release & Enterprise-to-Equity Bridge [Sell-Side SPA Enterprise-to-Equity Waterfall & Multistate Sales-Tax VDA Standards] \u2014 CCC = DSO + DIO - DPO; Equity_Proceeds = EV_Adj + WC_Release - Net_Debt - Tax_VDA"
+        "(1) Seller's Discretionary Earnings (SDE) & Excess Owner Compensation Normalization [AICPA SSVS No. 1 (VS Sec. 100.33) Financial Statement Normalization Adjustments]",
+        "(2) IRS Revenue Ruling 59-60 Income (5-Yr DCF) & Market Multiple Weighted Synthesis [IRS Revenue Ruling 59-60, 1959-1 C.B. 237 & AICPA VS Sec. 100 Valuation Approaches]",
+        "(3) AICPA VS Sec. 100 Customer-Concentration Haircut & Protective-Put DLOM [IRS Discount for Lack of Marketability (DLOM) Job Aid & AICPA VS Sec. 100.40]",
+        "(4) Cash-Conversion-Cycle (DSO + DIO - DPO) Release & Enterprise-to-Equity Bridge [Sell-Side SPA Enterprise-to-Equity Waterfall & Multistate Sales-Tax VDA Standards]"
       ],
       "sample_structured_inputs": {
         "unadjusted_ebitda_usd": 12840000,
@@ -1735,10 +1735,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 47-825.01a; 9 DCMR Chapter 3 (\u00a7 307 Income Approach Valuation Rules); D.C. OTR Form FR-308 & Form FP-422; AICPA CS Section 100 Tax-Representative Valuation Standards",
       "electronic_standard": "Assessor Income-Expense Form FP-308 / Tax-Loaded Direct Cap Appeal Schedule",
       "domain_mathematical_laws": [
-        "(1) Stabilized Real-Property Net Operating Income Reconstruction (Pre-Tax, Fee-Simple) [IAAO Standard on Mass Appraisal Sec. 4.4 & Income-Expense Form FP-308 Instructions] \u2014 NOI_stab = PGI - Vacancy - Concessions - OpEx_ex_RET - Amort_TI_LC - NonRealty_Intangibles",
-        "(2) Mortgage-Equity Band-of-Investment & Tax-Loaded Direct Capitalization Rate [IAAO Property Assessment Valuation Ch. 10 & RPTAC Direct Capitalization Rule] \u2014 R_0 = LTV * R_m + (1 - LTV) * R_e; R_loaded = R_0 + (tau_nominal * Assessment_Ratio)",
-        "(3) Indicated Equalized Fair Market Value vs. Proposed Assessment Variance [Uniformity Clause Equalization Standard & Administrative Assessment Appeal Rules] \u2014 FMV_ind = NOI_stab / R_loaded; Over_Assessment = max(0, Assessed_Proposed - FMV_ind * Ratio)",
-        "(4) First-Level & Appeal Commission Annual Tax Refund & Cycle Present-Value Savings [Real Property Tax Appeal Commission (RPTAC) Refund & Statutory Interest Schedule] \u2014 Tax_Refund_Yr1 = Over_Assessment * tau_nominal; PV_Savings = NPV(r_disc, Refund_t)"
+        "(1) Stabilized Real-Property Net Operating Income Reconstruction (Pre-Tax, Fee-Simple) [IAAO Standard on Mass Appraisal Sec. 4.4 & Income-Expense Form FP-308 Instructions]",
+        "(2) Mortgage-Equity Band-of-Investment & Tax-Loaded Direct Capitalization Rate [IAAO Property Assessment Valuation Ch. 10 & RPTAC Direct Capitalization Rule]",
+        "(3) Indicated Equalized Fair Market Value vs. Proposed Assessment Variance [Uniformity Clause Equalization Standard & Administrative Assessment Appeal Rules]",
+        "(4) First-Level & Appeal Commission Annual Tax Refund & Cycle Present-Value Savings [Real Property Tax Appeal Commission (RPTAC) Refund & Statutory Interest Schedule]"
       ],
       "sample_structured_inputs": {
         "gsf": 185000,
@@ -1798,10 +1798,10 @@
       "governing_statutes": "Federal Rules of Evidence Rule 702 (Daubert v. Merrell Dow Reliability Standard); AICPA Forensic & Valuation Services (FVS) Lost Profits Practice Aid; Restatement (Second) of Contracts \u00a7 347 & \u00a7 352 (Reasonable Certainty)",
       "electronic_standard": "FRCP Rule 26(a)(2)(B) / FRE 702 / Restatement Contracts Sec. 347 Schedule",
       "domain_mathematical_laws": [
-        "(1) Restatement (Second) of Contracts Sec. 347 Yardstick But-For Gross Revenue Shortfall [Restatement (Second) of Contracts Sec. 347, FRCP Rule 26(a)(2)(B) & FRE 702] \u2014 Shortfall_Gross = sum_t max(0, Rev_Pre * (1 + g_yardstick)^t - Rev_Actual_t)",
-        "(2) Saved & Avoided Variable Cost Deduction Isolating Net Incremental Lost Profit [UCC Sec. 2-708(2) & AICPA Practice Aid Calculating Lost Profits (Avoided Cost Rule)] \u2014 Lost_Profit_Incr = Shortfall_Gross - (Shortfall_Gross * Ratio_Saved_COGS_Commissions)",
-        "(3) Duty-to-Mitigate Substitute Margin Offset & Incidental Reliance Cost Addition [Restatement (Second) of Contracts Sec. 350 (Avoidability) & Sec. 349 (Incidental Reliance)] \u2014 Damages_Principal = max(0, Lost_Profit_Incr - Mitigation_Net_Margin) + Incidental_Costs",
-        "(4) Statutory Pre-Judgment Interest Accrual & Trial-Date Present-Value Discounting [28 U.S.C. Sec. 1961 / State Statutory PJI Schedule & FRE 702 Ex-Post Trial Discounting] \u2014 Award_Trial = Past_Principal + sum(Past_t * r_PJI * dt) + NPV(r_disc, Future_Damages_t)"
+        "(1) Restatement (Second) of Contracts Sec. 347 Yardstick But-For Gross Revenue Shortfall [Restatement (Second) of Contracts Sec. 347, FRCP Rule 26(a)(2)(B) & FRE 702]",
+        "(2) Saved & Avoided Variable Cost Deduction Isolating Net Incremental Lost Profit [UCC Sec. 2-708(2) & AICPA Practice Aid Calculating Lost Profits (Avoided Cost Rule)]",
+        "(3) Duty-to-Mitigate Substitute Margin Offset & Incidental Reliance Cost Addition [Restatement (Second) of Contracts Sec. 350 (Avoidability) & Sec. 349 (Incidental Reliance)]",
+        "(4) Statutory Pre-Judgment Interest Accrual & Trial-Date Present-Value Discounting [28 U.S.C. Sec. 1961 / State Statutory PJI Schedule & FRE 702 Ex-Post Trial Discounting]"
       ],
       "sample_structured_inputs": {
         "pre_breach_annual_rev": 18400000,
@@ -1861,10 +1861,10 @@
       "governing_statutes": "15 U.S.C. \u00a7 18 (Clayton Act \u00a7 7); 16 CFR Parts 801\u2013803 (2025/2026 Revised HSR Premerger Notification Rules); 2023 FTC/DOJ Merger Guidelines (Guideline 1, \u00a7 3.1 Failing Firm, \u00a7 3.3 Procompetitive Efficiencies)",
       "electronic_standard": "16 CFR Part 801 HSR Filing / 2023 FTC-DOJ Merger Guidelines HHI & GUPPI",
       "domain_mathematical_laws": [
-        "(1) 2023 FTC/DOJ Merger Guidelines Sec. 2.1 Post-Merger HHI (>1,800) & Delta-HHI (>100) Test [15 U.S.C. Sec. 18 (Clayton Act Sec. 7) & 2023 FTC/DOJ Merger Guidelines Guideline 1] \u2014 HHI_post = sum(s_i^2); Delta_HHI = 2 * s_1 * s_2; Presumption if HHI_post > 1800 & Delta > 100",
-        "(2) 30% Combined Market-Share Presumption & 16 CFR Part 801 HSR Filing-Fee Schedule [15 U.S.C. Sec. 18a (HSR Act), 16 CFR Part 801 & Merger Guidelines Sec. 2.1 Share Prong] \u2014 Share_Presumption = (s_1 + s_2 >= 30%) & (Delta_HHI > 100); HSR_Fee = Tier(Transaction_Value)",
-        "(3) Unilateral Gross Upward Pricing Pressure Index (GUPPI) & SSNIP Critical-Loss Test [2023 FTC/DOJ Merger Guidelines Sec. 2.2 & Sec. 4.3 Hypothetical Monopolist SSNIP Test] \u2014 GUPPI_1 = D_12 * m_2 * (P_2 / P_1); Critical_Loss = SSNIP / (SSNIP + m_avg)",
-        "(4) Sec. 3.1 Failing-Firm Defense & Sec. 3.3 Cognizable Marginal-Cost Efficiency Offset [2023 FTC/DOJ Merger Guidelines Sec. 3.1 (Failing Firm) & Sec. 3.3 (Procompetitive Efficiencies)] \u2014 Req_MC_Drop_1 = GUPPI_1 / (1 - m_1); Net_GUPPI = max(0, Max_GUPPI - Eff_MC * (1 - m_avg))"
+        "(1) 2023 FTC/DOJ Merger Guidelines Sec. 2.1 Post-Merger HHI (>1,800) & Delta-HHI (>100) Test [15 U.S.C. Sec. 18 (Clayton Act Sec. 7) & 2023 FTC/DOJ Merger Guidelines Guideline 1]",
+        "(2) 30% Combined Market-Share Presumption & 16 CFR Part 801 HSR Filing-Fee Schedule [15 U.S.C. Sec. 18a (HSR Act), 16 CFR Part 801 & Merger Guidelines Sec. 2.1 Share Prong]",
+        "(3) Unilateral Gross Upward Pricing Pressure Index (GUPPI) & SSNIP Critical-Loss Test [2023 FTC/DOJ Merger Guidelines Sec. 2.2 & Sec. 4.3 Hypothetical Monopolist SSNIP Test]",
+        "(4) Sec. 3.1 Failing-Firm Defense & Sec. 3.3 Cognizable Marginal-Cost Efficiency Offset [2023 FTC/DOJ Merger Guidelines Sec. 3.1 (Failing Firm) & Sec. 3.3 (Procompetitive Efficiencies)]"
       ],
       "sample_structured_inputs": {
         "firm1_revenue_m": 145,
@@ -1924,10 +1924,10 @@
       "governing_statutes": "U.S. Bureau of Economic Analysis (BEA) RIMS II Multipliers Methodology; CBO / Joint Committee on Taxation (JCT) Dynamic Scoring Principles; OMB Circular A-4 (Regulatory Impact Analysis)",
       "electronic_standard": "U.S. BEA RIMS II Input-Output Multiplier / OMB Circular A-4 Fiscal Schedule",
       "domain_mathematical_laws": [
-        "(1) U.S. BEA RIMS II Direct, Type I Supplier Indirect & Type II Household Induced Output [U.S. Bureau of Economic Analysis (BEA) RIMS II User Handbook (6th Ed.)] \u2014 Output_Total = Direct_Local * Mult_TypeII = Direct + Direct*(Mult_I - 1) + Direct*(Mult_II - Mult_I)",
-        "(2) Construction One-Time FTE Job-Years vs. Permanent Operations FTE & Earnings Separation [BEA RIMS II Final-Demand Employment & Earnings Multiplier Separation Rule] \u2014 FTE_Constr = (CapEx_Local / $1M) * m_emp_c; FTE_Perm = (Ops_Local / $1M) * m_emp_o",
-        "(3) State & Municipal Tax Revenue Yield (Income, Sales/Use, Property & Corporate Franchise) [State & Municipal Statutory Tax Code Fiscal Scoring Standards] \u2014 Tax_Annual = Earnings_Ops * (tau_inc + tau_sales) + Property_Tax + Franchise_Tax",
-        "(4) OMB Circular A-4 Dual Real Discount-Rate (2.0% / 3.0% & 7.0%) Benefit-Cost Ratio [White House OMB Circular A-4 Regulatory & Public Investment Benefit-Cost Analysis] \u2014 BCR_r = NPV(r, Fiscal_Tax_Yield_t) / PV_Public_Incentive; Net_Fiscal = PV_Tax - PV_Incentive"
+        "(1) U.S. BEA RIMS II Direct, Type I Supplier Indirect & Type II Household Induced Output [U.S. Bureau of Economic Analysis (BEA) RIMS II User Handbook (6th Ed.)]",
+        "(2) Construction One-Time FTE Job-Years vs. Permanent Operations FTE & Earnings Separation [BEA RIMS II Final-Demand Employment & Earnings Multiplier Separation Rule]",
+        "(3) State & Municipal Tax Revenue Yield (Income, Sales/Use, Property & Corporate Franchise) [State & Municipal Statutory Tax Code Fiscal Scoring Standards]",
+        "(4) OMB Circular A-4 Dual Real Discount-Rate (2.0% / 3.0% & 7.0%) Benefit-Cost Ratio [White House OMB Circular A-4 Regulatory & Public Investment Benefit-Cost Analysis]"
       ],
       "sample_structured_inputs": {
         "construction_capex_usd": 55000000,
@@ -1987,10 +1987,10 @@
       "governing_statutes": "13 CFR \u00a7 121.104 (5-Year Rolling Average Annual Receipts Calculation); 13 CFR \u00a7 121.103 (Affiliation Rules \u2014 Stock Ownership, Common Management, Identity of Interest, Newly Organized Concern, Ostensible Subcontractor, & \u00a7 121.103(b)(6) Mentor-Prot\u00e9g\u00e9 Exception); 13 CFR Part 134 (SBA OHA Precedent)",
       "electronic_standard": "SBA Form 355 / 13 CFR Sec. 121.104 & 121.103 Size-Standard Schedule",
       "domain_mathematical_laws": [
-        "(1) 13 CFR Sec. 121.104(a)/(c) Five-Year IRS Form 1120 / 1120-S / 1065 Receipts Base [15 U.S.C. Sec. 632(a)(2)(C)(ii)(II) (Small Business Runway Extension Act) & 13 CFR Sec. 121.104] \u2014 Receipts_t = Total_Income_t + COGS_t - Net_Capital_Gains_t; Avg_5yr = sum(Receipts_t) / 5",
-        "(2) 13 CFR Sec. 121.104(a) Permitted Statutory Receipts Exclusions [13 CFR Sec. 121.104(a) (Intercompany Eliminations, Sales/Excise Taxes & Trust Funds)] \u2014 Net_Standalone_Avg = mean(Receipts_t - Exclusions_Interco_Tax_Trust_t)",
-        "(3) 13 CFR Sec. 121.103 Control, Negative-Veto & 70% Economic-Dependence Affiliation Test [13 CFR Sec. 121.103(a), (c), (e) & (f)(2) (70% 3-Year Single-Customer Rule)] \u2014 Affiliated_Avg = Standalone_Avg + I(Ctrl_or_Veto_or_Cust3Yr>=70%) * Affiliate_Avg",
-        "(4) Primary NAICS Size-Standard Headroom & 13 CFR Sec. 121.103(h) Unpopulated JV Check [13 CFR Sec. 121.201 NAICS Table, SBA Form 355 & 13 CFR Sec. 121.103(h) Joint Ventures] \u2014 Headroom = NAICS_Cap - Aggregated_Avg; JV_Valid = (~Populated) & (Aggregated_Avg <= Cap)"
+        "(1) 13 CFR Sec. 121.104(a)/(c) Five-Year IRS Form 1120 / 1120-S / 1065 Receipts Base [15 U.S.C. Sec. 632(a)(2)(C)(ii)(II) (Small Business Runway Extension Act) & 13 CFR Sec. 121.104]",
+        "(2) 13 CFR Sec. 121.104(a) Permitted Statutory Receipts Exclusions [13 CFR Sec. 121.104(a) (Intercompany Eliminations, Sales/Excise Taxes & Trust Funds)]",
+        "(3) 13 CFR Sec. 121.103 Control, Negative-Veto & 70% Economic-Dependence Affiliation Test [13 CFR Sec. 121.103(a), (c), (e) & (f)(2) (70% 3-Year Single-Customer Rule)]",
+        "(4) Primary NAICS Size-Standard Headroom & 13 CFR Sec. 121.103(h) Unpopulated JV Check [13 CFR Sec. 121.201 NAICS Table, SBA Form 355 & 13 CFR Sec. 121.103(h) Joint Ventures]"
       ],
       "sample_structured_inputs": {
         "annual_receipts": 31500000,
@@ -2050,10 +2050,10 @@
       "governing_statutes": "FASB ASC 958-605 & ASC 606 (Not-for-Profit Exchange vs. Contribution Revenue Bifurcation); IRC \u00a7 162(e) & \u00a7 6033(e) (Nondeductible Lobbying Proxy Tax Allocation); ASAE Operating Ratio Benchmarks",
       "electronic_standard": "IRS Form 990 Schedule A & Schedule C (IRC Sec. 509(a)(1) & Sec. 6033(e))",
       "domain_mathematical_laws": [
-        "(1) IRS Form 990 Schedule A 5-Year 33.33% Public-Support Ratio & 2% Donor Excess Haircut [26 U.S.C. Sec. 509(a)(1), Sec. 170(b)(1)(A)(vi) & Treas. Reg. Sec. 1.170A-9(f)] \u2014 Pub_Support_% = (Gifts_5yr - sum(max(0, Donor_i - 0.02 * Total_Support_5yr))) / Total_Support_5yr",
-        "(2) Member-Dues Tier HHI Concentration & Top-10 Renewal Retention Revenue-at-Risk [Form 990 Part VIII Membership Dues Governance & Concentration Disclosure] \u2014 HHI_Tiers = sum((Tier_Rev_j / Total_Tier_Rev * 100)^2); Rev_At_Risk = Dues * Non_Renewal_Rate",
-        "(3) IRC Sec. 162(e) Non-Deductible Lobbying & Sec. 6033(e) 21% Proxy-Tax Liability [26 U.S.C. Sec. 162(e), Sec. 6033(e)(2)(A) & IRS Form 990 Schedule C Part III] \u2014 Proxy_Tax = 0.21 * max(0, Lobbying_162e - Dues_Rev * Noticed_Nondeduct_Pct)",
-        "(4) FASB ASC 958-605 Contribution vs. ASC 606 Exchange-Benefit Deferred Revenue Split [FASB ASU 2018-08 (ASC 958-605) & ASC 606-10-32 Bifurcated Membership Dues Standard] \u2014 Exchange_ASC606 = Dues * SSP_Ratio; Contribution_ASC958 = Dues * (1 - SSP_Ratio)"
+        "(1) IRS Form 990 Schedule A 5-Year 33.33% Public-Support Ratio & 2% Donor Excess Haircut [26 U.S.C. Sec. 509(a)(1), Sec. 170(b)(1)(A)(vi) & Treas. Reg. Sec. 1.170A-9(f)]",
+        "(2) Member-Dues Tier HHI Concentration & Top-10 Renewal Retention Revenue-at-Risk [Form 990 Part VIII Membership Dues Governance & Concentration Disclosure]",
+        "(3) IRC Sec. 162(e) Non-Deductible Lobbying & Sec. 6033(e) 21% Proxy-Tax Liability [26 U.S.C. Sec. 162(e), Sec. 6033(e)(2)(A) & IRS Form 990 Schedule C Part III]",
+        "(4) FASB ASC 958-605 Contribution vs. ASC 606 Exchange-Benefit Deferred Revenue Split [FASB ASU 2018-08 (ASC 958-605) & ASC 606-10-32 Bifurcated Membership Dues Standard]"
       ],
       "sample_structured_inputs": {
         "current_dues_revenue": 12800000,
@@ -2111,10 +2111,10 @@
       "governing_statutes": "IRC \u00a7\u00a7 511\u2013514 & Treas. Reg. \u00a7 1.512(a)-6 (Form 990-T Schedule A 2-Digit NAICS Silo Rule); Treas. Reg. \u00a7 1.513-4 (Qualified Sponsorship vs. Taxable Advertising); FASB ASC 958-720-45 (Statement of Functional Expenses)",
       "electronic_standard": "IRS Form 990-T Schedule A (IRC Secs. 511-514 & Treas. Reg. 1.512(a)-6)",
       "domain_mathematical_laws": [
-        "(1) IRC Sec. 512(a)(6) & Treas. Reg. Sec. 1.512(a)-6 2-Digit NAICS UBIT Silo Isolation [26 U.S.C. Sec. 512(a)(6), Sec. 172(a)(2) (80% Silo NOL Cap) & Form 990-T Schedule A] \u2014 UBTI_Total = max(0, sum_s max(0, UBTI_s - min(NOL_s, 0.80*UBTI_s)) - $1,000)",
-        "(2) Treas. Reg. Sec. 1.512(a)-1(c) Reasonable Dual-Use Facility & Staff Allocation [Treas. Reg. Sec. 1.512(a)-1(c) Proximate & Primary Dual-Use Expense Standard] \u2014 Dual_Ded = Shared_Pool * (0.65 * (Comm_Hrs / Actual_Used_Hrs) + 0.35 * Comm_SqFt_Ratio)",
-        "(3) IRC Sec. 514 Debt-Financed Property Acquisition-Indebtedness Ratio [26 U.S.C. Sec. 514(a)(1)-(2) & Treas. Reg. Sec. 1.514(a)-1 Debt/Basis Percentage] \u2014 Ratio_514 = min(1.0, Avg_Acq_Debt / Avg_Adj_Basis); Silo53_UBI = Net_Rent * Ratio_514",
-        "(4) IRC Sec. 513(i) Corporate Sponsorship 2% Safe Harbor & 21% Form 990-T Tax Liability [26 U.S.C. Sec. 511(a), Sec. 513(i) & Treas. Reg. Sec. 1.512(a)-1(f) Periodical Rules] \u2014 Tax_990T = 0.21 * Total_UBTI; Qualified_Sponsorship = Pool - I(FMV > 2%)*FMV - Ad_Banners"
+        "(1) IRC Sec. 512(a)(6) & Treas. Reg. Sec. 1.512(a)-6 2-Digit NAICS UBIT Silo Isolation [26 U.S.C. Sec. 512(a)(6), Sec. 172(a)(2) (80% Silo NOL Cap) & Form 990-T Schedule A]",
+        "(2) Treas. Reg. Sec. 1.512(a)-1(c) Reasonable Dual-Use Facility & Staff Allocation [Treas. Reg. Sec. 1.512(a)-1(c) Proximate & Primary Dual-Use Expense Standard]",
+        "(3) IRC Sec. 514 Debt-Financed Property Acquisition-Indebtedness Ratio [26 U.S.C. Sec. 514(a)(1)-(2) & Treas. Reg. Sec. 1.514(a)-1 Debt/Basis Percentage]",
+        "(4) IRC Sec. 513(i) Corporate Sponsorship 2% Safe Harbor & 21% Form 990-T Tax Liability [26 U.S.C. Sec. 511(a), Sec. 513(i) & Treas. Reg. Sec. 1.512(a)-1(f) Periodical Rules]"
       ],
       "sample_structured_inputs": {
         "silo54_advertising_gross": 2150000,
@@ -2170,10 +2170,10 @@
       "governing_statutes": "D.C. Official Code \u00a7\u00a7 44-1631 to 44-1639 (Uniform Prudent Management of Institutional Funds Act \u2014 UPMIFA); FASB ASC 958-210-45-7 (Quantitative & Qualitative Liquidity & Availability Footnote Disclosure)",
       "electronic_standard": "FASB ASC 958-210 Liquidity Note / UPMIFA Sec. 4 Endowment Spending Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 958-210-45-7 Financial Assets Available for General Expenditure Within 12 Months [FASB ASU 2016-14 & ASC 958-210-45-7 / 50-1 Quantitative Liquidity Disclosure] \u2014 Avail_12M = Gross_Fin_Assets - Donor_Endowment - Quasi_Endowment - Purpose_Time_Restricted",
-        "(2) Unrestricted Operating-Reserve Months-of-Cash-Expense Coverage Ratio [FASB ASC 958-210-50-1 Qualitative Liquidity Policy & Board Reserve Governance Floor] \u2014 Months_Coverage = Avail_12M / Monthly_Cash_OpEx >= Policy_Floor (6.0 Months)",
-        "(3) UPMIFA Sec. 4(d) 7% Prudence Presumption & 12-Quarter Rolling Endowment Appropriation [Uniform Prudent Management of Institutional Funds Act (UPMIFA) Sec. 4(a) & Optional Sec. 4(d)] \u2014 Spend_Appropriated = r_policy * mean(NAV_Q1..Q12); Effective_Rate = Spend / NAV_spot <= 7.0%",
-        "(4) FASB ASC 958-205-45-28 Underwater Endowment Donor-Principal Deficit Footnote [FASB ASU 2016-14 & ASC 958-205-45-28 / 50-2 Underwater Endowment Disclosure] \u2014 Underwater_Deficit = sum_i max(0, Historic_Dollar_Gift_i - Current_FMV_i)"
+        "(1) FASB ASC 958-210-45-7 Financial Assets Available for General Expenditure Within 12 Months [FASB ASU 2016-14 & ASC 958-210-45-7 / 50-1 Quantitative Liquidity Disclosure]",
+        "(2) Unrestricted Operating-Reserve Months-of-Cash-Expense Coverage Ratio [FASB ASC 958-210-50-1 Qualitative Liquidity Policy & Board Reserve Governance Floor]",
+        "(3) UPMIFA Sec. 4(d) 7% Prudence Presumption & 12-Quarter Rolling Endowment Appropriation [Uniform Prudent Management of Institutional Funds Act (UPMIFA) Sec. 4(a) & Optional Sec. 4(d)]",
+        "(4) FASB ASC 958-205-45-28 Underwater Endowment Donor-Principal Deficit Footnote [FASB ASU 2016-14 & ASC 958-205-45-28 / 50-2 Underwater Endowment Disclosure]"
       ],
       "sample_structured_inputs": {
         "endowment_nav": 92000000,
@@ -2228,10 +2228,10 @@
       "governing_statutes": "EPA ABEL / INDIPAY / MUNIPAY Penalty Guidance (1986 & 2015 Guidance on Evaluating a Violator's Ability to Pay a Civil Penalty); DOJ Criminal Division Evaluation of Corporate Compliance Programs & Inability-to-Pay Memorandum; FTC / OSHA / DOL Hardship Reduction Standards",
       "electronic_standard": "U.S. EPA ABEL / INDIPAY / BEN Penalty Models & DOJ Inability-to-Pay Schedule",
       "domain_mathematical_laws": [
-        "(1) U.S. EPA BEN Model Noncompliance Economic-Benefit Compounding Floor [42 U.S.C. Sec. 7413(e) / 33 U.S.C. Sec. 1319(d) & U.S. EPA BEN User Manual] \u2014 BEN = [Avoided_OM*(1-tau)*T + Delayed_CapEx*((1+r)^T - 1)*(1-0.5*tau)] * (1+r)^(0.5*T)",
-        "(2) EPA ABEL Phase I Five-Year Tax-Return Solvency & Distress Screening Ratios [U.S. EPA ABEL Corporate Ability-to-Pay Reference Manual Phase I Screen] \u2014 Beaver = (NI + Depr)/TL; Altman_Z' = 0.717*WC/TA + 0.847*RE/TA + 3.107*EBIT/TA + ...",
-        "(3) EPA ABEL Phase II 5-Year Projected Internally Generated Cash Flow Available [U.S. EPA ABEL Phase II Cash-Flow Projection & Disallowed Outlay Add-Back Rules] \u2014 PV_ABEL = max(0, NPV(r, OCF_t + Officer_Excess_t - CapEx_Ess_t - Debt_Prin_t - Remed_t))",
-        "(4) DOJ Inability-to-Pay Capacity Ceiling & 12-Quarter Installment Mitigation Schedule [DOJ ENRD Corporate Financial Questionnaire & EPA Inability-to-Pay Guidance (2015)] \u2014 Payable_Cap = min(Proposed_Fine, PV_ABEL + Residual_Debt_Cap + Excess_Cash)"
+        "(1) U.S. EPA BEN Model Noncompliance Economic-Benefit Compounding Floor [42 U.S.C. Sec. 7413(e) / 33 U.S.C. Sec. 1319(d) & U.S. EPA BEN User Manual]",
+        "(2) EPA ABEL Phase I Five-Year Tax-Return Solvency & Distress Screening Ratios [U.S. EPA ABEL Corporate Ability-to-Pay Reference Manual Phase I Screen]",
+        "(3) EPA ABEL Phase II 5-Year Projected Internally Generated Cash Flow Available [U.S. EPA ABEL Phase II Cash-Flow Projection & Disallowed Outlay Add-Back Rules]",
+        "(4) DOJ Inability-to-Pay Capacity Ceiling & 12-Quarter Installment Mitigation Schedule [DOJ ENRD Corporate Financial Questionnaire & EPA Inability-to-Pay Guidance (2015)]"
       ],
       "sample_structured_inputs": {
         "revenue": 24500000,
@@ -2286,10 +2286,10 @@
       "governing_statutes": "D.C. Official Code \u00a7\u00a7 2-218.01 to 2-218.82 (Small and Certified Business Enterprise Development and Assistance Act); 27 DCMR Chapter 8 (DSLBD CBE & Joint-Venture Certification Rules); D.C. Code \u00a7 2-218.46 (35% / 50% CBE Subcontracting Requirements)",
       "electronic_standard": "13 CFR Sec. 125.8 JV Parity / Certified SBE-CBE Subcontracting Plan Schedule",
       "domain_mathematical_laws": [
-        "(1) 13 CFR Sec. 125.8(b)(2) Joint-Venture >=51% Ownership, PM Control & Profit Parity [13 CFR Sec. 125.8(b)(2)(ii)-(iv) & Certified SBE/CBE Joint-Venture Regulations] \u2014 JV_Valid = (Equity >= 51%) & (Work >= 40%) & (Profit >= Work) & Managing_PM_Control",
-        "(2) Statutory 35% / 50% Certified Small & Local Subcontracting Dollar Utilization Goal [FAR 52.219-9 / State & Municipal Certified SBE-CBE Subcontracting Utilization Statute] \u2014 Required_Sub_USD = Contract_Adjusted_Total * (0.50 if Publicly_Assisted else 0.35)",
-        "(3) Commercially Useful Function (CUF) Pass-Through & Conduit Broker Disallowance [49 CFR Sec. 26.55(c) & Municipal SBE/CBE CUF Audit Verification Standard] \u2014 Countable_CUF_USD = max(0, Gross_Certified_Sub_USD - Broker_PassThrough_USD)",
-        "(4) Statutory 10% Liquidated-Damages Fine on Unmet Subcontracting Dollar Shortfall [Municipal SBE/CBE Enforcement Code (10% Unmet Subcontracting Shortfall Fine)] \u2014 Penalty_10pct = 0.10 * max(0, Required_Sub_USD - Countable_CUF_USD)"
+        "(1) 13 CFR Sec. 125.8(b)(2) Joint-Venture >=51% Ownership, PM Control & Profit Parity [13 CFR Sec. 125.8(b)(2)(ii)-(iv) & Certified SBE/CBE Joint-Venture Regulations]",
+        "(2) Statutory 35% / 50% Certified Small & Local Subcontracting Dollar Utilization Goal [FAR 52.219-9 / State & Municipal Certified SBE-CBE Subcontracting Utilization Statute]",
+        "(3) Commercially Useful Function (CUF) Pass-Through & Conduit Broker Disallowance [49 CFR Sec. 26.55(c) & Municipal SBE/CBE CUF Audit Verification Standard]",
+        "(4) Statutory 10% Liquidated-Damages Fine on Unmet Subcontracting Dollar Shortfall [Municipal SBE/CBE Enforcement Code (10% Unmet Subcontracting Shortfall Fine)]"
       ],
       "sample_structured_inputs": {
         "contract_adjusted_total": 28000000,
@@ -2347,10 +2347,10 @@
       "governing_statutes": "FAR 52.222-46 (Evaluation of Compensation for Professional Employees); 41 U.S.C. Chapter 67 / 29 CFR Part 4 (McNamara-O'Hara Service Contract Act \u2014 SCA); GSAR 552.216-70 & FAS Clause I-FSS-969 (GSA MAS Economic Price Adjustment)",
       "electronic_standard": "GSA MAS Price Proposal Template (CSP-1) / GSAR 552.238-81 & 552.216-70",
       "domain_mathematical_laws": [
-        "(1) GSA MAS CSP-1 Most Favored Customer Parity & 0.75% Industrial Funding Fee Gross-Up [GSAR 552.212-70, SCP-FSS-001 (CSP-1) & GSAR 552.238-80 Industrial Funding Fee] \u2014 GSA_Schedule_Price = (List_Price * (1 - Disc_GSA)) / (1 - 0.0075); GSA_Net <= MFC_Net",
-        "(2) GSAR 552.238-81 Price-Reductions Clause (PRC) Basis-of-Award Trigger Audit [48 CFR (GSAR) Sec. 552.238-81 Price Reductions Clause] \u2014 PRC_Refund = max(0, GSA_Net - GSA_Net * (1 - Disc_BOA_Obs)/(1 - Disc_BOA_Award)) * Hrs",
-        "(3) GSAR 552.216-70 & Clause I-FSS-969 Economic Price Adjustment (BLS ECI Ceiling) [GSAR 552.216-70, GSA Acquisition Letter MV-22-02 & Clause I-FSS-969] \u2014 EPA_Pct = min((ECI_curr - ECI_base) / ECI_base, EPA_Ceiling_Cap)",
-        "(4) FAR 52.222-46 Realism & SCA 29 CFR Part 4 Wage-Determination / H&W Floor Audit [41 U.S.C. Sec. 6703 (Service Contract Act), 29 CFR Part 4 & FAR 52.222-41 / 52.222-46] \u2014 Surplus_Wage = Cash_Hr - WD_Min_Hr >= 0; Surplus_HW = Fringe_Hr - DOL_HW_Hr >= 0"
+        "(1) GSA MAS CSP-1 Most Favored Customer Parity & 0.75% Industrial Funding Fee Gross-Up [GSAR 552.212-70, SCP-FSS-001 (CSP-1) & GSAR 552.238-80 Industrial Funding Fee]",
+        "(2) GSAR 552.238-81 Price-Reductions Clause (PRC) Basis-of-Award Trigger Audit [48 CFR (GSAR) Sec. 552.238-81 Price Reductions Clause]",
+        "(3) GSAR 552.216-70 & Clause I-FSS-969 Economic Price Adjustment (BLS ECI Ceiling) [GSAR 552.216-70, GSA Acquisition Letter MV-22-02 & Clause I-FSS-969]",
+        "(4) FAR 52.222-46 Realism & SCA 29 CFR Part 4 Wage-Determination / H&W Floor Audit [41 U.S.C. Sec. 6703 (Service Contract Act), 29 CFR Part 4 & FAR 52.222-41 / 52.222-46]"
       ],
       "sample_structured_inputs": {
         "commercial_list_hourly_rate": 185,
@@ -2410,10 +2410,10 @@
       "governing_statutes": "FAR 52.243-1 to 52.243-4 (Changes Clause); FAR 52.233-1 & 41 U.S.C. \u00a7\u00a7 7101\u20137109 (Contract Disputes Act); DCAA CAM Chapter 12 (Special Examination Requests \u2014 Delay, Disruption & Eichleay Unabsorbed Overhead)",
       "electronic_standard": "FAR 52.243 REA Quantum / DCAA CAM Ch. 12 Eichleay & Measured-Mile Schedule",
       "domain_mathematical_laws": [
-        "(1) Federal Circuit Exclusive Eichleay Unabsorbed Home-Office Overhead Formula [FAR 52.242-14, FAR 31.205, Eichleay Corp. (ASBCA 5183) & Wickham Contracting (Fed. Cir.)] \u2014 Eichleay = [(Billings_Contract / Billings_Total) * Allowable_HOOH / Perf_Days] * Standby_Days",
-        "(2) Critical-Path Compensable Government Standby vs. Concurrent Delay Segregation [FAR 52.243-4 Changes, P.J. Dick Inc. v. Principi (Fed. Cir.) & AACE RP 29R-03] \u2014 Compensable_Days = max(0, Total_CP_Delay - Contractor_Sole_Days - Concurrent_Days)",
-        "(3) Measured-Mile Unimpacted vs. Impacted Direct-Labor Productivity Disruption [FAR 52.243-1 / 52.243-4 Equitable Adjustment & Bell BCI Co. v. United States] \u2014 Disruption_USD = max(0, Hrs_Imp*(1 - r_CO) - Units_Imp*(Hrs_Unimp/Units_Unimp)) * Rate_Craft",
-        "(4) 41 U.S.C. Sec. 7109 Contract Disputes Act (CDA) Prompt-Payment Simple Interest [41 U.S.C. Sec. 7103(b) Certification, Sec. 7109 Interest & FAR 33.208] \u2014 CDA_Total = Quantum_Principal * (1 + r_Treasury_PromptPay * Years_Since_CO_Receipt)"
+        "(1) Federal Circuit Exclusive Eichleay Unabsorbed Home-Office Overhead Formula [FAR 52.242-14, FAR 31.205, Eichleay Corp. (ASBCA 5183) & Wickham Contracting (Fed. Cir.)]",
+        "(2) Critical-Path Compensable Government Standby vs. Concurrent Delay Segregation [FAR 52.243-4 Changes, P.J. Dick Inc. v. Principi (Fed. Cir.) & AACE RP 29R-03]",
+        "(3) Measured-Mile Unimpacted vs. Impacted Direct-Labor Productivity Disruption [FAR 52.243-1 / 52.243-4 Equitable Adjustment & Bell BCI Co. v. United States]",
+        "(4) 41 U.S.C. Sec. 7109 Contract Disputes Act (CDA) Prompt-Payment Simple Interest [41 U.S.C. Sec. 7103(b) Certification, Sec. 7109 Interest & FAR 33.208]"
       ],
       "sample_structured_inputs": {
         "contract_billings_delay_pd": 18500000,
@@ -2473,10 +2473,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 1-301.47a (OCFO Fiscal Impact Statement Requirement for all D.C. Council Legislation); D.C. Office of Revenue Analysis (ORA) Dynamic Microsimulation Standards; D.C. Code \u00a7 47-392.02 (Balanced Budget & 4-Year Financial Plan Act)",
       "electronic_standard": "4-Year Legislative Fiscal Impact Statement (FIS) & PAYGO Budget Schedule",
       "domain_mathematical_laws": [
-        "(1) Statutory 4-Year Financial-Plan Budget Window Net Fiscal Impact Score [State & Municipal Chief Financial Officer Fiscal Impact Statement (FIS) Statute] \u2014 FIS_4Yr = sum_{t=1..4} (Cash_Phased_Tax_Delta_t + Offsets_t - Agency_FTE_IT_Cost_t)",
-        "(2) Static Tax-Rate Yield vs. Cross-Border Base-Erosion Elastic Revenue Score [Office of Revenue Analysis Tax-Base Elasticity & Border Leakage Methodology] \u2014 Yield_Elastic = Base_0 * (1 + eps * d_tau/tau_0) * tau_1 - Base_0 * tau_0",
-        "(3) Pay-As-You-Go (PAYGO) Sufficiency & Statutory Capital Debt-Service Cap Check [Balanced Budget PAYGO Rule & Municipal 12% General-Fund Debt-Service Cap Act] \u2014 PAYGO_OK = (FIS_FY1 >= 0) & (FIS_4Yr >= 0); Debt_Ratio = Debt_Service / Gen_Fund_Rev <= Cap",
-        "(4) First-Year Effective-Date Collection Lag (Cash vs. Modified-Accrual Phasing) [GASB Statement No. 33 / 65 Modified-Accrual Tax Recognition & Withholding Remittance Lag] \u2014 Cash_FY1 = Accrual_FY1 * phi_lag; Spillover_FY2 = Accrual_FY1 * (1 - phi_lag)"
+        "(1) Statutory 4-Year Financial-Plan Budget Window Net Fiscal Impact Score [State & Municipal Chief Financial Officer Fiscal Impact Statement (FIS) Statute]",
+        "(2) Static Tax-Rate Yield vs. Cross-Border Base-Erosion Elastic Revenue Score [Office of Revenue Analysis Tax-Base Elasticity & Border Leakage Methodology]",
+        "(3) Pay-As-You-Go (PAYGO) Sufficiency & Statutory Capital Debt-Service Cap Check [Balanced Budget PAYGO Rule & Municipal 12% General-Fund Debt-Service Cap Act]",
+        "(4) First-Year Effective-Date Collection Lag (Cash vs. Modified-Accrual Phasing) [GASB Statement No. 33 / 65 Modified-Accrual Tax Recognition & Withholding Remittance Lag]"
       ],
       "sample_structured_inputs": {
         "statutory_tax_base_usd": 1850000000,
@@ -2534,10 +2534,10 @@
       "governing_statutes": "7 CFR \u00a7 5001.303(c) & 7 CFR Part 5001 Appendix A (USDA Rural Development Business & Industry / REAP Guaranteed Loan Feasibility Study Requirements)",
       "electronic_standard": "USDA 7 CFR Part 5001 Appendix A (OneRD B&I / REAP Feasibility Schedule)",
       "domain_mathematical_laws": [
-        "(1) 7 CFR Sec. 5001.205(d) GAAP Tangible Balance-Sheet Equity Requirement (10% / 20%) [7 CFR Sec. 5001.205(d) USDA OneRD Guaranteed Loan Tangible Equity Rule] \u2014 Tangible_Eq_% = (Sponsor_Equity - Intangibles) / (Total_Assets - Intangibles) >= Floor",
-        "(2) 7 CFR Part 5001 Appendix A Economic & Market Breakeven Throughput Utilization [7 CFR Part 5001 Subpart D Appendix A (Economic & Market Feasibility Prongs)] \u2014 Breakeven_Util_% = [(Fixed_OpEx + Maint_CapEx + Debt_Service) / (P_ton - VC_ton)] / Nameplate",
-        "(3) Technical Feedstock Supply-Contract Coverage & EPC Construction Contingency Audit [7 CFR Part 5001 Appendix A Sec. (c) Technical Feasibility & Risk Mitigation] \u2014 Feedstock_Cov = Contracted_Tons / Planned_Tons; Contingency_% = EPC_Reserve / Open_Hard_Cost",
-        "(4) USDA OneRD Financial Feasibility DSCR (>=1.25x Base & +/-10% Adverse Stress) [7 CFR Part 5001 Appendix A Sec. (d) Financial Feasibility & 10% Sensitivity Test] \u2014 DSCR_Base = CFADS / DS >= 1.25x; DSCR_Stress = (0.90*Rev - 1.10*VC - Fixed) / DS >= 1.00x"
+        "(1) 7 CFR Sec. 5001.205(d) GAAP Tangible Balance-Sheet Equity Requirement (10% / 20%) [7 CFR Sec. 5001.205(d) USDA OneRD Guaranteed Loan Tangible Equity Rule]",
+        "(2) 7 CFR Part 5001 Appendix A Economic & Market Breakeven Throughput Utilization [7 CFR Part 5001 Subpart D Appendix A (Economic & Market Feasibility Prongs)]",
+        "(3) Technical Feedstock Supply-Contract Coverage & EPC Construction Contingency Audit [7 CFR Part 5001 Appendix A Sec. (c) Technical Feasibility & Risk Mitigation]",
+        "(4) USDA OneRD Financial Feasibility DSCR (>=1.25x Base & +/-10% Adverse Stress) [7 CFR Part 5001 Appendix A Sec. (d) Financial Feasibility & 10% Sensitivity Test]"
       ],
       "sample_structured_inputs": {
         "total_project_cost_usd": 32000000,
@@ -2596,10 +2596,10 @@
       "governing_statutes": "American Water Works Association (AWWA) Manual M1 (Principles of Water Rates, Fees, and Charges, 7th Ed.); NARUC Electric Utility Cost Allocation Manual; Governmental Accounting Standards Board (GASB 34 / GASB 62)",
       "electronic_standard": "AWWA Manual M1 (7th Ed.) / NARUC Cost-of-Service & Revenue-Bond Coverage",
       "domain_mathematical_laws": [
-        "(1) AWWA Manual M1 Cash-Needs & Utility-Basis Annual Rate Revenue Requirement [AWWA Manual M1 Principles of Water Rates, Fees & Charges (7th Ed.) Ch. II] \u2014 RR_Cash = O&M + Debt_Service + PAYGO_CapEx + PILOT - NonRate_Offsets",
-        "(2) AWWA Manual M1 Base-Extra Capacity Peaking & Fire-Protection Functionalization [AWWA Manual M1 Ch. III.4 Base-Extra Capacity Cost Functionalization Method] \u2014 f_Base = Avg_MGD/PeakHr_MGD; f_MaxDay = (PeakDay - Avg)/PeakHr; f_MaxHr = (PeakHr - PeakDay)/PeakHr",
-        "(3) NARUC Customer-Class Cost-of-Service Allocation & Volumetric Rate Design [NARUC Electric & Water Utility Cost Allocation Manuals \u2014 Class Equitability Standard] \u2014 Class_RR_c = Base_Pool * (Vol_c / Vol_Tot) + Extra_Pool * (PeakWt_c * Vol_c / Sum_PeakVol)",
-        "(4) Senior Revenue-Bond Master Ordinance DSCR Covenant & Days Cash on Hand [Municipal Utility Revenue-Bond Trust Indenture Rate Covenant & Rating-Agency Liquidity Test] \u2014 DSCR_Bond = (Gross_Rev - O&M - PILOT) / Annual_Debt_Service; DCOH = Cash * 365 / O&M"
+        "(1) AWWA Manual M1 Cash-Needs & Utility-Basis Annual Rate Revenue Requirement [AWWA Manual M1 Principles of Water Rates, Fees & Charges (7th Ed.) Ch. II]",
+        "(2) AWWA Manual M1 Base-Extra Capacity Peaking & Fire-Protection Functionalization [AWWA Manual M1 Ch. III.4 Base-Extra Capacity Cost Functionalization Method]",
+        "(3) NARUC Customer-Class Cost-of-Service Allocation & Volumetric Rate Design [NARUC Electric & Water Utility Cost Allocation Manuals \u2014 Class Equitability Standard]",
+        "(4) Senior Revenue-Bond Master Ordinance DSCR Covenant & Days Cash on Hand [Municipal Utility Revenue-Bond Trust Indenture Rate Covenant & Rating-Agency Liquidity Test]"
       ],
       "sample_structured_inputs": {
         "allowable_om_expense": 46500000,
@@ -2653,10 +2653,10 @@
       "governing_statutes": "D.C. Official Code \u00a7\u00a7 1-617.01 to 1-617.17 (D.C. Comprehensive Merit Personnel Act \u2014 CMPA Collective Bargaining & Arbitration Factors); GASB Statements No. 68 & No. 75 (Pension & OPEB Actuarial Liability Accounting); FLSA 29 U.S.C. \u00a7 207(k) (Public Safety Overtime)",
       "electronic_standard": "CBA Step-and-Lane Costing / FLSA Sec. 207(k) / GASB 68 & 75 Fiscal Schedule",
       "domain_mathematical_laws": [
-        "(1) Collective-Bargaining Compounded COLA & Step-and-Lane Longevity Progression [Public-Sector Collective Bargaining Financial-Plan Certification Statute] \u2014 g_eff = (1 + COLA) * (1 + Step_Inc * Share_Eligible) - 1; Base_t = Base_0 * (1 + g_eff)^t",
-        "(2) FLSA 29 U.S.C. Sec. 207(k) Public-Safety 28-Day Tour Overtime & Regular-Rate Inclusion [29 U.S.C. Sec. 207(k) & 29 CFR Sec. 553.230 (171 Hrs Police / 212 Hrs Fire per 28 Days)] \u2014 OT_207k = Headcount * max(0, Hrs_28d - Thresh_207k) * (365/28) * 1.5 * Reg_Rate_With_Diff",
-        "(3) GASB Statement No. 68 Net Pension Liability & +/-100 bps Discount-Rate Sensitivity [GASB Statement No. 68 Par. 42 & 78(g) Entry-Age Normal NPL Sensitivity Disclosure] \u2014 NPL_base = TPL - FNP; NPL_-100bps = TPL*(1.01^Duration) - FNP",
-        "(4) GASB Statement No. 75 OPEB Healthcare-Trend & 4-Year Fully Fringed Budget Impact [GASB Statement No. 75 OPEB Valuation & 4-Year Financial-Plan Certification] \u2014 Delta_4Yr_Budget = sum_{t=1..4} (Fully_Fringed_Cost_t - Frozen_Baseline_Cost)"
+        "(1) Collective-Bargaining Compounded COLA & Step-and-Lane Longevity Progression [Public-Sector Collective Bargaining Financial-Plan Certification Statute]",
+        "(2) FLSA 29 U.S.C. Sec. 207(k) Public-Safety 28-Day Tour Overtime & Regular-Rate Inclusion [29 U.S.C. Sec. 207(k) & 29 CFR Sec. 553.230 (171 Hrs Police / 212 Hrs Fire per 28 Days)]",
+        "(3) GASB Statement No. 68 Net Pension Liability & +/-100 bps Discount-Rate Sensitivity [GASB Statement No. 68 Par. 42 & 78(g) Entry-Age Normal NPL Sensitivity Disclosure]",
+        "(4) GASB Statement No. 75 OPEB Healthcare-Trend & 4-Year Fully Fringed Budget Impact [GASB Statement No. 75 OPEB Valuation & 4-Year Financial-Plan Certification]"
       ],
       "sample_structured_inputs": {
         "bargaining_unit_headcount": 850,
@@ -2716,10 +2716,10 @@
       "governing_statutes": "Von Bertalanffy / Gompertz Biological Growth & Mortality Hazard Econometrics; USDA NASS / AMS Commodity Grading Standards; FASB ASC 905 (Agriculture \u2014 Biological Assets & Inventory Costing)",
       "electronic_standard": "FASB ASC 905-330 Agricultural Costing & Farm-Credit Borrowing-Base Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 905-330 Growing-Crop & Biological Inventory Cost Accumulation vs. NRV Ceiling [FASB ASC 905-330-25 / 35 (Agriculture \u2014 Inventories) & ASC 330-10-35 LCNRV Rule] \u2014 Carrying_Val = min(Cost_Seed_Feed_Labor_OH, Gross_Harvest_Rev - Selling_Completion_Cost)",
-        "(2) Historical Cohort Mortality, Handling Shrinkage & USDA AMS Grade-Yield Adjustment [FASB ASC 905-330 Abnormal vs. Normal Mortality & USDA AMS Market Grading Standards] \u2014 Net_GradeA_Vol = Gross_Units * (1 - Mortality_%) * (1 - Shrink_%) * USDA_GradeA_%",
-        "(3) Feedstock-to-Output Crush Gross-Margin Spread & Forward-Hedge Price Floor [USDA ERS Commodity Cost-and-Return Framework & FASB ASC 815 Normal Purchases/Sales] \u2014 Margin_Crush = Net_Vol * (h*P_fwd + (1-h)*P_spot) + Cull_Rev - Accum_Cost - Sell_Cost",
-        "(4) Farm Credit Seasonal Crop-Line Borrowing Base & Post-Harvest Coverage Covenant [12 U.S.C. Sec. 2011 (Farm Credit Act) & FCA 12 CFR Part 614 Seasonal Production Lending] \u2014 BB_Ag = 0.65 * Carrying_Val + 0.15 * Hedged_Contract_Val; DSCR = CFADS / Ag_Debt_Service"
+        "(1) FASB ASC 905-330 Growing-Crop & Biological Inventory Cost Accumulation vs. NRV Ceiling [FASB ASC 905-330-25 / 35 (Agriculture \u2014 Inventories) & ASC 330-10-35 LCNRV Rule]",
+        "(2) Historical Cohort Mortality, Handling Shrinkage & USDA AMS Grade-Yield Adjustment [FASB ASC 905-330 Abnormal vs. Normal Mortality & USDA AMS Market Grading Standards]",
+        "(3) Feedstock-to-Output Crush Gross-Margin Spread & Forward-Hedge Price Floor [USDA ERS Commodity Cost-and-Return Framework & FASB ASC 815 Normal Purchases/Sales]",
+        "(4) Farm Credit Seasonal Crop-Line Borrowing Base & Post-Harvest Coverage Covenant [12 U.S.C. Sec. 2011 (Farm Credit Act) & FCA 12 CFR Part 614 Seasonal Production Lending]"
       ],
       "sample_structured_inputs": {
         "gross_planted_or_stocked_units": 6500000,
@@ -2779,10 +2779,10 @@
       "governing_statutes": "15 U.S.C. \u00a7\u00a7 8401\u20138405 (Restore Online Shoppers' Confidence Act \u2014 ROSCA); FTC Negative Option Rule (16 CFR Part 425 Click-to-Cancel Parity); FTC Act \u00a7 5 & \u00a7 19 (15 U.S.C. \u00a7\u00a7 45(m)(1)(A), 57b); Cal. Bus. & Prof. Code \u00a7 17602 (ARL)",
       "electronic_standard": "FTC 16 CFR Part 425 / ROSCA 15 U.S.C. 8403 Subscription Compliance Workpaper",
       "domain_mathematical_laws": [
-        "(1) 15 U.S.C. Sec. 8403 (ROSCA) & 16 CFR Part 425 Click-to-Cancel Step-Parity Audit [15 U.S.C. Sec. 8403(1)-(3) & FTC Negative Option Rule 16 CFR Sec. 425.5 / 425.6] \u2014 Parity_Pass = (Cancel_Steps <= Signup_Steps) & Same_Medium_Cancel; Excess_Steps = max(0, C - S)",
-        "(2) Pre-Renewal Statutory Notice Window & FTC Act Sec. 19 Consumer Restitution Pool [15 U.S.C. Sec. 57b(b) (FTC Act Sec. 19 Redress) & State Auto-Renewal Law (30-Day Notice)] \u2014 Restitution = PostCancel_Accts*Fee + Unconsented_Accts*Addon*3 + I(Notice<30d)*Renewals*0.35*Fee",
-        "(3) Payment-Network 0.90% Chargeback Monitoring Threshold & Billing Dispute Audit [Visa Acquirer Monitoring Program (VAMP) / Mastercard Excessive Chargeback Program & CFPB Circular 2023-01] \u2014 Chargeback_Ratio = Monthly_Disputed_Tx / Total_Monthly_Card_Tx < 0.0090",
-        "(4) 15 U.S.C. Sec. 45(m)(1)(A) Civil-Penalty Statutory Ceiling vs. Voluntary Refund Remediation [15 U.S.C. Sec. 45(m)(1)(A), 16 CFR Sec. 1.98(d) & 12 U.S.C. Sec. 5565(c) Civil Penalties] \u2014 Ceiling_Statutory = Actionable_Violations * $51,744; Remediation_Savings = Settlement_Est - Restitution"
+        "(1) 15 U.S.C. Sec. 8403 (ROSCA) & 16 CFR Part 425 Click-to-Cancel Step-Parity Audit [15 U.S.C. Sec. 8403(1)-(3) & FTC Negative Option Rule 16 CFR Sec. 425.5 / 425.6]",
+        "(2) Pre-Renewal Statutory Notice Window & FTC Act Sec. 19 Consumer Restitution Pool [15 U.S.C. Sec. 57b(b) (FTC Act Sec. 19 Redress) & State Auto-Renewal Law (30-Day Notice)]",
+        "(3) Payment-Network 0.90% Chargeback Monitoring Threshold & Billing Dispute Audit [Visa Acquirer Monitoring Program (VAMP) / Mastercard Excessive Chargeback Program & CFPB Circular 2023-01]",
+        "(4) 15 U.S.C. Sec. 45(m)(1)(A) Civil-Penalty Statutory Ceiling vs. Voluntary Refund Remediation [15 U.S.C. Sec. 45(m)(1)(A), 16 CFR Sec. 1.98(d) & 12 U.S.C. Sec. 5565(c) Civil Penalties]"
       ],
       "sample_structured_inputs": {
         "affected_subscriber_accounts": 185000,
@@ -2842,10 +2842,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 8-1772.21 & 20 DCMR \u00a7 3513 (BEPS Compliance & Alternative Compliance Penalty); D.C. Official Code \u00a7 8-173.01 (C-PACE Financing); IRC \u00a7 179D",
       "electronic_standard": "BEPS Alternative Compliance Schedule / C-PACE SIR Underwriting / IRS Form 7205 (179D)",
       "domain_mathematical_laws": [
-        "(1) DOEE BEPS 20% EUI Pathway & Alternative Compliance Payment (ACP) Adjustment [D.C. Official Code Sec. 8-1772.21 & 20 DCMR Sec. 3513.2] \u2014 ACP_adj = ($10.00 * GSF) * [1 - min(1.0, Delta_EUI_actual / 0.20)]",
-        "(2) D.C. C-PACE Savings-to-Investment Ratio (SIR >= 1.00) & Combined DSCR Underwriting Rule [D.C. Official Code Sec. 8-173.01 & D.C. Green Bank C-PACE Guidelines] \u2014 SIR = PV(Delta_Utility_t + Delta_OM_t, n=L_w) / C_CPACE >= 1.00; DSCR_comb >= 1.25x",
-        "(3) 10 CFR Part 436 Lifecycle Net Present Value & Yield-on-Net-CapEx Rule [10 CFR Part 436 Subpart A & DOEE BEPS Cost-Effectiveness Standard] \u2014 NPV_Lifecycle = PV(Savings_t, r_disc) - CapEx_net; Yield_on_Cost = Savings_Yr1 / CapEx_net",
-        "(4) IRC Sec. 179D Prevailing-Wage Energy-Efficient Commercial Building Deduction [26 U.S.C. Sec. 179D(b)(3), IRS Form 7205 & D.C. Sustainable Energy Utility Rules] \u2014 CapEx_net = CapEx_gross - R_DCSEU - tau_eff * (D_179D_rate * GSF_qual)"
+        "(1) DOEE BEPS 20% EUI Pathway & Alternative Compliance Payment (ACP) Adjustment [D.C. Official Code Sec. 8-1772.21 & 20 DCMR Sec. 3513.2]",
+        "(2) D.C. C-PACE Savings-to-Investment Ratio (SIR >= 1.00) & Combined DSCR Underwriting Rule [D.C. Official Code Sec. 8-173.01 & D.C. Green Bank C-PACE Guidelines]",
+        "(3) 10 CFR Part 436 Lifecycle Net Present Value & Yield-on-Net-CapEx Rule [10 CFR Part 436 Subpart A & DOEE BEPS Cost-Effectiveness Standard]",
+        "(4) IRC Sec. 179D Prevailing-Wage Energy-Efficient Commercial Building Deduction [26 U.S.C. Sec. 179D(b)(3), IRS Form 7205 & D.C. Sustainable Energy Utility Rules]"
       ],
       "sample_structured_inputs": {
         "gsf": 385000,
@@ -2905,10 +2905,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 47-860.01 et seq. (Housing in Downtown 20-Year Tax Abatement); 10-B DCMR Chapter 62 (DMPED HID Rules); 11-C DCMR Chapter 10 (Inclusionary Zoning)",
       "electronic_standard": "20-Year Adaptive-Reuse Tax-Abatement & Inclusionary Zoning Rent Schedule",
       "domain_mathematical_laws": [
-        "(1) DMPED Housing in Downtown (HID) 20-Year Real Property Tax Abatement Schedule [D.C. Official Code Sec. 47-860.02 & 10-B DCMR Ch. 62] \u2014 PV_HID = sum_{t=1}^{20} min(Tax_Class1_t, Cap_RSF * RSF_conv) / (1 + r_disc)^t",
-        "(2) 11-C DCMR Ch. 10 Inclusionary Zoning (IZ) 60%/80% MFI Rent Restriction [D.C. Official Code Sec. 47-860.02(a)(2) & 11-C DCMR Ch. 10] \u2014 Drag_IZ = 12 * sum_k N_IZ,k * max(0, Rent_mkt,k - Rent_MFI,k(0.60, 0.80))",
-        "(3) Stabilized Yield-on-Cost vs. Exit Cap Spread Underwriting Rule [CREFC / HUD Multifamily Adaptive-Reuse Yield-on-Cost Standard] \u2014 Spread_dev = (NOI_stab / Total_Dev_Cost) - Cap_exit >= 150 bps",
-        "(4) Fannie Mae / Freddie Mac Permanent Takeout LTC & DSCR Loan Sizing [Fannie Mae Multifamily Selling & Servicing Guide Part III (DSCR >= 1.25x)] \u2014 Loan_max = min(LTC_max * Total_Dev_Cost, NOI_stab / (DSCR_min * K_mort))"
+        "(1) DMPED Housing in Downtown (HID) 20-Year Real Property Tax Abatement Schedule [D.C. Official Code Sec. 47-860.02 & 10-B DCMR Ch. 62]",
+        "(2) 11-C DCMR Ch. 10 Inclusionary Zoning (IZ) 60%/80% MFI Rent Restriction [D.C. Official Code Sec. 47-860.02(a)(2) & 11-C DCMR Ch. 10]",
+        "(3) Stabilized Yield-on-Cost vs. Exit Cap Spread Underwriting Rule [CREFC / HUD Multifamily Adaptive-Reuse Yield-on-Cost Standard]",
+        "(4) Fannie Mae / Freddie Mac Permanent Takeout LTC & DSCR Loan Sizing [Fannie Mae Multifamily Selling & Servicing Guide Part III (DSCR >= 1.25x)]"
       ],
       "sample_structured_inputs": {
         "rsf_conv": 290000,
@@ -2968,10 +2968,10 @@
       "governing_statutes": "D.C. Official Code \u00a7\u00a7 47-1805.02a, 47-1810.02, 47-1810.07 (Unitary Combined & Market Sourcing); D.C. Code \u00a7 47-1817.01 (QHTC); 9 DCMR \u00a7 156 & FASB ASC 740",
       "electronic_standard": "Unitary Combined Franchise Tax Return (Form D-20 / Finnegan Sales Factor)",
       "domain_mathematical_laws": [
-        "(1) D.C. Form D-20 Finnigan Single-Sales-Factor Apportionment Rule [D.C. Official Code Sec. 47-1810.02(g)(3) & 9 DCMR Sec. 156.9] \u2014 Alpha_DC = Sales_DC_Finnigan / (Sales_Everywhere - Sales_Excluded_Treasury)",
-        "(2) Water's-Edge Unitary Combined Taxable Income & Intercompany Elimination [D.C. Official Code Sec. 47-1805.02a & 9 DCMR Sec. 156.11] \u2014 TI_comb = sum_{m in W} (TI_Fed,m + Add_DC,m - Sub_DC,m) - Elim_Interco",
-        "(3) FASB ASC 740-10-35 State Apportionment Deferred Tax Remeasurement [FASB ASC 740-10-35 & D.C. Official Code Sec. 47-1810.04(c)(2)] \u2014 Delta_DTA_DC = Temp_Diff_net * (Alpha_DC_new * tau_DC - Alpha_DC_old * tau_DC_prior)",
-        "(4) D.C. OTR Sec. 47-4201 Daily Compounded Underpayment Interest & Sec. 47-4213 Penalty [D.C. Official Code Secs. 47-4201, 47-4213 & 47-4221] \u2014 Int_47_4201 = Tax_Underpaid * [(1 + 0.10 / 365)^d - 1] + Penalty_47_4213"
+        "(1) D.C. Form D-20 Finnigan Single-Sales-Factor Apportionment Rule [D.C. Official Code Sec. 47-1810.02(g)(3) & 9 DCMR Sec. 156.9]",
+        "(2) Water's-Edge Unitary Combined Taxable Income & Intercompany Elimination [D.C. Official Code Sec. 47-1805.02a & 9 DCMR Sec. 156.11]",
+        "(3) FASB ASC 740-10-35 State Apportionment Deferred Tax Remeasurement [FASB ASC 740-10-35 & D.C. Official Code Sec. 47-1810.04(c)(2)]",
+        "(4) D.C. OTR Sec. 47-4201 Daily Compounded Underpayment Interest & Sec. 47-4213 Penalty [D.C. Official Code Secs. 47-4201, 47-4213 & 47-4221]"
       ],
       "sample_structured_inputs": {
         "sales_dc_finnigan": 54800000,
@@ -3031,10 +3031,10 @@
       "governing_statutes": "D.C. Official Code \u00a7 2-219.03 (First-Source Employment Agreement); D.C. Official Code \u00a7 2-220.03 (Living Wage Act); 40 U.S.C. \u00a7 3142 & 29 CFR Part 5 (Davis-Bacon WH-347)",
       "electronic_standard": "U.S. DOL Form WH-347 Certified Payroll & Prevailing-Wage Fringe Schedule",
       "domain_mathematical_laws": [
-        "(1) D.C. First Source 51% Resident New-Hire & 60% Apprentice Hours Thresholds [D.C. Official Code Sec. 2-219.03(e)(1) & (1A)] \u2014 R_hire = Hires_DC / Hires_Total >= 0.51; R_appr = Hrs_Appr_DC / Hrs_Appr_Total >= 0.60",
-        "(2) 29 CFR Sec. 5.25 Bona Fide Fringe Annualization & Prevailing Wage Restitution [40 U.S.C. Sec. 3142 & 29 CFR Secs. 5.5, 5.25-5.31] \u2014 Credit_Fringe_hr = Annual_ERISA_Contrib / Hrs_All_Work; Restitution = sum_i max(0, WD_i - Paid_i) * Hrs_i",
-        "(3) D.C. First Source 5% Covered-Labor Penalty & DOES Good-Faith Waiver Offset [D.C. Official Code Sec. 2-219.03(e)(4) & Living Wage Sec. 2-220.03] \u2014 Penalty_net = max(0, 0.05 * Labor_Covered_USD - Waiver_GoodFaith_Offset)",
-        "(4) DOL Form WH-347 Certified Payroll to IRS Form 941 Line 5c Reconciliation [29 CFR Sec. 5.5(a)(3)(ii), DOL Form WH-347 & IRS Form 941 Line 5c] \u2014 Var_Payroll = (Wages_WH347_Cov + Wages_NonCov_Comm) - Wages_Form941_Line5c = $0.00"
+        "(1) D.C. First Source 51% Resident New-Hire & 60% Apprentice Hours Thresholds [D.C. Official Code Sec. 2-219.03(e)(1) & (1A)]",
+        "(2) 29 CFR Sec. 5.25 Bona Fide Fringe Annualization & Prevailing Wage Restitution [40 U.S.C. Sec. 3142 & 29 CFR Secs. 5.5, 5.25-5.31]",
+        "(3) D.C. First Source 5% Covered-Labor Penalty & DOES Good-Faith Waiver Offset [D.C. Official Code Sec. 2-219.03(e)(4) & Living Wage Sec. 2-220.03]",
+        "(4) DOL Form WH-347 Certified Payroll to IRS Form 941 Line 5c Reconciliation [29 CFR Sec. 5.5(a)(3)(ii), DOL Form WH-347 & IRS Form 941 Line 5c]"
       ],
       "sample_structured_inputs": {
         "hires_dc": 34,
@@ -3094,10 +3094,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 409A & Treas. Reg. \u00a7 1.409A-1(b)(5)(iv)(B)(2) (Independent Appraisal Safe Harbor); AICPA Cheap-Stock Equity Valuation Guide; FASB ASC 718 & ASC 820",
       "electronic_standard": "IRC Sec. 409A Safe-Harbor Valuation (Treas. Reg. 1.409A-1(b)(5)(iv)(B))",
       "domain_mathematical_laws": [
-        "(1) IRC Sec. 409A Option-Pricing Method (OPM) Liquidation Breakpoint Allocation [26 U.S.C. Sec. 409A, Treas. Reg. Sec. 1.409A-1(b)(5)(iv)(B) & AICPA Cheap-Stock Guide Ch. 6] \u2014 V_rung,k = [C_BS(S=EV_eq, K=X_k, T, r, sigma) - C_BS(S=EV_eq, K=X_{k+1}, T, r, sigma)] * pi_common,k",
-        "(2) Probability-Weighted Expected Return Method (PWERM) Common Stock Valuation [Treas. Reg. Sec. 1.409A-1(b)(5)(iv)(B) & AICPA Valuation Services VS Sec. 100] \u2014 FMV_PWERM = sum_{s=1}^S p_s * [Payout_Common,s / (1 + r_common)^t_s], sum p_s = 1.00",
-        "(3) Finnerty Average-Strike Protective-Put DLOM & IRC Sec. 409A Ceiling Strike Rule [IRS DLOM Job Aid, Finnerty (2012) Protective-Put Model & FASB ASC 718] \u2014 DLOM_Finnerty = [N(v*sqrt(T)/2) - N(-v*sqrt(T)/2)], Strike_409A = ceil(FMV_pre * (1 - DLOM))",
-        "(4) IRS Rev. Rul. 59-60 & FASB ASC 820 Build-Up Weighted Average Cost of Capital [IRS Rev. Rul. 59-60, 1959-1 C.B. 237 & FASB ASC 820] \u2014 WACC = (E/V)*(R_f + beta_L * ERP + RP_size) + (D/V)*R_d*(1 - tau)"
+        "(1) IRC Sec. 409A Option-Pricing Method (OPM) Liquidation Breakpoint Allocation [26 U.S.C. Sec. 409A, Treas. Reg. Sec. 1.409A-1(b)(5)(iv)(B) & AICPA Cheap-Stock Guide Ch. 6]",
+        "(2) Probability-Weighted Expected Return Method (PWERM) Common Stock Valuation [Treas. Reg. Sec. 1.409A-1(b)(5)(iv)(B) & AICPA Valuation Services VS Sec. 100]",
+        "(3) Finnerty Average-Strike Protective-Put DLOM & IRC Sec. 409A Ceiling Strike Rule [IRS DLOM Job Aid, Finnerty (2012) Protective-Put Model & FASB ASC 718]",
+        "(4) IRS Rev. Rul. 59-60 & FASB ASC 820 Build-Up Weighted Average Cost of Capital [IRS Rev. Rul. 59-60, 1959-1 C.B. 237 & FASB ASC 820]"
       ],
       "sample_structured_inputs": {
         "ev_equity": 94000000,
@@ -3157,10 +3157,10 @@
       "governing_statutes": "26 U.S.C. \u00a7\u00a7 382 & 383 (Limitation on NOLs & Tax Credits); Treas. Reg. \u00a7 1.382-2T & \u00a7 1.382-3; IRS Notice 2003-65 (Section 338 / 1374 Built-In Gain Safe Harbors)",
       "electronic_standard": "IRC Sec. 382 Statement (Treas. Reg. 1.382-11 & IRS Notice 2003-65 Schedule)",
       "domain_mathematical_laws": [
-        "(1) IRC Sec. 382(g) Rolling 36-Month 5%-Shareholder 50-Percentage-Point Ownership Shift [26 U.S.C. Sec. 382(g) & Treas. Reg. Sec. 1.382-2T] \u2014 Shift_3Yr(t) = sum_{g in 5Pct_Holders} max(0, Pct_g(t) - min_{tau} Pct_g(tau)) > 50.00 pp",
-        "(2) IRC Sec. 382(b)(1) Long-Term Tax-Exempt Rate Annual NOL Limitation [26 U.S.C. Secs. 382(b)(1), 382(e) & 382(l)(1)] \u2014 Cap_382_base = (FMV_PreChange - Haircut_382l1 - Adj_382l4) * r_LTTE",
-        "(3) IRC Sec. 382(h) NUBIG Threshold & IRS Notice 2003-65 Section 338 RBIG Uplift [26 U.S.C. Sec. 382(h)(3)(B) & IRS Notice 2003-65, 2003-2 C.B. 747] \u2014 Cap_382_aug,t = Cap_382_base + RBIG_338,t, if NUBIG > min(0.15 * FMV_Assets, $10M)",
-        "(4) Treas. Reg. Sec. 1.383-1 Sequential Tax-Attribute Ordering & R&D Credit Limitation [26 U.S.C. Secs. 383, 163(j) & Treas. Reg. Sec. 1.383-1(d)] \u2014 Cap_rem_383 = (Cap_382_aug - RBIL_used - NOL_used - Sec163j_used) * tau_corp"
+        "(1) IRC Sec. 382(g) Rolling 36-Month 5%-Shareholder 50-Percentage-Point Ownership Shift [26 U.S.C. Sec. 382(g) & Treas. Reg. Sec. 1.382-2T]",
+        "(2) IRC Sec. 382(b)(1) Long-Term Tax-Exempt Rate Annual NOL Limitation [26 U.S.C. Secs. 382(b)(1), 382(e) & 382(l)(1)]",
+        "(3) IRC Sec. 382(h) NUBIG Threshold & IRS Notice 2003-65 Section 338 RBIG Uplift [26 U.S.C. Sec. 382(h)(3)(B) & IRS Notice 2003-65, 2003-2 C.B. 747]",
+        "(4) Treas. Reg. Sec. 1.383-1 Sequential Tax-Attribute Ordering & R&D Credit Limitation [26 U.S.C. Secs. 383, 163(j) & Treas. Reg. Sec. 1.383-1(d)]"
       ],
       "sample_structured_inputs": {
         "fmv_prechange": 142000000,
@@ -3220,10 +3220,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 41 & Treas. Reg. \u00a7 1.41-4 (Updated IRS Form 6765 Section G); 26 U.S.C. \u00a7 174 (Specified R&E Capitalization); 26 U.S.C. \u00a7 280C(c) & FASB ASC 740-10",
       "electronic_standard": "IRS Form 6765 (Sections A, B & G) / IRC Sec. 174 Mid-Year Amortization",
       "domain_mathematical_laws": [
-        "(1) IRS Form 6765 Sec. A/B Regular vs. ASC 14% R&D Credit [26 U.S.C. Secs. 41(a)(1), 41(c)(4) & IRS Form 6765 Sec. A/B] \u2014 Credit_Reg = 0.20 * max(0, QRE_t - max(FB_pct * AvgRev_4Yr, 0.50 * QRE_t)); Credit_ASC = 0.14 * max(0, QRE_t - 0.50 * AvgQRE_3Yr)",
-        "(2) IRC Sec. 280C(c)(2) Reduced Research Credit Election [26 U.S.C. Sec. 280C(c)(2)-(3) & IRS Form 6765] \u2014 Credit_280Cc = Credit_Gross * (1 - tau_fed_max) = 0.79 * Credit_Gross",
-        "(3) IRC Sec. 174(a)(2)(B) Specified Research & Experimental Mid-Year Amortization [26 U.S.C. Sec. 174(a)(2)(B) (5-Year Domestic / 15-Year Foreign Schedule)] \u2014 Amort_174,t = SRE_Dom * (0.10 if t=1 else 0.20) + SRE_For * (1/30 if t=1 else 1/15)",
-        "(4) FASB ASC 740-10-25-6 More-Likely-Than-Not Recognition & Form 6765 Sec. G UTP Reserve [FASB ASC 740-10-25-6 & Updated IRS Form 6765 Sec. G / Schedule UTP] \u2014 Benefit_Recognized = max{B_k : sum P(Sustained) > 0.50}; Reserve_UTP = Credit_Claimed - Benefit_Recognized"
+        "(1) IRS Form 6765 Sec. A/B Regular vs. ASC 14% R&D Credit [26 U.S.C. Secs. 41(a)(1), 41(c)(4) & IRS Form 6765 Sec. A/B]",
+        "(2) IRC Sec. 280C(c)(2) Reduced Research Credit Election [26 U.S.C. Sec. 280C(c)(2)-(3) & IRS Form 6765]",
+        "(3) IRC Sec. 174(a)(2)(B) Specified Research & Experimental Mid-Year Amortization [26 U.S.C. Sec. 174(a)(2)(B) (5-Year Domestic / 15-Year Foreign Schedule)]",
+        "(4) FASB ASC 740-10-25-6 More-Likely-Than-Not Recognition & Form 6765 Sec. G UTP Reserve [FASB ASC 740-10-25-6 & Updated IRS Form 6765 Sec. G / Schedule UTP]"
       ],
       "sample_structured_inputs": {
         "qre_current": 22800000,
@@ -3283,10 +3283,10 @@
       "governing_statutes": "26 U.S.C. \u00a7\u00a7 482 & 6662(e); Treas. Reg. \u00a7\u00a7 1.482-1 through -9 & \u00a7 1.6662-6 (Ten Principal Documents); OECD Transfer Pricing Guidelines (Master File & Local File)",
       "electronic_standard": "IRC Sec. 482 / Treas. Reg. 1.6662-6 / OECD Local-File Transfer Pricing Schedule",
       "domain_mathematical_laws": [
-        "(1) Treas. Reg. Sec. 1.482-1(e) Arm's-Length Interquartile Range & Median Adjustment [26 U.S.C. Sec. 482 & Treas. Reg. Sec. 1.482-1(e)(2)(iii)(C)] \u2014 PLI_Tested in [Q_25(PLI_Comp_WC), Q_75(PLI_Comp_WC)], TrueUp_USD = Sales_IC * (Q_50 - PLI_Unadj)",
-        "(2) Treas. Reg. Sec. 1.482-5 Comparable Profits Method Working-Capital Adjustment & Berry Ratio [Treas. Reg. Sec. 1.482-5(c)(2)(iv) & OECD Transfer Pricing Guidelines Ch. II/III] \u2014 OM_WC_adj = OM_Comp + r_CP * [(NWC_Tested / Sales) - (NWC_Comp / Sales)]; Berry = GP / OpEx",
-        "(3) Treas. Reg. Secs. 1.482-3 & 1.482-4 CUT Royalty & Cost-Plus Cross-Check [Treas. Reg. Secs. 1.482-3, 1.482-4 & 1.482-9] \u2014 P_RP = P_Resale * (1 - GM_arm); Royalty_CUT = r_CUT * Net_Licensed_Sales",
-        "(4) IRC Sec. 6662(e)(3)(B) Contemporaneous Ten-Principal-Document Penalty Exemption [26 U.S.C. Sec. 6662(e)(3)(B) & Treas. Reg. Sec. 1.6662-6(d)(2)(iii)] \u2014 Penalty_6662e = 0 if Contemporaneous_10Docs_Locked else (20% or 40% misstatement tier)"
+        "(1) Treas. Reg. Sec. 1.482-1(e) Arm's-Length Interquartile Range & Median Adjustment [26 U.S.C. Sec. 482 & Treas. Reg. Sec. 1.482-1(e)(2)(iii)(C)]",
+        "(2) Treas. Reg. Sec. 1.482-5 Comparable Profits Method Working-Capital Adjustment & Berry Ratio [Treas. Reg. Sec. 1.482-5(c)(2)(iv) & OECD Transfer Pricing Guidelines Ch. II/III]",
+        "(3) Treas. Reg. Secs. 1.482-3 & 1.482-4 CUT Royalty & Cost-Plus Cross-Check [Treas. Reg. Secs. 1.482-3, 1.482-4 & 1.482-9]",
+        "(4) IRC Sec. 6662(e)(3)(B) Contemporaneous Ten-Principal-Document Penalty Exemption [26 U.S.C. Sec. 6662(e)(3)(B) & Treas. Reg. Sec. 1.6662-6(d)(2)(iii)]"
       ],
       "sample_structured_inputs": {
         "sales_ic": 186000000,
@@ -3346,10 +3346,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 280G (Disallowed Corporate Parachute Deduction) & 26 U.S.C. \u00a7 4999 (20% Executive Excise Tax); Treas. Reg. \u00a7 1.280G-1 (Q&A-1 through Q&A-48)",
       "electronic_standard": "IRC Sec. 280G / Sec. 4999 Parachute Worksheet (Treas. Reg. 1.280G-1 Q&A-24(c))",
       "domain_mathematical_laws": [
-        "(1) Treas. Reg. 1.280G-1 5-Year Base Amount & 3x Parachute Safe Harbor [26 U.S.C. Secs. 280G(b)(1)-(3) & 4999(a)] \u2014 Base_Amt = mean(W2_Box1_t); SafeHarbor = 3.0 * Base_Amt - $0.01; Excess = Parachute - 1.0 * Base_Amt",
-        "(2) Treas. Reg. Sec. 1.280G-1 Q&A-24(c) Accelerated Unvested Equity Valuation [Treas. Reg. Sec. 1.280G-1 Q&A-24(c) & IRS Rev. Proc. 2003-68] \u2014 V_QA24c = [Spread - Spread * (1 + 1.20 * AFR / 12)^(-m)] + 0.01 * m * Spread",
-        "(3) Treas. Reg. Sec. 1.280G-1 Q&A-9 & Q&A-42 Reasonable Compensation Carve-Outs [26 U.S.C. Sec. 280G(b)(4) & Treas. Reg. Sec. 1.280G-1 Q&A-9, Q&A-40, Q&A-42] \u2014 Parachute_Net = Parachute_Gross - V_NonCompete_PostClose - Comp_Earned_PreClose",
-        "(4) IRC Sec. 280G(b)(5)(B) >75% Disinterested Shareholder Cleansing Vote & Q&A-7 Waiver [26 U.S.C. Sec. 280G(b)(5)(B) & Treas. Reg. Sec. 1.280G-1 Q&A-7] \u2014 Votes_Cleanse_Req = floor(0.75 * (Votes_Total - Votes_Interested)) + 1; Waiver = max(0, Net - SafeHarbor)"
+        "(1) Treas. Reg. 1.280G-1 5-Year Base Amount & 3x Parachute Safe Harbor [26 U.S.C. Secs. 280G(b)(1)-(3) & 4999(a)]",
+        "(2) Treas. Reg. Sec. 1.280G-1 Q&A-24(c) Accelerated Unvested Equity Valuation [Treas. Reg. Sec. 1.280G-1 Q&A-24(c) & IRS Rev. Proc. 2003-68]",
+        "(3) Treas. Reg. Sec. 1.280G-1 Q&A-9 & Q&A-42 Reasonable Compensation Carve-Outs [26 U.S.C. Sec. 280G(b)(4) & Treas. Reg. Sec. 1.280G-1 Q&A-9, Q&A-40, Q&A-42]",
+        "(4) IRC Sec. 280G(b)(5)(B) >75% Disinterested Shareholder Cleansing Vote & Q&A-7 Waiver [26 U.S.C. Sec. 280G(b)(5)(B) & Treas. Reg. Sec. 1.280G-1 Q&A-7]"
       ],
       "sample_structured_inputs": {
         "cash_severance_and_bonus": 1350000,
@@ -3408,10 +3408,10 @@
       "governing_statutes": "26 U.S.C. \u00a7\u00a7 1060 & 197 (IRS Form 8594 7-Class Allocation & 15-Yr Amortization); FASB ASC 805 & ASC 820; AICPA Valuation Services VS Section 100",
       "electronic_standard": "IRS Form 8594 (IRC Sec. 1060 & Sec. 197) / FASB ASC 805 PPA Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 805-20 Multi-Period Excess Earnings Method (MPEEM) Customer Intangible [FASB ASC 805-20, ASC 820 & AICPA Business Combinations Valuation Guide] \u2014 FV_Cust_MPEEM = TAB_197 * sum_{t=1}^T [(Rev_surv,t * m_EBITA * (1 - tau) - CAC_t) / (1 + r_cust)^t]",
-        "(2) IRC Sec. 197 15-Year Tax Amortization Benefit (TAB) & Relief-from-Royalty IP [26 U.S.C. Secs. 197(a) & 1060] \u2014 TAB_197 = 1 / [1 - (tau_eff / 15) * PV_Annuity(15, r)]; FV_IP = TAB_197 * PV(AfterTax_Royalty)",
-        "(3) FASB ASC 805-20-55 With-and-Without Non-Compete & Assembled Workforce CAC [FASB ASC 805-20-55-6 & AICPA Intangible Asset Practice Aid] \u2014 FV_NonComp = TAB_197 * p_compete * PV(CF_With - CF_Without); CAC_WF = Cost_WF * (1 - tau)",
-        "(4) IRS Form 8594 Seven-Class Residual Purchase Price Waterfall [26 U.S.C. Sec. 1060, Treas. Reg. Sec. 1.1060-1 & FASB ASC 805-30] \u2014 Goodwill_ClassVII = Purchase_Price - sum_{I..VI} FV_Identifiable; WARA ~= WACC"
+        "(1) FASB ASC 805-20 Multi-Period Excess Earnings Method (MPEEM) Customer Intangible [FASB ASC 805-20, ASC 820 & AICPA Business Combinations Valuation Guide]",
+        "(2) IRC Sec. 197 15-Year Tax Amortization Benefit (TAB) & Relief-from-Royalty IP [26 U.S.C. Secs. 197(a) & 1060]",
+        "(3) FASB ASC 805-20-55 With-and-Without Non-Compete & Assembled Workforce CAC [FASB ASC 805-20-55-6 & AICPA Intangible Asset Practice Aid]",
+        "(4) IRS Form 8594 Seven-Class Residual Purchase Price Waterfall [26 U.S.C. Sec. 1060, Treas. Reg. Sec. 1.1060-1 & FASB ASC 805-30]"
       ],
       "sample_structured_inputs": {
         "purchase_price": 164000000,
@@ -3471,10 +3471,10 @@
       "governing_statutes": "South Dakota v. Wayfair, Inc., 585 U.S. 162 (2018); 15 U.S.C. \u00a7 381 (P.L. 86-272) & MTC Internet Statement; MTC Voluntary Disclosure Program & FASB ASC 450-20",
       "electronic_standard": "MTC Multistate Voluntary Disclosure (VDA) & ASC 450-20 SALT Reserve Schedule",
       "domain_mathematical_laws": [
-        "(1) Wayfair $100,000 / 200-Transaction Economic Sales Tax Nexus Rule [South Dakota v. Wayfair, Inc., 585 U.S. 162 (2018) & State Economic Nexus Statutes] \u2014 t_Cross,s = min{m : Rev_12Mo(s, m) >= $100,000 or Tx_12Mo(s, m) >= 200}",
-        "(2) 15 U.S.C. Sec. 381 (P.L. 86-272) Digital Activity Immunity Piercing & Income Tax [15 U.S.C. Sec. 381 & MTC 2021 Revised Statement on P.L. 86-272] \u2014 Exp_Income,s = I(Immunity_Lost) * TI_Fed_Adj * (Sales_Market,s / Sales_Total) * tau_corp,s",
-        "(3) MTC Multistate Voluntary Disclosure Program Lookback Limitation & Penalty Waiver [Multistate Tax Commission National Nexus Program & State DOR VDA Rules] \u2014 Savings_VDA = (Tax_PreLookback + Penalty_AllYrs + Int_Waived) - (Tax_Lookback + Int_Stat_VDA)",
-        "(4) FASB ASC 450-20 Probable & Estimable SALT Loss Contingency Net of Exemption Certificates [FASB ASC 450-20-25-2 & Streamlined Sales Tax Exemption Rules] \u2014 Reserve_ASC450 = sum_{s: MLTN_Nexus} [Sales_Taxable_Net_Exempt,s * tau_comb,s + Int_Accrued,s]"
+        "(1) Wayfair $100,000 / 200-Transaction Economic Sales Tax Nexus Rule [South Dakota v. Wayfair, Inc., 585 U.S. 162 (2018) & State Economic Nexus Statutes]",
+        "(2) 15 U.S.C. Sec. 381 (P.L. 86-272) Digital Activity Immunity Piercing & Income Tax [15 U.S.C. Sec. 381 & MTC 2021 Revised Statement on P.L. 86-272]",
+        "(3) MTC Multistate Voluntary Disclosure Program Lookback Limitation & Penalty Waiver [Multistate Tax Commission National Nexus Program & State DOR VDA Rules]",
+        "(4) FASB ASC 450-20 Probable & Estimable SALT Loss Contingency Net of Exemption Certificates [FASB ASC 450-20-25-2 & Streamlined Sales Tax Exemption Rules]"
       ],
       "sample_structured_inputs": {
         "exempt_cert_pct": 0.58,
@@ -3532,10 +3532,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 1202(a)-(k) (Qualified Small Business Stock Exclusion); Treas. Reg. \u00a7 1.1202-2 (Stock Redemptions); IRC \u00a7 1202(e)(3) & \u00a7 1202(e)(6)",
       "electronic_standard": "IRC Sec. 1202 QSBS Attestation & Schedule D / Form 8949 Exclusion Workpaper",
       "domain_mathematical_laws": [
-        "(1) IRC Sec. 1202(d)(1) $50,000,000 Aggregate Gross Assets Tax-Basis Ceiling [26 U.S.C. Sec. 1202(d)(1)-(2)] \u2014 AGA_Post(k) = Cash_Post(k) + sum_a Adjusted_Tax_Basis(Asset_a, k) <= $50,000,000",
-        "(2) IRC Sec. 1202(e)(1) 80% Active Business Requirement & Sec. 1202(e)(6) Working-Capital Cap [26 U.S.C. Secs. 1202(e)(1), 1202(e)(3) & 1202(e)(6)] \u2014 Active_Ratio(q) = (Assets_Qual_Trade(q) + WC_SafeHarbor_1202e6(q)) / Total_Assets(q) >= 0.80",
-        "(3) Treas. Reg. Sec. 1.1202-2 Five-Percent De Minimis Stock Redemption Taint Test [26 U.S.C. Sec. 1202(c)(3) & Treas. Reg. Sec. 1.1202-2(a)-(d)] \u2014 Taint_Related = I(Redemp_[-1,+1] > 5%); Taint_Sig = I(Redemp_[-2,+2] > 5% Pre-Redemp FMV)",
-        "(4) IRC Sec. 1202(b)(1) Greater of $10,000,000 or 10x Basis Per-Taxpayer Gain Exclusion [26 U.S.C. Secs. 1202(a)(4) & 1202(b)(1)(A)-(B)] \u2014 Gain_Excl_Holder = pct_vintage * max($10,000,000, 10.0 * Basis_1202_Issued)"
+        "(1) IRC Sec. 1202(d)(1) $50,000,000 Aggregate Gross Assets Tax-Basis Ceiling [26 U.S.C. Sec. 1202(d)(1)-(2)]",
+        "(2) IRC Sec. 1202(e)(1) 80% Active Business Requirement & Sec. 1202(e)(6) Working-Capital Cap [26 U.S.C. Secs. 1202(e)(1), 1202(e)(3) & 1202(e)(6)]",
+        "(3) Treas. Reg. Sec. 1.1202-2 Five-Percent De Minimis Stock Redemption Taint Test [26 U.S.C. Sec. 1202(c)(3) & Treas. Reg. Sec. 1.1202-2(a)-(d)]",
+        "(4) IRC Sec. 1202(b)(1) Greater of $10,000,000 or 10x Basis Per-Taxpayer Gain Exclusion [26 U.S.C. Secs. 1202(a)(4) & 1202(b)(1)(A)-(B)]"
       ],
       "sample_structured_inputs": {
         "cash_post_issuance": 19200000,
@@ -3595,10 +3595,10 @@
       "governing_statutes": "26 U.S.C. \u00a7\u00a7 704(b), 704(c), 734(b), 743(b), 754 & 755; Treas. Reg. \u00a7 1.704-1(b)(2)(ii)-(iv), \u00a7 1.704-3 & \u00a7 1.755-1",
       "electronic_standard": "IRS Form 1065 Schedule K-1 (IRC Secs. 704(b), 704(c), 743(b) & 754 Statement)",
       "domain_mathematical_laws": [
-        "(1) IRC Sec. 704(b) Substantial Economic Effect & HLBV Target Capital Account Waterfall [26 U.S.C. Sec. 704(b) & Treas. Reg. Sec. 1.704-1(b)(2)] \u2014 Alloc_704b,p(t) = HLBV_Claim,p(t) - HLBV_Claim,p(t-1) + Distributions_p(t) - Contributions_p(t)",
-        "(2) Treas. Reg. Sec. 1.704-2 Partnership Minimum Gain Chargeback & Qualified Income Offset [Treas. Reg. Secs. 1.704-1(b)(2)(ii)(d) & 1.704-2(f)] \u2014 MGC_p = max(0, -Delta_Partnership_Min_Gain_Share,p); QIO_Alloc = Deficit_After_DRO",
-        "(3) IRC Secs. 754, 743(b) & 755 Transferee Inside Basis Adjustment & Hot-Asset Split [26 U.S.C. Secs. 743(b), 751(a), 754, 755 & Treas. Reg. Sec. 1.755-1] \u2014 Adj_743b = (Outside_Basis_Transferee - Share_Inside_Tax_Basis); Alloc_755 = Residual_Split",
-        "(4) IRC Sec. 704(c)(1)(A) Ceiling Rule Limitation & Treas. Reg. 1.704-3(d) Remedial Allocation [26 U.S.C. Sec. 704(c)(1)(A) & Treas. Reg. Sec. 1.704-3(d)] \u2014 Depr_Tax_NonContrib = min(Depr_Book_Share, Depr_Tax_Ceiling) + Remedial_704c_Offset"
+        "(1) IRC Sec. 704(b) Substantial Economic Effect & HLBV Target Capital Account Waterfall [26 U.S.C. Sec. 704(b) & Treas. Reg. Sec. 1.704-1(b)(2)]",
+        "(2) Treas. Reg. Sec. 1.704-2 Partnership Minimum Gain Chargeback & Qualified Income Offset [Treas. Reg. Secs. 1.704-1(b)(2)(ii)(d) & 1.704-2(f)]",
+        "(3) IRC Secs. 754, 743(b) & 755 Transferee Inside Basis Adjustment & Hot-Asset Split [26 U.S.C. Secs. 743(b), 751(a), 754, 755 & Treas. Reg. Sec. 1.755-1]",
+        "(4) IRC Sec. 704(c)(1)(A) Ceiling Rule Limitation & Treas. Reg. 1.704-3(d) Remedial Allocation [26 U.S.C. Sec. 704(c)(1)(A) & Treas. Reg. Sec. 1.704-3(d)]"
       ],
       "sample_structured_inputs": {
         "hlbv_open_lp": 62000000,
@@ -3658,10 +3658,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 163(j) & Treas. Reg. \u00a7\u00a7 1.163(j)-1 to -10; IRS Form 8990; IRC \u00a7 163(j)(7)(B) Real-Property Election & IRC \u00a7 168(g) ADS",
       "electronic_standard": "IRS Form 8990 (IRC Sec. 163(j) Limitation & Sec. 163(j)(7)(B) RPTOB Election)",
       "domain_mathematical_laws": [
-        "(1) IRS Form 8990 Sec. 163(j) 30% ATI Cap [26 U.S.C. Secs. 163(j)(1), 163(j)(8)(A)(v) & IRS Form 8990] \u2014 Cap_163j = BII + 0.30 * max(0, EBIT_ATI); Disallowed_CF = max(0, BIE - Cap_163j)",
-        "(2) IRC Sec. 163(j)(7)(B) Electing Real Property Trade or Business vs. Sec. 168(g) ADS Switch [26 U.S.C. Secs. 163(j)(7)(B) & 168(g)(1)(F), (g)(8)] \u2014 Delta_NPV_RPTOB = sum_{t=1}^{10} tau * [(BIE_Uncapped,t - BIE_Cap,t) - (Depr_MACRS,t - Depr_ADS,t)] / (1 + r)^t",
-        "(3) Treas. Reg. Sec. 1.163(j)-5 Consolidated Group Single-Entity ATI & SRLY Absorption [Treas. Reg. Secs. 1.163(j)-4(d) & 1.163(j)-5(b)] \u2014 Cap_Consol = BII_Group + 0.30 * ATI_Consol; Absorb_SRLY = min(CF_Member, Residual_Lim)",
-        "(4) IRC Sec. 163(j)(4)(B) Partnership Excess Business Interest Expense (EBIE) & ETI Release [26 U.S.C. Sec. 163(j)(4)(B) & Schedule K-1 Rules] \u2014 Basis_Partner_Adj = Basis_Open - EBIE_Allocated; Freed_EBIE = min(EBIE_Susp, ETI_Alloc)"
+        "(1) IRS Form 8990 Sec. 163(j) 30% ATI Cap [26 U.S.C. Secs. 163(j)(1), 163(j)(8)(A)(v) & IRS Form 8990]",
+        "(2) IRC Sec. 163(j)(7)(B) Electing Real Property Trade or Business vs. Sec. 168(g) ADS Switch [26 U.S.C. Secs. 163(j)(7)(B) & 168(g)(1)(F), (g)(8)]",
+        "(3) Treas. Reg. Sec. 1.163(j)-5 Consolidated Group Single-Entity ATI & SRLY Absorption [Treas. Reg. Secs. 1.163(j)-4(d) & 1.163(j)-5(b)]",
+        "(4) IRC Sec. 163(j)(4)(B) Partnership Excess Business Interest Expense (EBIE) & ETI Release [26 U.S.C. Sec. 163(j)(4)(B) & Schedule K-1 Rules]"
       ],
       "sample_structured_inputs": {
         "debt_principal": 195000000,
@@ -3721,10 +3721,10 @@
       "governing_statutes": "12 Del. C. \u00a7\u00a7 1130\u20131190 (Delaware SOS VDA \u00a7\u00a7 1172\u20131173); Revised Uniform Unclaimed Property Act (RUUPA); Texas v. New Jersey, 379 U.S. 674 & D.C. Code \u00a7 41-151.01",
       "electronic_standard": "NAUPA Unclaimed Property Report & Delaware SOS VDA 10-Year Lookback Schedule",
       "domain_mathematical_laws": [
-        "(1) Texas v. New Jersey Two-Tier Jurisdictional Escheat Priority Cascade [Texas v. New Jersey, 379 U.S. 674 (1965)] \u2014 State_Due(item) = State_LastKnownAddress(Payee) if Known else State_CorporateDomicile(Holder)",
-        "(2) RUUPA Sec. 201 Statutory Dormancy Period Cutoffs & B2B Credit Exemption [Revised Uniform Unclaimed Property Act Sec. 201 & D.C. Official Code Sec. 41-151.01] \u2014 Is_Dormant(item, T_cut) = I((T_cut - Date_LastContact) >= Dormancy_Statute(State, Prop_Code))",
-        "(3) 12 Del. C. Sec. 1172 Delaware SOS VDA Base-Period Gross Error Extrapolation [12 Del. C. Secs. 1172-1173 & 1 Del. Admin. C. Sec. 301] \u2014 Est_Unresearched = Rev_Unresearched * [sum Unremediated_Error(b) / sum Sampled_Denom(b)]",
-        "(4) 12 Del. C. Sec. 1183 Statutory 50% Audit Interest Waiver via SOS VDA Settlement [12 Del. C. Secs. 1173(a) & 1183(a)] \u2014 Savings_SOS_VDA = (Est_Exam_15Yr + Int_50Pct_Stat + Civil_Penalties) - Liability_VDA_10Yr_ZeroInt"
+        "(1) Texas v. New Jersey Two-Tier Jurisdictional Escheat Priority Cascade [Texas v. New Jersey, 379 U.S. 674 (1965)]",
+        "(2) RUUPA Sec. 201 Statutory Dormancy Period Cutoffs & B2B Credit Exemption [Revised Uniform Unclaimed Property Act Sec. 201 & D.C. Official Code Sec. 41-151.01]",
+        "(3) 12 Del. C. Sec. 1172 Delaware SOS VDA Base-Period Gross Error Extrapolation [12 Del. C. Secs. 1172-1173 & 1 Del. Admin. C. Sec. 301]",
+        "(4) 12 Del. C. Sec. 1183 Statutory 50% Audit Interest Waiver via SOS VDA Settlement [12 Del. C. Secs. 1173(a) & 1183(a)]"
       ],
       "sample_structured_inputs": {
         "addressed_dormant_usd": 640000,
@@ -3784,10 +3784,10 @@
       "governing_statutes": "FASB ASC 350-20 (ASU 2017-04 Goodwill Impairment); FASB ASC 360-10 (Long-Lived Assets); PCAOB AS 2501 & AICPA Goodwill Valuation Guide",
       "electronic_standard": "FASB ASC 350-20 / ASC 360-10 / PCAOB AS 2501 Impairment Valuation Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 360-10-35-17 Precedent Asset-Group Recoverability Test [FASB ASC 360-10-35-17 Precedent Impairment Sequence] \u2014 Recoverable_360 = I(sum_{t=1}^{L_rem} CF_Undisc_AssetGroup,t >= Carrying_Val_AssetGroup); Loss_360 = max(0, CV - FV_AssetGroup)",
-        "(2) FASB ASC 350-20 & PCAOB AS 2501 Reporting-Unit Present-Value Test [FASB ASC 350-20-35 & PCAOB AS 2501 Fair-Value Audit Standard] \u2014 FV_RU_DCF = sum_{t=1}^5 [UFCF_t / (1 + WACC)^t] + [UFCF_5 * (1 + g) / (WACC - g)] / (1 + WACC)^5",
-        "(3) FASB ASC 820 Level-3 Income & Market Fair-Value Reconciliation [FASB ASC 820-10-35 & AICPA Accounting & Valuation Guide: Goodwill] \u2014 FV_RU_Blended = w_DCF * FV_RU_DCF + w_GPC * (EBITDA_Norm * Mult_GPC_Harmonic) + w_MA * (EBITDA_Norm * Mult_Precedent)",
-        "(4) FASB ASU 2017-04 Single-Step Goodwill Write-Down & IRC Sec. 197 Tax Shield [FASB ASU 2017-04 (ASC 350-20-35-3C to 35-13) & 26 U.S.C. Sec. 197] \u2014 Impairment_GW = min(GW_Carrying_RU, max(0, (CV_RU_Incl_GW - FV_RU_Blended) / (1 - tau_Sec197_Factor)))"
+        "(1) FASB ASC 360-10-35-17 Precedent Asset-Group Recoverability Test [FASB ASC 360-10-35-17 Precedent Impairment Sequence]",
+        "(2) FASB ASC 350-20 & PCAOB AS 2501 Reporting-Unit Present-Value Test [FASB ASC 350-20-35 & PCAOB AS 2501 Fair-Value Audit Standard]",
+        "(3) FASB ASC 820 Level-3 Income & Market Fair-Value Reconciliation [FASB ASC 820-10-35 & AICPA Accounting & Valuation Guide: Goodwill]",
+        "(4) FASB ASU 2017-04 Single-Step Goodwill Write-Down & IRC Sec. 197 Tax Shield [FASB ASU 2017-04 (ASC 350-20-35-3C to 35-13) & 26 U.S.C. Sec. 197]"
       ],
       "sample_structured_inputs": {
         "consolidated_carrying_value": 310000000,
@@ -3845,10 +3845,10 @@
       "governing_statutes": "FASB ASC 718 (Stock Compensation); FASB ASC 815-40 (Contracts in Entity's Own Equity); FASB ASC 470-20 (ASU 2020-06) & AICPA VS 100",
       "electronic_standard": "FASB ASC 718 / ASC 815-40 / ASC 470-20 Equity & Convertible Debt Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 718-10-55 Binomial Lattice Option Valuation & SAB No. 107 Benchmark [FASB ASC 718-10-55-17 to 55-41 & SEC SAB No. 107] \u2014 V_{i,j} = max(I(Vested & S_{i,j} >= M * K) * (S_{i,j} - K), e^(-r*dt) * [p * V_{i+1,j+1} + (1 - p) * V_{i+1,j}])",
-        "(2) FASB ASC 718-10-30-14 Market-Condition VWAP Award & Derived Service Period [FASB ASC 718-10-30-14 & ASC 718-10-55-60 Market Conditions] \u2014 V_MarketPSU = Hurdle_H * [(H / S_0)^((mu + lambda)/sigma^2) * N(-z_1) + (H / S_0)^((mu - lambda)/sigma^2) * N(-z_2)]",
-        "(3) FASB ASU 2020-06 (ASC 470-20) Convertible Debt & ASC 815-40 Warrant Liability [FASB ASU 2020-06 (ASC 470-20 / ASC 260) & ASC 815-40-15-7D] \u2014 V_Conv = V_Equity_Settlement + V_Debt_CreditDiscounted; Liability_Warrant = Units * BSM_FairValue(S, K_DownRound)",
-        "(4) FASB ASC 718-10-35-8 Accelerated Graded-Vesting Expense Attribution [FASB ASC 718-10-35-8 & ASU 2016-09 Forfeiture Attribution] \u2014 Exp_Graded(t) = sum_{k=t}^K (FV_Tranche,k / Vest_Yrs,k) * (1 - Forfeiture_Est)^k"
+        "(1) FASB ASC 718-10-55 Binomial Lattice Option Valuation & SAB No. 107 Benchmark [FASB ASC 718-10-55-17 to 55-41 & SEC SAB No. 107]",
+        "(2) FASB ASC 718-10-30-14 Market-Condition VWAP Award & Derived Service Period [FASB ASC 718-10-30-14 & ASC 718-10-55-60 Market Conditions]",
+        "(3) FASB ASU 2020-06 (ASC 470-20) Convertible Debt & ASC 815-40 Warrant Liability [FASB ASU 2020-06 (ASC 470-20 / ASC 260) & ASC 815-40-15-7D]",
+        "(4) FASB ASC 718-10-35-8 Accelerated Graded-Vesting Expense Attribution [FASB ASC 718-10-35-8 & ASU 2016-09 Forfeiture Attribution]"
       ],
       "sample_structured_inputs": {
         "spot_price": 18.5,
@@ -3908,10 +3908,10 @@
       "governing_statutes": "26 U.S.C. \u00a7 263A & Treas. Reg. \u00a7\u00a7 1.263A-1 to -3 (Final UNICAP Rules); IRC \u00a7 481(a); IRS Form 3115 & Rev. Proc. 2024-23",
       "electronic_standard": "IRS Form 3115 (Rev. Proc. 2024-23) & IRC Sec. 263A / Sec. 481(a) Schedule",
       "domain_mathematical_laws": [
-        "(1) Treas. Reg. Sec. 1.263A-2(b) Simplified Production Method (SPM) Absorption [26 U.S.C. Sec. 263A & Treas. Reg. Secs. 1.263A-2(b), -3(d)] \u2014 Ratio_Absorb = Additional_Sec263A_Costs / Total_Sec471_Costs; AddOn_263A_End = Ratio_Absorb * Sec471_Ending_FIFO_Inv",
-        "(2) Treas. Reg. Sec. 1.263A-1(g)(4) Mixed-Service 90/10 De Minimis Screen [Treas. Reg. Sec. 1.263A-1(g)(4)(ii) Mixed-Service Allocation Rules] \u2014 Alloc_MixedSvc,d = Cost_Dept,d * (1.0 if r_d >= 0.90 else 0.0 if r_d <= 0.10 else r_d)",
-        "(3) Treas. Reg. Sec. 1.263A-2(b)(4) 3-Year Historic Absorption Ratio (HAR) Election [Treas. Reg. Sec. 1.263A-2(b)(4) Qualifying 3-Year HAR Election] \u2014 Ratio_HAR = sum_{y=t-3}^{t-1} Additional_263A(y) / sum_{y=t-3}^{t-1} Sec471_Incurred(y)",
-        "(4) IRS Form 3115 & 26 U.S.C. Sec. 481(a) Method-Change Adjustment [26 U.S.C. Sec. 481(a) & IRS Rev. Proc. 2024-23 Automatic Change #237] \u2014 Adj_481a = Inv_Tax_NewMethod_Open - Inv_Tax_OldMethod_Open (100% Yr-1 Deduction if < 0; 25%/Yr x 4 Yrs if > 0)"
+        "(1) Treas. Reg. Sec. 1.263A-2(b) Simplified Production Method (SPM) Absorption [26 U.S.C. Sec. 263A & Treas. Reg. Secs. 1.263A-2(b), -3(d)]",
+        "(2) Treas. Reg. Sec. 1.263A-1(g)(4) Mixed-Service 90/10 De Minimis Screen [Treas. Reg. Sec. 1.263A-1(g)(4)(ii) Mixed-Service Allocation Rules]",
+        "(3) Treas. Reg. Sec. 1.263A-2(b)(4) 3-Year Historic Absorption Ratio (HAR) Election [Treas. Reg. Sec. 1.263A-2(b)(4) Qualifying 3-Year HAR Election]",
+        "(4) IRS Form 3115 & 26 U.S.C. Sec. 481(a) Method-Change Adjustment [26 U.S.C. Sec. 481(a) & IRS Rev. Proc. 2024-23 Automatic Change #237]"
       ],
       "sample_structured_inputs": {
         "sec471_ending_fifo_inventory": 64800000
@@ -3964,10 +3964,10 @@
       "governing_statutes": "FASB ASC 470-50-40 (Debt Modifications & Extinguishments); FASB ASC 835-30 (Effective-Interest OID); FASB ASC 470-60",
       "electronic_standard": "FASB ASC 470-50-40 Debt Modification & ASC 835-30 Effective-Interest Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 470-50-40-10 Syndicate Lender-by-Lender 10% Cash-Flow Test [FASB ASC 470-50-40-10 & ASC 470-50-40-12 Syndicate Debt Test] \u2014 Pct_PV_Diff,l = |PV(CF_New,l + Fees_Net,l ; r_EIR_orig) - PV(CF_Old_Rem,l ; r_EIR_orig)| / PV(CF_Old_Rem,l ; r_EIR_orig)",
-        "(2) FASB ASC 835-30-35 Effective-Interest Rate (EIR) & OID Accretion [FASB ASC 835-30-35-2 Effective-Interest Amortization Method] \u2014 Net_Carrying_0 = sum_{t=1}^T CF_Contractual,t / (1 + r_EIR_new)^t; OID_Amort_t = Carrying_{t-1} * r_EIR_new - Cash_Int_t",
-        "(3) FASB ASC 470-50-40-17 Lender vs. Third-Party Fee Bifurcation Rule [FASB ASC 470-50-40-17 to 40-18 Debt Issuance Cost Rules] \u2014 Modification: Lender_Fees -> Defer/OID, 3rdParty_Fees -> Expense; Extinguishment: Old_OID -> WriteOff, 3rdParty -> Defer",
-        "(4) OCC Bulletin 2013-9 Leveraged-Lending Fixed-Charge & Leverage Test [OCC Bulletin 2013-9 Interagency Leveraged-Lending Guidance] \u2014 FCCR_post = (EBITDA_Adj - CapEx_Maint - Cash_Tax) / (Int_Cash_Post + Prin_Sched_Post); Net_Lev = Debt_Net / EBITDA_Adj"
+        "(1) FASB ASC 470-50-40-10 Syndicate Lender-by-Lender 10% Cash-Flow Test [FASB ASC 470-50-40-10 & ASC 470-50-40-12 Syndicate Debt Test]",
+        "(2) FASB ASC 835-30-35 Effective-Interest Rate (EIR) & OID Accretion [FASB ASC 835-30-35-2 Effective-Interest Amortization Method]",
+        "(3) FASB ASC 470-50-40-17 Lender vs. Third-Party Fee Bifurcation Rule [FASB ASC 470-50-40-17 to 40-18 Debt Issuance Cost Rules]",
+        "(4) OCC Bulletin 2013-9 Leveraged-Lending Fixed-Charge & Leverage Test [OCC Bulletin 2013-9 Interagency Leveraged-Lending Guidance]"
       ],
       "sample_structured_inputs": {
         "syndicated_facility_principal": 145000000,
@@ -4025,10 +4025,10 @@
       "governing_statutes": "FASB ASC 740-10 (Income Taxes & FIN 48 UTPs); FASB ASU 2023-09 (Rate Reconciliation Disclosures); IRC \u00a7\u00a7 163(j), 174, 382 & 951A",
       "electronic_standard": "FASB ASC 740-10 (ASU 2023-09 ETR Footnote) & IRS Form 1120 Schedule UTP",
       "domain_mathematical_laws": [
-        "(1) FASB ASU 2023-09 (ASC 740-10-50-12) Disaggregated ETR Reconciliation [FASB ASC 740-10 & ASU 2023-09 Disaggregated Rate Reconciliation] \u2014 ETR_GAAP = Tax_Total_Provision / PTI_GAAP = tau_Fed_21% + (Delta_State_Net + Delta_Perm + Delta_VA + Delta_UTP + Delta_Rate) / PTI",
-        "(2) FASB ASC 740-10-30-16 Valuation Allowance & 3-Year Cumulative Loss Gate [FASB ASC 740-10-30-16 to 30-24 Valuation Allowance Rules] \u2014 DTA_Net = sum_i TempDiff_Ded,i * tau_Enacted,i - VA; Cumulative_3Yr_Loss = sum_{y=t-2}^t PTI_Adj(y) < 0",
-        "(3) FASB ASC 740-10-25-6 (FIN 48) & Schedule UTP >50% Measurement Rule [FASB ASC 740-10-25-6 (FIN 48) & IRS Form 1120 Schedule UTP] \u2014 UTP_Recognized = max{X_k : P(Outcome >= X_k) > 0.50}; Liability_FIN48 = Tax_Benefit_AsFiled - UTP_Recognized + Int_Pen",
-        "(4) 26 U.S.C. Secs. 951A & 250 GILTI Inclusion & 80% Foreign Tax Credit Haircut [26 U.S.C. Secs. 951A, 250, 960(d) & FASB ASC 740-10] \u2014 GILTI_Net_Tax = max(0, max(0, Net_CFC_Tested_Income - (0.10 * QBAI - Int_Spec)) * 0.50 * 0.21 - 0.80 * FTC_Alloc)"
+        "(1) FASB ASU 2023-09 (ASC 740-10-50-12) Disaggregated ETR Reconciliation [FASB ASC 740-10 & ASU 2023-09 Disaggregated Rate Reconciliation]",
+        "(2) FASB ASC 740-10-30-16 Valuation Allowance & 3-Year Cumulative Loss Gate [FASB ASC 740-10-30-16 to 30-24 Valuation Allowance Rules]",
+        "(3) FASB ASC 740-10-25-6 (FIN 48) & Schedule UTP >50% Measurement Rule [FASB ASC 740-10-25-6 (FIN 48) & IRS Form 1120 Schedule UTP]",
+        "(4) 26 U.S.C. Secs. 951A & 250 GILTI Inclusion & 80% Foreign Tax Credit Haircut [26 U.S.C. Secs. 951A, 250, 960(d) & FASB ASC 740-10]"
       ],
       "sample_structured_inputs": {
         "pre_tax_book_income": 42000000,
@@ -4082,10 +4082,10 @@
       "governing_statutes": "8 Del. C. \u00a7\u00a7 170, 172 (DGCL Statutory Surplus & Board Expert Reliance); 11 U.S.C. \u00a7 548(a)(1)(B) (Constructive Fraudulent Transfer); Uniform Voidable Transactions Act (UVTA \u00a7\u00a7 4\u20135)",
       "electronic_standard": "DGCL Sec. 170 Statutory Surplus & 11 U.S.C. Sec. 548 Three-Prong Solvency Schedule",
       "domain_mathematical_laws": [
-        "(1) 8 Del. C. Secs. 170 & 172 Fair-Valuation Statutory Surplus Test [8 Del. C. Secs. 170, 172 & Delaware Fair-Valuation Surplus Rule] \u2014 Surplus_DGCL170 = (EV_FairVal + Cash_NonOp) - (Debt_PostRecap + PV_Contingent_Liab) - Par_Capital > $0",
-        "(2) 11 U.S.C. Sec. 101(32)(A) & UVTA Sec. 2 Balance-Sheet Solvency Coverage [11 U.S.C. Secs. 101(32)(A), 548(a)(1)(B)(ii)(I) & UVTA Sec. 2] \u2014 Cov_101_32 = (EV_GoingConcern + Cash_Unrestricted) / (Debt_PostTx + PV_Contingent_Claims) >= 1.20x",
-        "(3) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) Unreasonably-Small-Capital Adequacy Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) & UVTA Sec. 4(a)(2)(i)] \u2014 Lev_Net_Post <= Q_75(Peer_SIC_Lev) and Interest_Cov_Post >= Q_25(Peer_SIC_Cov)",
-        "(4) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) Maturing Debt-Service & Revolving Liquidity Sufficiency Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) & UVTA Sec. 4(a)(2)(ii)] \u2014 Sufficiency_548_III = (CFO_Stressed + Revolver_Undrawn_Committed) / (Principal_Sched + Interest_Cash + CapEx_Required) >= 1.25x"
+        "(1) 8 Del. C. Secs. 170 & 172 Fair-Valuation Statutory Surplus Test [8 Del. C. Secs. 170, 172 & Delaware Fair-Valuation Surplus Rule]",
+        "(2) 11 U.S.C. Sec. 101(32)(A) & UVTA Sec. 2 Balance-Sheet Solvency Coverage [11 U.S.C. Secs. 101(32)(A), 548(a)(1)(B)(ii)(I) & UVTA Sec. 2]",
+        "(3) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) Unreasonably-Small-Capital Adequacy Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(II) & UVTA Sec. 4(a)(2)(i)]",
+        "(4) 11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) Maturing Debt-Service & Revolving Liquidity Sufficiency Test [11 U.S.C. Sec. 548(a)(1)(B)(ii)(III) & UVTA Sec. 4(a)(2)(ii)]"
       ],
       "sample_structured_inputs": {
         "enterprise_fair_value": 340000000,
@@ -4142,10 +4142,10 @@
       "governing_statutes": "8 Del. C. \u00a7 144 (DGCL Interested-Director Safe Harbor & Entire Fairness); Investment Advisers Act of 1940 \u00a7 206 (15 U.S.C. \u00a7 80b-6); AICPA VS Section 100",
       "electronic_standard": "DGCL Sec. 144 / SEC Advisers Act Sec. 206 / FASB ASC 850 Fairness Schedule",
       "domain_mathematical_laws": [
-        "(1) 8 Del. C. Sec. 144(a) & AICPA VS 100 Multi-Method Interquartile Fairness Corridor [8 Del. C. Sec. 144(a)(1), FASB ASC 820 & AICPA VS Section 100] \u2014 Price_Proposed in [max(Q_25_DCF, Q_25_GPC, Q_25_MA), min(Q_75_DCF, Q_75_GPC, Q_75_MA)]",
-        "(2) 15 U.S.C. Sec. 80b-6(3) Continuation-Fund Sell-vs.-Roll LP Economic Parity [15 U.S.C. Sec. 80b-6(3) (SEC Advisers Act Sec. 206) & Form PF] \u2014 NPV_LP_Sell = Proceeds_Gross - Carry_Crystallized - Exp_Share; NPV_LP_Roll = PV(Exit_CV - Carry_Reset_CV) - PV(MgmtFee_CV)",
-        "(3) 8 Del. C. Sec. 144(a)(3) Economic Fairness & Acquirer Return-on-Capital Test [8 Del. C. Sec. 144(a)(3) Fair-Price Safe Harbor & FINRA Rule 5150] \u2014 ROIC_Deal = NOPAT_Stabilized / Capital_Invested >= WACC_Acquirer; Delta_NAV_Per_Unit >= 0",
-        "(4) FASB ASC 850 & Treas. Reg. Sec. 1.482-1 Related-Party Arm's-Length Rate Test [FASB ASC 850-10-50, 8 Del. C. Sec. 144 & 26 CFR Sec. 1.482-1] \u2014 |Rate_Affiliate - Median_ArmLength_Quote| / Median_ArmLength_Quote <= 0.05"
+        "(1) 8 Del. C. Sec. 144(a) & AICPA VS 100 Multi-Method Interquartile Fairness Corridor [8 Del. C. Sec. 144(a)(1), FASB ASC 820 & AICPA VS Section 100]",
+        "(2) 15 U.S.C. Sec. 80b-6(3) Continuation-Fund Sell-vs.-Roll LP Economic Parity [15 U.S.C. Sec. 80b-6(3) (SEC Advisers Act Sec. 206) & Form PF]",
+        "(3) 8 Del. C. Sec. 144(a)(3) Economic Fairness & Acquirer Return-on-Capital Test [8 Del. C. Sec. 144(a)(3) Fair-Price Safe Harbor & FINRA Rule 5150]",
+        "(4) FASB ASC 850 & Treas. Reg. Sec. 1.482-1 Related-Party Arm's-Length Rate Test [FASB ASC 850-10-50, 8 Del. C. Sec. 144 & 26 CFR Sec. 1.482-1]"
       ],
       "sample_structured_inputs": {
         "proposed_transaction_ev": 265000000,
@@ -4200,10 +4200,10 @@
       "governing_statutes": "SBA Standard Operating Procedure (SOP) 50 10 7.1 (Change-of-Ownership >$250,000 Qualified Source Valuation Rules); 13 CFR Part 120; AICPA VS Section 100",
       "electronic_standard": "SBA SOP 50 10 7.1 Change-of-Ownership Valuation & 7(a) Debt-Sizing Schedule",
       "domain_mathematical_laws": [
-        "(1) SBA SOP 50 10 7.1 & AICPA VS 100 Form 4506-C Reconciled MVIC Valuation [SBA SOP 50 10 7.1, IRS Form 4506-C & AICPA VS Section 100] \u2014 MVIC_Concluded = w_Cap * (EBITDA_Norm / r_Cap) + w_DCF * PV_DCF + w_Mkt * (EBITDA_Norm * Mult_NAICS)",
-        "(2) 13 CFR Sec. 120.150 & SBA SOP 50 10 7.1 10-Year 7(a) DSCR Floor (>= 1.15x) [13 CFR Sec. 120.150 & SBA SOP 50 10 7.1 Sec. B] \u2014 DSCR_SBA = (EBITDA_TaxTranscript_Norm - Tax_Cash - CapEx_Unfinanced) / Debt_Service_7a_10Yr >= 1.15x",
-        "(3) IRS Rev. Rul. 59-60 Sec. 4 Comparable NAICS Closed-Transaction Corridor [IRS Revenue Ruling 59-60 Sec. 4 & SBA SOP 50 10 7.1 Appraisal Rules] \u2014 MVIC_Benchmark = Base_Asset_Floor + w_Rev * Rev_4506C + w_SDE * SDE_Norm (within +/- 1.0 sigma)",
-        "(4) SBA SOP 50 10 7.1 Change-of-Ownership 10% Equity Injection & 24-Mo Standby Cap [SBA SOP 50 10 7.1 Ch. 4 Change-of-Ownership Equity Rule] \u2014 Equity_Buyer_Cash + min(Seller_Note_24Mo_FullStandby, 0.05 * Total_Project_Cost) >= 0.10 * Total_Project_Cost"
+        "(1) SBA SOP 50 10 7.1 & AICPA VS 100 Form 4506-C Reconciled MVIC Valuation [SBA SOP 50 10 7.1, IRS Form 4506-C & AICPA VS Section 100]",
+        "(2) 13 CFR Sec. 120.150 & SBA SOP 50 10 7.1 10-Year 7(a) DSCR Floor (>= 1.15x) [13 CFR Sec. 120.150 & SBA SOP 50 10 7.1 Sec. B]",
+        "(3) IRS Rev. Rul. 59-60 Sec. 4 Comparable NAICS Closed-Transaction Corridor [IRS Revenue Ruling 59-60 Sec. 4 & SBA SOP 50 10 7.1 Appraisal Rules]",
+        "(4) SBA SOP 50 10 7.1 Change-of-Ownership 10% Equity Injection & 24-Mo Standby Cap [SBA SOP 50 10 7.1 Ch. 4 Change-of-Ownership Equity Rule]"
       ],
       "sample_structured_inputs": {
         "proposed_purchase_price": 4850000,
@@ -4258,10 +4258,10 @@
       "governing_statutes": "OCC Comptroller's Handbook: Asset-Based Lending; Uniform Commercial Code (UCC) Article 9 Secured Transactions; AICPA CS Section 100",
       "electronic_standard": "OCC Asset-Based Lending Field-Examination & UCC Article 9 Borrowing-Base Cert",
       "domain_mathematical_laws": [
-        "(1) OCC ABL Handbook & UCC Art. 9 Net-Eligible Accounts Receivable Waterfall [OCC Comptroller's Handbook: Asset-Based Lending & UCC Sec. 9-404] \u2014 AR_Avail = Adv_Rate_AR * (AR_Gross - AR_Over90 - AR_50PctCrossAge - AR_Conc_Excess - AR_Foreign_Gov_Contra)",
-        "(2) OCC ABL Field-Exam 2-for-1 Non-Cash AR Dilution Advance Haircut [OCC Comptroller's Handbook: ABL Field-Examination Dilution Formula] \u2014 Adv_Rate_AR = min(0.85, 1.00 - [2.0 * max(0, Dilution_12Mo_Pct - 0.05) + 0.15])",
-        "(3) OCC ABL Lesser-of-65%-Cost-or-85%-NOLV Inventory Cap & PACA/Landlord Reserves [OCC ABL Inventory Valuation Guidelines & 7 U.S.C. Sec. 499e(c) Priority] \u2014 Inv_Avail = min(0.65 * Inv_Eligible_FIFO_Cost, 0.85 * NOLV_Pct_Appraised * Inv_Eligible_FIFO_Cost) - Reserves_Statutory",
-        "(4) UCC Sec. 9-104 Deposit-Account Control (DACA) & Springing Cash-Dominion Gate [UCC Sec. 9-104 Deposit-Account Control & OCC ABL Covenant Standards] \u2014 Spring_Dominion = I(Excess_Availability < max($3.50M, 0.10 * Loan_Cap)); Springing_FCCR >= 1.10x"
+        "(1) OCC ABL Handbook & UCC Art. 9 Net-Eligible Accounts Receivable Waterfall [OCC Comptroller's Handbook: Asset-Based Lending & UCC Sec. 9-404]",
+        "(2) OCC ABL Field-Exam 2-for-1 Non-Cash AR Dilution Advance Haircut [OCC Comptroller's Handbook: ABL Field-Examination Dilution Formula]",
+        "(3) OCC ABL Lesser-of-65%-Cost-or-85%-NOLV Inventory Cap & PACA/Landlord Reserves [OCC ABL Inventory Valuation Guidelines & 7 U.S.C. Sec. 499e(c) Priority]",
+        "(4) UCC Sec. 9-104 Deposit-Account Control (DACA) & Springing Cash-Dominion Gate [UCC Sec. 9-104 Deposit-Account Control & OCC ABL Covenant Standards]"
       ],
       "sample_structured_inputs": {
         "gross_accounts_receivable": 29600000,
@@ -4316,10 +4316,10 @@
       "governing_statutes": "ERISA \u00a7\u00a7 404(a)(1)(A) & 408(b)(2) (29 U.S.C. \u00a7\u00a7 1104, 1108(b)(2)); 29 CFR \u00a7 2550.408b-2; Consolidated Appropriations Act, 2021 (CAA 2021) \u00a7 202",
       "electronic_standard": "DOL Form 5500 Schedule C / ERISA Sec. 408(b)(2) / CAA 2021 Sec. 202 RxDC",
       "domain_mathematical_laws": [
-        "(1) 29 CFR Sec. 2550.408b-2 & Form 5500 Schedule C All-In Recordkeeping Fee Test [29 U.S.C. Secs. 1104(a)(1)(A), 1108(b)(2) & 29 CFR Sec. 2550.408b-2] \u2014 Fee_PerCapita = (Direct_RK_USD + sum_f Assets_f * RevShare_12b1_SubTA,f - RevCredit_Plan) / Active_Participants <= P_50_Form5500",
-        "(2) 29 U.S.C. Sec. 1104(a)(1)(A) Continuing Duty-to-Monitor Institutional Share-Class Test [29 U.S.C. Sec. 1104(a)(1)(A) ERISA Prudent Monitoring Duty] \u2014 Drag_10Yr = Assets_0 * (1 + r_mkt)^10 * [(1 - ER_Inst_R6_CIT)^10 - (1 - ER_Retail)^10]",
-        "(3) 42 U.S.C. Sec. 300gg-115 (CAA 2021 RxDC) CMS NADAC Spread & Retained Rebate Audit [42 U.S.C. Sec. 300gg-115 (CAA 2021 Sec. 204 RxDC) & CMS NADAC Schedule] \u2014 Spread_PBM = (Billed_Rx_Spend - CMS_NADAC_Plus_Dispensing) + (Rebates_Mfr - Rebates_Remitted)",
-        "(4) 29 U.S.C. Sec. 1108(b)(2)(B) (CAA 2021 Sec. 202) Broker Direct & Indirect Fee Reasonableness [29 U.S.C. Sec. 1108(b)(2)(B) & DOL Field Assistance Bulletin 2021-03] \u2014 Comp_Broker_Total = Fee_Direct_PEPM * 12 * Participants + Commissions_and_Overrides <= Peer_Reasonable_Cap"
+        "(1) 29 CFR Sec. 2550.408b-2 & Form 5500 Schedule C All-In Recordkeeping Fee Test [29 U.S.C. Secs. 1104(a)(1)(A), 1108(b)(2) & 29 CFR Sec. 2550.408b-2]",
+        "(2) 29 U.S.C. Sec. 1104(a)(1)(A) Continuing Duty-to-Monitor Institutional Share-Class Test [29 U.S.C. Sec. 1104(a)(1)(A) ERISA Prudent Monitoring Duty]",
+        "(3) 42 U.S.C. Sec. 300gg-115 (CAA 2021 RxDC) CMS NADAC Spread & Retained Rebate Audit [42 U.S.C. Sec. 300gg-115 (CAA 2021 Sec. 204 RxDC) & CMS NADAC Schedule]",
+        "(4) 29 U.S.C. Sec. 1108(b)(2)(B) (CAA 2021 Sec. 202) Broker Direct & Indirect Fee Reasonableness [29 U.S.C. Sec. 1108(b)(2)(B) & DOL Field Assistance Bulletin 2021-03]"
       ],
       "sample_structured_inputs": {
         "plan_401k_assets_usd": 285000000,
@@ -4377,10 +4377,10 @@
       "governing_statutes": "ERISA \u00a7\u00a7 3(18) & 408(e) (29 U.S.C. \u00a7\u00a7 1002(18), 1108(e)); IRC \u00a7\u00a7 401(a)(28), 409(h), 409(p) & 4979A; Treas. Reg. \u00a7 54.4975-7(b)(8); AICPA VS Section 100",
       "electronic_standard": "DOL ESOP Valuation Workpaper / IRC Sec. 409(h) Repurchase & Sec. 409(p) Test",
       "domain_mathematical_laws": [
-        "(1) 29 U.S.C. Secs. 1002(18) & 1108(e) Adequate Consideration FMV & Put-Right DLOM Cap [29 U.S.C. Secs. 1002(18), 1108(e) (ERISA Secs. 3(18), 408(e)) & DOL Settlement Standards] \u2014 FMV_ESOP_Eq = [EV_Control + Cash_Excess - Debt_External_and_Mirror] * (1 - min(0.075, DLOM_PutRight))",
-        "(2) 26 U.S.C. Secs. 401(a)(28)(B) & 409(h) Age-55 Diversification & Repurchase Obligation [26 U.S.C. Secs. 401(a)(28)(B) & 409(h) Put-Option & Diversification Rules] \u2014 Cash_Repurchase(t) = Share_Price(t) * [Shares_Diversif_Age55_10Yr(t) * (0.25 or 0.50) + Shares_Retire_Term_Vested(t)]",
-        "(3) 26 U.S.C. Secs. 409(p) & 4979A S-Corp ESOP <50% Nonallocation & Synthetic Equity Test [26 U.S.C. Secs. 409(p), 4979A & Treas. Reg. Sec. 1.409(p)-1] \u2014 Disq_409p = I(DeemedOwned_i >= 0.10 or Family_i >= 0.20); Viol_409p = I(sum_{i in Disq} (Deemed_i + Synth_i) >= 0.50)",
-        "(4) Treas. Reg. Sec. 54.4975-7(b)(8)(i) Suspense-Account Proportional P&I Share Release [26 CFR Sec. 54.4975-7(b)(8)(i) Exempt ESOP Loan Encumbrance Release] \u2014 Shares_Released(t) = Shares_Suspense_Open(t) * [(Prin_Paid(t) + Int_Paid(t)) / (Prin_Paid(t) + Int_Paid(t) + P_and_I_Future)]"
+        "(1) 29 U.S.C. Secs. 1002(18) & 1108(e) Adequate Consideration FMV & Put-Right DLOM Cap [29 U.S.C. Secs. 1002(18), 1108(e) (ERISA Secs. 3(18), 408(e)) & DOL Settlement Standards]",
+        "(2) 26 U.S.C. Secs. 401(a)(28)(B) & 409(h) Age-55 Diversification & Repurchase Obligation [26 U.S.C. Secs. 401(a)(28)(B) & 409(h) Put-Option & Diversification Rules]",
+        "(3) 26 U.S.C. Secs. 409(p) & 4979A S-Corp ESOP <50% Nonallocation & Synthetic Equity Test [26 U.S.C. Secs. 409(p), 4979A & Treas. Reg. Sec. 1.409(p)-1]",
+        "(4) Treas. Reg. Sec. 54.4975-7(b)(8)(i) Suspense-Account Proportional P&I Share Release [26 CFR Sec. 54.4975-7(b)(8)(i) Exempt ESOP Loan Encumbrance Release]"
       ],
       "sample_structured_inputs": {
         "esop_enterprise_value": 162000000,
@@ -4438,10 +4438,10 @@
       "governing_statutes": "19 U.S.C. \u00a7\u00a7 1401a (Transaction Value & Assists), 1592 (Reasonable Care & Prior Disclosure), 1313(j) (TFTEA Drawback); 19 CFR Parts 152 & 190; Nissho Iwai, 982 F.2d 505",
       "electronic_standard": "CBP Entry Summary (19 U.S.C. 1401a) & CBP Form 7551 Duty-Drawback Schedule",
       "domain_mathematical_laws": [
-        "(1) 19 U.S.C. Sec. 1401a(b) & 19 CFR Sec. 152.103 First-Sale Export Valuation [19 U.S.C. Sec. 1401a(b), 19 CFR Sec. 152.103 & CBP First-Sale Rule] \u2014 Val_FirstSale = Price_Factory_to_Middleman (FOB_ForeignPort); Duty_Saved = (Price_Importer - Price_Factory) * tau_HTSUS_301",
-        "(2) 19 U.S.C. Sec. 1401a(b)(1) Dutiable Assists & Royalties Net of CIF Freight [19 U.S.C. Sec. 1401a(b)(1), 19 CFR Sec. 152.103(d) & CBP ACE Reconciliation] \u2014 Val_Entered_Adj = Price_Paid + Assists_Apportioned(Tooling, Eng_Foreign) + Royalties_ConditionOfSale - Freight_Intl_Ins",
-        "(3) 19 U.S.C. Sec. 1313(j)(2) & 19 CFR Part 190 TFTEA 99% Substitution Drawback [19 U.S.C. Sec. 1313(j)(2) (TFTEA) & 19 CFR Part 190] \u2014 Refund_Drawback = 0.99 * min(Duty_MPF_301_Import_PerUnit, Duty_Substituted_8Digit_HTSUS) * Units_Exported_5Yr",
-        "(4) 19 U.S.C. Sec. 4531 & 19 CFR Part 182 USMCA Regional Value Content (RVC) [19 U.S.C. Sec. 4531, 19 CFR Part 182 & 19 U.S.C. Sec. 1592] \u2014 RVC_NetCost = [(Net_Cost - VNM_NonOrig) / Net_Cost] >= 0.45; RVC_TxVal = [(TV - VNM) / TV] >= 0.60"
+        "(1) 19 U.S.C. Sec. 1401a(b) & 19 CFR Sec. 152.103 First-Sale Export Valuation [19 U.S.C. Sec. 1401a(b), 19 CFR Sec. 152.103 & CBP First-Sale Rule]",
+        "(2) 19 U.S.C. Sec. 1401a(b)(1) Dutiable Assists & Royalties Net of CIF Freight [19 U.S.C. Sec. 1401a(b)(1), 19 CFR Sec. 152.103(d) & CBP ACE Reconciliation]",
+        "(3) 19 U.S.C. Sec. 1313(j)(2) & 19 CFR Part 190 TFTEA 99% Substitution Drawback [19 U.S.C. Sec. 1313(j)(2) (TFTEA) & 19 CFR Part 190]",
+        "(4) 19 U.S.C. Sec. 4531 & 19 CFR Part 182 USMCA Regional Value Content (RVC) [19 U.S.C. Sec. 4531, 19 CFR Part 182 & 19 U.S.C. Sec. 1592]"
       ],
       "sample_structured_inputs": {
         "annual_entered_import_value": 134000000,
@@ -4497,10 +4497,10 @@
       "governing_statutes": "15 CFR \u00a7 734.4 & Part 734 Supp. No. 2 (BIS EAR De Minimis); 22 CFR Parts 120\u2013130 (DDTC ITAR See-Through Rule); 31 CFR Ch. V (OFAC Revised 50%-Rule)",
       "electronic_standard": "BIS 15 CFR 734.4 De Minimis Report & OFAC 50%-Rule Beneficial-Ownership Schedule",
       "domain_mathematical_laws": [
-        "(1) 15 CFR Sec. 734.4 EAR De Minimis Content & 22 CFR Sec. 120.31 ITAR See-Through Rule [15 CFR Sec. 734.4 (EAR) & 22 CFR Sec. 120.31 (ITAR USML 0% Rule)] \u2014 Ratio_DeMinimis = sum(FMV_Controlled_US_ECCN_Parts) / FMV_Foreign_Finished_Item < (0.10 if Dest in E1_D5 else 0.25)",
-        "(2) 31 CFR Ch. V OFAC Revised 50%-Rule Multi-Tier Constructive Ownership Test [31 CFR Ch. V & OFAC Revised 50%-Rule Aggregation Guidance] \u2014 Own_Blocked(E) = sum_{s in SDN_SSI} Direct_Pct(s, E) + sum_{H: Own_Blocked(H) >= 0.50} Direct_Pct(H, E) >= 0.50",
-        "(3) 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A Voluntary Self-Disclosure Cap [50 U.S.C. Secs. 1705, 4819; 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A] \u2014 Penalty_VSD_Max = 0.50 * min(Statutory_Max_IEEPA_ECRA, 0.50 * Transaction_Value_NonEgregious)",
-        "(4) 15 CFR Part 744 & OFAC Sanctions Framework CSL Fuzzy-Match Quarantine [15 CFR Part 744 Entity List & OFAC Framework for Sanctions Compliance] \u2014 Sim_CSL(s_1, s_2) >= Threshold_0.88; Exposure_Blocked = sum_{Sim >= 0.88} Open_Order_USD"
+        "(1) 15 CFR Sec. 734.4 EAR De Minimis Content & 22 CFR Sec. 120.31 ITAR See-Through Rule [15 CFR Sec. 734.4 (EAR) & 22 CFR Sec. 120.31 (ITAR USML 0% Rule)]",
+        "(2) 31 CFR Ch. V OFAC Revised 50%-Rule Multi-Tier Constructive Ownership Test [31 CFR Ch. V & OFAC Revised 50%-Rule Aggregation Guidance]",
+        "(3) 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A Voluntary Self-Disclosure Cap [50 U.S.C. Secs. 1705, 4819; 15 CFR Sec. 764 Supp. 1 & 31 CFR Pt. 501 App. A]",
+        "(4) 15 CFR Part 744 & OFAC Sanctions Framework CSL Fuzzy-Match Quarantine [15 CFR Part 744 Entity List & OFAC Framework for Sanctions Compliance]"
       ],
       "sample_structured_inputs": {
         "international_dual_use_shipments_usd": 92500000,
@@ -4560,10 +4560,10 @@
       "governing_statutes": "SEC Regulation S-K Item 106 (17 CFR \u00a7 229.106) & Form 8-K Item 1.05 (4-Business-Day Rule); SEC SAB No. 99; Open Group FAIR Standard; PCI-DSS v4.0",
       "electronic_standard": "SEC Form 8-K Item 1.05 / Reg S-K Item 106 / PCI-DSS v4.0 Materiality Schedule",
       "domain_mathematical_laws": [
-        "(1) 17 CFR Sec. 229.106(b) (SEC Reg S-K Item 106) & NIST SP 800-30 Cyber Risk Exposure [17 CFR Sec. 229.106(b)-(c) (SEC Reg S-K Item 106) & NIST SP 800-30 Rev. 1] \u2014 E_3Pt(X) = (X_min + 4 * X_mode + X_max) / 6; ALE_106 = E(Freq) * [E(Loss_IR_Downtime) + P_Reg * E(Loss_Enforcement)]",
-        "(2) PCI-DSS v4.0 Reqs. 6.4.3 / 11.6.1 & 16 CFR Part 314 Cardholder Breach Assessment [PCI-DSS v4.0 Reqs. 6.4.3 / 11.6.1 & 16 CFR Part 314 (FTC Safeguards Rule)] \u2014 Liability_PCI_Stat = Records_Regulated * Cost_Stat_Notice_CreditMon + Assessment_Acquirer_PCI_v4",
-        "(3) SEC SAB No. 99 & Form 8-K Item 1.05 Quantitative (>=5% PTI/Rev/Equity) & Qualitative Materiality Test [SEC Staff Accounting Bulletin No. 99 & 17 CFR Sec. 249.308 Form 8-K Item 1.05] \u2014 Trigger_8K_105 = I(max(Loss_Net/PTI, Loss_Net/Rev, Loss_Net/Equity) >= 0.05 or SAB99_Qualitative_ICFR_Breach)",
-        "(4) FASB ASC 450-20 Loss Contingencies & Cyber Tower Net Uninsured Retention [FASB ASC 450-20-25 Loss Contingencies & ASC 410-30 Insurance Recoveries] \u2014 Exposure_Retained = Retention_SIR + max(0, Loss_Extort - SubLimit) + CoIns_Pct * Covered_Layer + max(0, Loss_Tot - Limit)"
+        "(1) 17 CFR Sec. 229.106(b) (SEC Reg S-K Item 106) & NIST SP 800-30 Cyber Risk Exposure [17 CFR Sec. 229.106(b)-(c) (SEC Reg S-K Item 106) & NIST SP 800-30 Rev. 1]",
+        "(2) PCI-DSS v4.0 Reqs. 6.4.3 / 11.6.1 & 16 CFR Part 314 Cardholder Breach Assessment [PCI-DSS v4.0 Reqs. 6.4.3 / 11.6.1 & 16 CFR Part 314 (FTC Safeguards Rule)]",
+        "(3) SEC SAB No. 99 & Form 8-K Item 1.05 Quantitative (>=5% PTI/Rev/Equity) & Qualitative Materiality Test [SEC Staff Accounting Bulletin No. 99 & 17 CFR Sec. 249.308 Form 8-K Item 1.05]",
+        "(4) FASB ASC 450-20 Loss Contingencies & Cyber Tower Net Uninsured Retention [FASB ASC 450-20-25 Loss Contingencies & ASC 410-30 Insurance Recoveries]"
       ],
       "sample_structured_inputs": {
         "annual_revenue": 410000000,
@@ -4623,10 +4623,10 @@
       "governing_statutes": "FASB ASC 815-20 & ASC 815-30 (Derivatives & Hedging); ASC 820 (CVA/DVA Fair Value); 12 CFR Part 330 (FDIC Deposit Coverage); Corporate Treasury Standards",
       "electronic_standard": "FASB ASC 815-20 Hedge Effectiveness & FDIC 12 CFR Part 330 Treasury Schedule",
       "domain_mathematical_laws": [
-        "(1) FASB ASC 815-20-25 Cash-Flow Hedge Dollar-Offset [80%, 125%] & OLS Effectiveness [FASB ASC 815-20-25-75 & ASC 820-10-35 CVA/DVA Valuation] \u2014 Dollar_Offset = -Delta_FV_Swap_Clean / Delta_FV_Hypo_Debt in [0.80, 1.25]; R^2_OLS >= 0.80 & beta in [-1.25, -0.80]",
-        "(2) 12 CFR Part 330 Uninsured Deposit Concentration (HHI) & Counterparty Credit Loss [12 CFR Part 330 & 12 U.S.C. Sec. 1821(a)(1)(E) Deposit Insurance Cap] \u2014 HHI_Bank = sum_b (100 * Cash_b / Cash_Total)^2; EL_Uninsured = sum_b max(0, Cash_b - $250,000 * Accts_b) * PD_b * LGD",
-        "(3) FDIC 12 CFR Sec. 330.1 $250,000 ICS/CDARS Allocation & 30-Day Stress LCR Test [12 CFR Sec. 330.1, 12 U.S.C. Sec. 1829b(q) Reciprocal Deposits & 12 CFR Part 249 LCR] \u2014 N_ICS_Banks = ceil(Cash_Sweep / $248,500_SMDIA_Cap); LCR_30d = HQLA / max(0.25*Out_30d, Out_30d - min(In_30d, 0.75*Out_30d)) >= 1.00x",
-        "(4) 17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) Govt MMF Liquidity & FASB ASC 305-10 <=90d Gate [17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) & FASB ASC 305-10-20 Cash Equivalents] \u2014 Weekly_Liquid_2a7 >= 0.50 & WAM_Days <= 60 (ASC 305 <= 90d); Yield_Pickup = Cash_ICS_2a7 * (r_GovMMF - r_ECR)"
+        "(1) FASB ASC 815-20-25 Cash-Flow Hedge Dollar-Offset [80%, 125%] & OLS Effectiveness [FASB ASC 815-20-25-75 & ASC 820-10-35 CVA/DVA Valuation]",
+        "(2) 12 CFR Part 330 Uninsured Deposit Concentration (HHI) & Counterparty Credit Loss [12 CFR Part 330 & 12 U.S.C. Sec. 1821(a)(1)(E) Deposit Insurance Cap]",
+        "(3) FDIC 12 CFR Sec. 330.1 $250,000 ICS/CDARS Allocation & 30-Day Stress LCR Test [12 CFR Sec. 330.1, 12 U.S.C. Sec. 1829b(q) Reciprocal Deposits & 12 CFR Part 249 LCR]",
+        "(4) 17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) Govt MMF Liquidity & FASB ASC 305-10 <=90d Gate [17 CFR Sec. 270.2a-7 (SEC Rule 2a-7) & FASB ASC 305-10-20 Cash Equivalents]"
       ],
       "sample_structured_inputs": {
         "corporate_operating_cash_usd": 84200000,
@@ -5760,5 +5760,5 @@
       ]
     }
   },
-  "last_live_gov_hydration_utc": "2026-11-19T10:14:04.532182+00:00"
+  "last_live_gov_hydration_utc": "2026-11-19T12:13:24.634888+00:00"
 }
