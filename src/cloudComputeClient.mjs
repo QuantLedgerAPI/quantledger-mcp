@@ -63,3 +63,10 @@ export async function runCloudSec10kAudit({ tickerOrCik, analysisFocus = 'auto' 
     analysis_focus: analysisFocus,
   });
 }
+
+export async function runCloudKybBatchScreen({ entities = ['Apple Inc.'], fuzzyThreshold = 0.88 }) {
+  return await postCloudEndpoint('/v1/kyb/batch-screen', {
+    entities,
+    fuzzy_threshold: fuzzyThreshold,
+  });
+}

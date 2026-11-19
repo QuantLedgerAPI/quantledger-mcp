@@ -16,7 +16,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 
 import { searchCatalogSuites } from './catalogEngine.mjs';
-import { runCloudMathEngine, runCloudSec10kAudit } from './cloudComputeClient.mjs';
+import { runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit } from './cloudComputeClient.mjs';
 import { getStatutoryRatesAndJurisdictions, loadLocalCatalog } from './statutoryEngine.mjs';
 import { loadTaxonomyBundle, resolveIndustryTaxonomy } from './taxonomyEngine.mjs';
 
@@ -37,7 +37,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.4.1',
+    version: '2.5.1',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
@@ -148,6 +148,28 @@ export function createQuantLedgerMcpServer() {
     },
     async ({ ticker_or_cik, analysis_focus }) => {
       const res = await runCloudSec10kAudit({ tickerOrCik: ticker_or_cik, analysisFocus: analysis_focus });
+      return {
+        isError: Boolean(res?.isError),
+        content: [{ type: 'text', text: JSON.stringify(res, null, 2) }],
+      };
+    }
+  );
+
+  // 6. REST-Backed Cloud Tool: Batch US KYB, OFAC Sanctions, BIS, OIG Exclusions & SEC Screener
+  server.registerTool(
+    'screen_us_kyb_ofac_bis_and_exclusions',
+    {
+      title: 'Batch Screen US KYB, OFAC Sanctions, BIS, OIG Exclusions & SEC EDGAR (Cloud REST)',
+      description:
+        'Screens 1 to 5,000 companies or individuals against 138,000+ live U.S. federal watchlist records (Treasury OFAC SDN/SSI/CMIC, Commerce BIS Entity List/Denied Persons, State Dept ITAR, HHS OIG Exclusions, OFAC 50%-Rule beneficial ownership, and SEC EDGAR CIK) via QuantLedger REST API (requires RAPIDAPI_KEY).',
+      annotations: READONLY_OPENWORLD,
+      inputSchema: {
+        entities: z.array(z.union([z.string(), z.record(z.any())])).min(1).max(5000).describe('Company/person names or objects with optional beneficial_owners ([{name, ownership_pct}]).'),
+        fuzzy_threshold: z.number().min(0.75).max(0.99).default(0.88).describe('Jaro-Winkler phonetic threshold (default 0.88).'),
+      },
+    },
+    async ({ entities, fuzzy_threshold }) => {
+      const res = await runCloudKybBatchScreen({ entities, fuzzyThreshold: fuzzy_threshold });
       return {
         isError: Boolean(res?.isError),
         content: [{ type: 'text', text: JSON.stringify(res, null, 2) }],
