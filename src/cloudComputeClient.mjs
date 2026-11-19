@@ -74,3 +74,7 @@ export async function runCloudKybBatchScreen({ entities = ['Apple Inc.'], fuzzyT
 export async function runCloudSecFormDLeads(params = {}) {
   return await postCloudEndpoint('/v1/sec-edgar/form-d-private-raises', params);
 }
+
+export async function runCloudDolForm5500Screen(params = {}) {
+  return await postCloudEndpoint('/v1/dol-ebsa/form-5500-audit-screen', params);
+}

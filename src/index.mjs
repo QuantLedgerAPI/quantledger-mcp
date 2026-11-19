@@ -16,7 +16,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 
 import { searchCatalogSuites } from './catalogEngine.mjs';
-import { runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit, runCloudSecFormDLeads } from './cloudComputeClient.mjs';
+import { runCloudDolForm5500Screen, runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit, runCloudSecFormDLeads } from './cloudComputeClient.mjs';
 import { registerResourcesAndPrompts } from './mcpResourcesAndPrompts.mjs';
 import { getStatutoryRatesAndJurisdictions } from './statutoryEngine.mjs';
 import { resolveIndustryTaxonomy } from './taxonomyEngine.mjs';
@@ -38,7 +38,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.6.1',
+    version: '2.7.1',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
@@ -197,6 +197,32 @@ export function createQuantLedgerMcpServer() {
     },
     async (params) => {
       const res = await runCloudSecFormDLeads(params);
+      return {
+        isError: Boolean(res?.isError),
+        content: [{ type: 'text', text: JSON.stringify(res, null, 2) }],
+      };
+    }
+  );
+
+  // 8. REST-Backed Cloud Tool: DOL Form 5500 CPA Benefit-Plan Audit & ERISA Sec. 408(b)(2) Fee Screener
+  server.registerTool(
+    'screen_dol_form_5500_erisa_audit_and_fee_triggers',
+    {
+      title: 'Screen DOL Form 5500 Plans for CPA Audit & ERISA Fee Triggers (Cloud REST)',
+      description:
+        'Screens 121,000+ official U.S. DOL EBSA EFAST2 Form 5500 & Schedule H/I retirement plans for 80-120 participant first-time CPA audit thresholds, missing audit opinions, ERISA Sec. 408(b)(2) excess fees, Line 4a late deferrals, and ERISA Sec. 412 bond shortfalls (requires RAPIDAPI_KEY).',
+      annotations: READONLY_OPENWORLD,
+      inputSchema: {
+        plan_year: z.number().int().default(2025).describe('DOL EFAST2 plan year (2025 or 2024).'),
+        trigger_filter: z.string().default('ALL_TRIGGERS').describe('ALL_TRIGGERS, FIRST_TIME_CPA_AUDIT_ZONE, MISSING_CPA_AUDIT_OPINION, LATE_DEFERRAL_VIOLATION, HIGH_FEE_BENCHMARK_ALERT, FIDELITY_BOND_SHORTFALL, or ALL_PLANS.'),
+        state_filter: z.string().default('').describe('Optional 2-letter US state filter (e.g. CA, TX, NY, FL).'),
+        sponsor_or_ein_query: z.string().default('').describe('Optional employer name, 9-digit EIN, CPA firm, or custodian.'),
+        min_assets_usd: z.number().min(0).default(500000).describe('Minimum ending net plan assets in USD.'),
+        max_results: z.number().int().min(1).max(100).default(25).describe('Max enriched Form 5500 plans to return (1 to 100).'),
+      },
+    },
+    async (params) => {
+      const res = await runCloudDolForm5500Screen(params);
       return {
         isError: Boolean(res?.isError),
         content: [{ type: 'text', text: JSON.stringify(res, null, 2) }],
