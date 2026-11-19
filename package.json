@@ -1,6 +1,6 @@
 {
   "name": "quantledger-mcp",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "Open-source Model Context Protocol (@modelcontextprotocol/sdk) server with keyless US 57-jurisdiction corporate tax/rate math & NAICS/SIC/GICS crosswalks plus REST execution for 73 CPA, FASB GAAP, IRC Tax, 409A, QoE EBITDA, DCAA, Credit & SEC EDGAR 10-K calculation engines (292 laws).",
   "mcpName": "io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-tax-409a-dcaa-sec-10-k-credit-finance",
   "type": "module",
