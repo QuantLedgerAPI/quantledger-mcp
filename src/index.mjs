@@ -16,9 +16,10 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 
 import { searchCatalogSuites } from './catalogEngine.mjs';
-import { runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit } from './cloudComputeClient.mjs';
-import { getStatutoryRatesAndJurisdictions, loadLocalCatalog } from './statutoryEngine.mjs';
-import { loadTaxonomyBundle, resolveIndustryTaxonomy } from './taxonomyEngine.mjs';
+import { runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit, runCloudSecFormDLeads } from './cloudComputeClient.mjs';
+import { registerResourcesAndPrompts } from './mcpResourcesAndPrompts.mjs';
+import { getStatutoryRatesAndJurisdictions } from './statutoryEngine.mjs';
+import { resolveIndustryTaxonomy } from './taxonomyEngine.mjs';
 
 const READONLY_LOCAL = {
   readOnlyHint: true,
@@ -37,7 +38,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.5.1',
+    version: '2.6.1',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
@@ -177,93 +178,33 @@ export function createQuantLedgerMcpServer() {
     }
   );
 
-  // MCP Resources (Keyless Local)
-  server.registerResource(
-    'catalog-suites',
-    'quantledger://catalog/suites',
+  // 7. REST-Backed Cloud Tool: Live SEC Form D Private-Raise Leads + IRC 409A & State Tax Nexus
+  server.registerTool(
+    'extract_sec_form_d_private_raises_and_409a_triggers',
     {
-      title: 'QuantLedger 73-Engine Statutory & Accounting Catalog',
-      description: 'Complete index of 10 suites and 73 deterministic accounting, tax, valuation, and credit calculation blueprints.',
-      mimeType: 'application/json',
-    },
-    async (uri) => ({
-      contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify(loadLocalCatalog().suites, null, 2) }],
-    })
-  );
-
-  server.registerResource(
-    'us-57-jurisdictions',
-    'quantledger://statutory/us-57-jurisdictions',
-    {
-      title: 'US 57-Jurisdiction Corporate Tax & Apportionment Table',
-      description: 'Corporate statutory tax rates, apportionment formulas, and labor multipliers across all 57 US jurisdictions.',
-      mimeType: 'application/json',
-    },
-    async (uri) => ({
-      contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify(loadLocalCatalog().us_jurisdictions, null, 2) }],
-    })
-  );
-
-  server.registerResource(
-    'taxonomy-counts',
-    'quantledger://taxonomy/summary',
-    {
-      title: 'NAICS / SIC / GICS Master Crosswalk Summary',
-      description: 'Universe counts across 1,012 NAICS-6, 1,184 SIC-4, and 163 GICS-8 industry codes.',
-      mimeType: 'application/json',
-    },
-    async (uri) => ({
-      contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify(loadTaxonomyBundle().counts, null, 2) }],
-    })
-  );
-
-  // CPA, Tax & Credit Analyst MCP Prompts (Keyless Local)
-  server.registerPrompt(
-    'asc842-lease-audit-workpaper',
-    {
-      title: 'FASB ASC 842 Lease Liability & ROU Workpaper Audit',
-      description: 'Structured CPA audit prompt for re-computing ASC 842 present-value lease liabilities and CAM/NNN reconciliations.',
-      argsSchema: {
-        jurisdiction: z.string().default('NY').describe('2-letter US jurisdiction code.'),
-        lease_summary: z.string().describe('Key lease terms, base rent escalations, discount rate, or CAM clause text.'),
+      title: 'Extract Live SEC Form D Startup Fundraising Leads + 409A & Tax Nexus (Cloud REST)',
+      description:
+        'Queries live SEC EDGAR Form D private-placement filings (primary_doc.xml) for newly funded companies, returning CEO/CFO signer contact, phone, HQ address, dollars closed, IRC Sec. 409A revaluation triggers, IRC Sec. 1202 QSBS status, and 57-state corporate tax nexus (requires RAPIDAPI_KEY).',
+      annotations: READONLY_OPENWORLD,
+      inputSchema: {
+        days_back: z.number().int().min(1).max(90).default(14).describe('Lookback window in calendar days (1 to 90).'),
+        max_results: z.number().int().min(1).max(100).default(25).describe('Max enriched Form D issuers to return (1 to 100).'),
+        state_filter: z.string().default('').describe('Optional 2-letter US state filter (e.g. CA, NY, TX, MA).'),
+        industry_keyword: z.string().default('').describe('Optional sector or keyword filter (e.g. Technology, Health Care, AI).'),
+        min_amount_sold_usd: z.number().min(0).default(0).describe('Minimum closed capital sold in USD.'),
+        exclude_pooled_funds: z.boolean().default(true).describe('Exclude hedge/VC/pooled funds to focus on operating companies.'),
       },
     },
-    async ({ jurisdiction, lease_summary }) => ({
-      messages: [
-        {
-          role: 'user',
-          content: {
-            type: 'text',
-            text: `Prepare a deterministic FASB ASC 842 lease liability and Right-of-Use (ROU) audit workpaper for jurisdiction ${jurisdiction}. First call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to pull live US Treasury / SOFR reference rates, inspect BI-17 via list_institutional_math_suites_73, and if RAPIDAPI_KEY is configured execute BI-17 on: ${lease_summary}`,
-          },
-        },
-      ],
-    })
+    async (params) => {
+      const res = await runCloudSecFormDLeads(params);
+      return {
+        isError: Boolean(res?.isError),
+        content: [{ type: 'text', text: JSON.stringify(res, null, 2) }],
+      };
+    }
   );
 
-  server.registerPrompt(
-    'irc-382-409a-tax-valuation-check',
-    {
-      title: 'IRC Sec 382 NOL Limitation & Sec 409A Valuation Check',
-      description: 'Corporate tax specialist workflow for ownership-change NOL caps (IRC Sec 382) and OPM/PWERM strike valuations (IRC Sec 409A).',
-      argsSchema: {
-        jurisdiction: z.string().default('DE').describe('Corporate state of incorporation / nexus.'),
-        cap_table_notes: z.string().describe('Summary of equity rounds, NOL balance, or ownership shift percentages.'),
-      },
-    },
-    async ({ jurisdiction, cap_table_notes }) => ({
-      messages: [
-        {
-          role: 'user',
-          content: {
-            type: 'text',
-            text: `Run an IRC Sec 382 & Sec 409A corporate tax diagnostic for ${jurisdiction}. Call get_live_us_statutory_rates_and_57_jurisdictions(jurisdiction="${jurisdiction}") to confirm the current IRC Sec 382 long-term tax-exempt rate and blended effective tax rate, inspect BI-49 and BI-48 via list_institutional_math_suites_73, and evaluate: ${cap_table_notes}`,
-          },
-        },
-      ],
-    })
-  );
-
+  registerResourcesAndPrompts(server);
   return server;
 }
 

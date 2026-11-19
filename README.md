@@ -22,6 +22,7 @@ mcp-name: io.github.QuantLedgerAPI/quantledger-cpa-accounting-gaap-asc842-irc-ta
 | **`execute_institutional_math_engine`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Executes any of the 73 deterministic pure-Python & NumPy accounting, regulatory, and statutory solvers (`/v1/suites/{engine_code}/compute`) in stateless zero-retention RAM. |
 | **`analyze_sec_credit_covenants_and_tariffs`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Parses live SEC EDGAR Form 10-K XBRL + footnotes (`/v1/company/credit-and-footnote-dossier`), tying out Adjusted EBITDA, Altman Z-Score, DSCR, and substring-verified debt covenants. |
 | **`screen_us_kyb_ofac_bis_and_exclusions`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Batch-screens `1` to `5,000` entities against `138,000+` live U.S. OFAC SDN/SSI, Commerce BIS Entity List, State Dept ITAR, HHS OIG Exclusions, OFAC 50% Rule, and SEC EDGAR records (`/v1/kyb/batch-screen`). |
+| **`extract_sec_form_d_private_raises_and_409a_triggers`** | **QuantLedger Cloud REST (`src/cloudComputeClient.mjs`)** | **Yes (`RAPIDAPI_KEY`)** | Extracts live SEC EDGAR Form D private-placement raises (`primary_doc.xml`) with CEO/CFO signer contacts, capital closed, `IRC § 409A` revaluation urgency, `IRC § 1202` QSBS checks, and 57-state tax nexus (`/v1/sec-edgar/form-d-private-raises`). |
 
 ---
 

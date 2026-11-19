@@ -70,3 +70,7 @@ export async function runCloudKybBatchScreen({ entities = ['Apple Inc.'], fuzzyT
     fuzzy_threshold: fuzzyThreshold,
   });
 }
+
+export async function runCloudSecFormDLeads(params = {}) {
+  return await postCloudEndpoint('/v1/sec-edgar/form-d-private-raises', params);
+}
