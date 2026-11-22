@@ -78,3 +78,7 @@ export async function runCloudSecFormDLeads(params = {}) {
 export async function runCloudDolForm5500Screen(params = {}) {
   return await postCloudEndpoint('/v1/dol-ebsa/form-5500-audit-screen', params);
 }
+
+export async function runCloudTrialBalanceBridge(params = {}) {
+  return await postCloudEndpoint('/v1/ledger/trial-balance-bridge', params);
+}

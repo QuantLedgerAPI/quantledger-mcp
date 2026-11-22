@@ -17,6 +17,7 @@ import { z } from 'zod';
 
 import { searchCatalogSuites } from './catalogEngine.mjs';
 import { runCloudDolForm5500Screen, runCloudKybBatchScreen, runCloudMathEngine, runCloudSec10kAudit, runCloudSecFormDLeads } from './cloudComputeClient.mjs';
+import { registerLedgerBridgeTools } from './ledgerBridgeTools.mjs';
 import { registerResourcesAndPrompts } from './mcpResourcesAndPrompts.mjs';
 import { getStatutoryRatesAndJurisdictions } from './statutoryEngine.mjs';
 import { resolveIndustryTaxonomy } from './taxonomyEngine.mjs';
@@ -38,7 +39,7 @@ const READONLY_OPENWORLD = {
 export function createQuantLedgerMcpServer() {
   const server = new McpServer({
     name: 'quantledger-mcp',
-    version: '2.8.2',
+    version: '2.9.1',
   });
 
   // 1. Keyless Local Tool: Search & Inspect All 73 Blueprints
@@ -230,6 +231,7 @@ export function createQuantLedgerMcpServer() {
     }
   );
 
+  registerLedgerBridgeTools(server);
   registerResourcesAndPrompts(server);
   return server;
 }
